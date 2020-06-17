@@ -1,4 +1,7 @@
 {
+  "navigation": {
+    "logo_text": "nieruchomosci-waw.com"
+  },
   "home": {
     "welcome": "Witamy"
   }
