@@ -4,9 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Content from '../../content/content.json'
 import {NavigationItem} from "./NavigationItem/NavigationItem"
-/** @jsx jsx */
-// @ts-ignore
-import {jsx, css} from '@emotion/core'
+import {css} from '@emotion/core'
 
 export const Navigation: FC = () => {
     const styles = {
