@@ -1,9 +1,9 @@
-import {FC} from "react";
-import AppBar from "@material-ui/core/AppBar/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import {FC} from 'react'
+import AppBar from '@material-ui/core/AppBar/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 import Content from '../../content/content.json'
-import {NavigationItem} from "./NavigationItem/NavigationItem"
+import {NavigationItem} from './NavigationItem/NavigationItem'
 import {css} from '@emotion/core'
 
 export const Navigation: FC = () => {
@@ -25,4 +25,4 @@ export const Navigation: FC = () => {
             </Toolbar>
         </AppBar>
     )
-};
+}

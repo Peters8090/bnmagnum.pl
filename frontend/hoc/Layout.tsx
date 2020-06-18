@@ -1,7 +1,7 @@
-import {Fragment, FC} from "react";
-import {Theme} from "./Theme"
-import {GlobalStyles} from "../misc/GlobalStyles"
-import {Navigation} from "../components/Navigation/Navigation"
+import {Fragment, FC} from 'react'
+import {Theme} from './Theme'
+import {GlobalStyles} from '../misc/GlobalStyles'
+import {Navigation} from '../components/Navigation/Navigation'
 
 export const Layout: FC = props => {
     return (
@@ -13,4 +13,4 @@ export const Layout: FC = props => {
             </Theme>
         </Fragment>
     )
-};
+}
