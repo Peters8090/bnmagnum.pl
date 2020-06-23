@@ -14,4 +14,17 @@ export const GlobalStyles: FC = () => <Global styles={css`
   padding: 0;
   box-sizing: border-box;
 }
+
+*::selection {
+  background: #b3d4fc;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+p {
+  white-space: pre-line;
+}
 `}/>

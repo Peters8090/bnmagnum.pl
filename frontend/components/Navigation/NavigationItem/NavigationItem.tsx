@@ -1,16 +1,32 @@
-import {Fragment, FC} from 'react'
-import Button from '@material-ui/core/Button'
+import {FC} from 'react'
+import Typography from '@material-ui/core/Typography'
+import {css} from '@emotion/core'
+import useTheme from '@material-ui/core/styles/useTheme'
+import Link from 'next/link'
 
 interface NavigationItemProps {
-    text: string
+	text: string
+	href: string
 }
 
+
 export const NavigationItem: FC<NavigationItemProps> = props => {
-    return (
-        <Fragment>
-            <Button color="primary">
-                {props.text}
-            </Button>
-        </Fragment>
-    )
+	const theme = useTheme()
+	const styles = {
+		text: css`
+    		font-family: 'Rubik', sans-serif;
+    		padding: 0 ${theme.spacing(1)}px;
+    		cursor: pointer;
+    	`,
+	}
+
+	return (
+		<Link href={props.href}>
+			<a>
+				<Typography css={styles.text}>
+					{props.text}
+				</Typography>
+			</a>
+		</Link>
+	)
 }
