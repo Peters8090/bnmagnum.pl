@@ -1,6 +1,5 @@
 import {FC} from 'react'
 import Typography from '@material-ui/core/Typography'
-import {Layout} from '../hoc/Layout'
 import {Content} from '../misc/content'
 import {css} from '@emotion/core'
 import Container from '@material-ui/core/Container'
@@ -37,7 +36,7 @@ const HomePage: FC = () => {
 	}
 
 	return (
-		<Layout navigationProps={{position: 'fixed'}}>
+		<>
 			<div css={styles.hero}>
 				<Container maxWidth='sm' css={styles.heroLeft}>
 					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
@@ -51,7 +50,46 @@ const HomePage: FC = () => {
 					<House css={styles.heroRightSvg}/>
 				</div>
 			</div>
-		</Layout>
+			<div css={styles.hero} id='o-firmie'>
+				<Container maxWidth='sm' css={styles.heroLeft}>
+					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
+						O firmie
+					</Typography>
+					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
+						{Content.home.subtitle}
+					</Typography>
+				</Container>
+				<div css={styles.heroRight}>
+					<House css={styles.heroRightSvg}/>
+				</div>
+			</div>
+			<div css={styles.hero} id='nasi-pracownicy'>
+				<Container maxWidth='sm' css={styles.heroLeft}>
+					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
+						Nasi pracownicy
+					</Typography>
+					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
+						{Content.home.subtitle}
+					</Typography>
+				</Container>
+				<div css={styles.heroRight}>
+					<House css={styles.heroRightSvg}/>
+				</div>
+			</div>
+			<div css={styles.hero} id='kontakt'>
+				<Container maxWidth='sm' css={styles.heroLeft}>
+					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
+						Kontakt
+					</Typography>
+					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
+						{Content.home.subtitle}
+					</Typography>
+				</Container>
+				<div css={styles.heroRight}>
+					<House css={styles.heroRightSvg}/>
+				</div>
+			</div>
+		</>
 	)
 }
 

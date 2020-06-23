@@ -14,27 +14,36 @@ export interface NavigationProps {
 export const Navigation: FC<NavigationProps> = props => {
 	const styles = {
 		logo: css`
-          flex: 1;
           font-family: 'Cabin', sans-serif;
         `,
+		toolbar: css`
+		    justify-content: space-evenly;
+		`,
+		navigationItems: css`
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		`,
 	}
 
 	return (
 		<AppBar position={props.position} color='transparent' variant='outlined'>
-			<Toolbar>
+			<Toolbar css={styles.toolbar}>
 				<Typography variant='h6' css={styles.logo}>
 					{Content.navigation.logo_text}
 				</Typography>
-				<NavigationItem text='Home' href='/'/>
-				<NavigationItem text='O firmie' href='/#o-firmie'/>
-				<NavigationItem text='Nasi pracownicy' href='/#nasi-pracownicy'/>
-				<NavigationItem text='Wyszukiwarka ofert' href='/wyszukiwarka-ofert'/>
-				<NavigationItem text='Kontakt' href='/#kontakt'/>
+				<div css={styles.navigationItems}>
+					<NavigationItem text='Home' href='/#'/>
+					<NavigationItem text='O firmie' href='/#o-firmie'/>
+					<NavigationItem text='Nasi pracownicy' href='/#nasi-pracownicy'/>
+					<NavigationItem text='Wyszukiwarka ofert' href='/wyszukiwarka-ofert'/>
+					<NavigationItem text='Kontakt' href='/#kontakt'/>
+				</div>
 			</Toolbar>
 		</AppBar>
 	)
 }
 
 Navigation.defaultProps = {
-	position: 'sticky',
+	position: 'fixed',
 }
