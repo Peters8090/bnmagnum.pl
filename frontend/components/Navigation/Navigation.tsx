@@ -33,7 +33,7 @@ export const Navigation: FC<NavigationProps> = props => {
 					{Content.navigation.logo_text}
 				</Typography>
 				<div css={styles.navigationItems}>
-					<NavigationItem text='Home' href='/#'/>
+					<NavigationItem text='Home' href='/'/>
 					<NavigationItem text='O firmie' href='/#o-firmie'/>
 					<NavigationItem text='Nasi pracownicy' href='/#nasi-pracownicy'/>
 					<NavigationItem text='Wyszukiwarka ofert' href='/wyszukiwarka-ofert'/>

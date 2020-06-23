@@ -2,8 +2,8 @@ import {FC} from 'react'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
-import Link from 'next/Link'
 import {useRouteLinkWithHash} from '../../../hooks/useRouteLinkWithHash'
+import LinkSmoothScroll from '../../../utility/LinkSmoothScroll'
 
 
 interface NavigationItemProps {
@@ -24,12 +24,12 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
 	}
 
 	return (
-		<Link href={props.href}>
+		<LinkSmoothScroll href={props.href}>
 			<a>
 				<Typography css={styles.text}>
 					{props.text}
 				</Typography>
 			</a>
-		</Link>
+		</LinkSmoothScroll>
 	)
 }
