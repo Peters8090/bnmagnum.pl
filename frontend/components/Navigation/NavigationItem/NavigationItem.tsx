@@ -4,6 +4,7 @@ import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
 import Link from 'next/link'
 
+
 interface NavigationItemProps {
 	text: string
 	href: string
@@ -15,7 +16,8 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
 	const styles = {
 		text: css`
     		font-family: 'Rubik', sans-serif;
-    		padding: 0 ${theme.spacing(1)}px;
+    		font-weight: ${false ? 500 : 300};
+    		padding: 0 ${theme.spacing(2)}px;
     		cursor: pointer;
     	`,
 	}

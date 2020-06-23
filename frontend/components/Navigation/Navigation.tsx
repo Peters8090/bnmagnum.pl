@@ -6,7 +6,12 @@ import {Content} from '../../misc/content'
 import {NavigationItem} from './NavigationItem/NavigationItem'
 import {css} from '@emotion/core'
 
-export const Navigation: FC = () => {
+export interface NavigationProps {
+	position?: 'sticky' | 'fixed'
+}
+
+
+export const Navigation: FC<NavigationProps> = props => {
 	const styles = {
 		logo: css`
           flex: 1;
@@ -15,7 +20,7 @@ export const Navigation: FC = () => {
 	}
 
 	return (
-		<AppBar position='sticky' color='transparent' variant='outlined'>
+		<AppBar position={props.position} color='transparent' variant='outlined'>
 			<Toolbar>
 				<Typography variant='h6' css={styles.logo}>
 					{Content.navigation.logo_text}
@@ -28,4 +33,8 @@ export const Navigation: FC = () => {
 			</Toolbar>
 		</AppBar>
 	)
+}
+
+Navigation.defaultProps = {
+	position: 'sticky',
 }

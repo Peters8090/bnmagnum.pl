@@ -1,12 +1,16 @@
 import {FC} from 'react'
 import {Theme} from './Theme'
 import {GlobalStyles} from '../misc/GlobalStyles'
-import {Navigation} from '../components/Navigation/Navigation'
+import {Navigation, NavigationProps} from '../components/Navigation/Navigation'
 import {StylesProvider} from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import {css} from '@emotion/core'
 
-export const Layout: FC = props => {
+interface LayoutProps {
+	navigationProps?: NavigationProps
+}
+
+export const Layout: FC<LayoutProps> = props => {
 	const styles = {
 		root: css`
 			display: flex;
@@ -18,7 +22,7 @@ export const Layout: FC = props => {
 	return (
 		<Paper square elevation={0} css={styles.root}>
 			<StylesProvider injectFirst>
-				<Navigation/>
+				<Navigation {...props.navigationProps}/>
 				<GlobalStyles/>
 				<Theme>
 					{props.children}
