@@ -7,6 +7,9 @@ import House from '../images/house.svg'
 import Wave from '../images/wave.svg'
 import Button from '@material-ui/core/Button'
 import useTheme from '@material-ui/core/styles/useTheme'
+import Fab from '@material-ui/core/Fab'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import LinkSmoothScroll from '../utility/LinkSmoothScroll'
 
 const HomePage: FC = () => {
 	const theme = useTheme()
@@ -53,6 +56,15 @@ const HomePage: FC = () => {
 		heroRightSvg: css`
 		    width: 80%;
 		`,
+		heroGoDownFab: css`
+			position: absolute;
+			bottom: ${theme.spacing(7.5)}px;
+			left: 50vw;
+			right: 50vw;
+			* {
+				box-shadow: none;
+			}
+		`,
 	}
 
 	return (
@@ -72,6 +84,13 @@ const HomePage: FC = () => {
 				<div css={styles.heroRight}>
 					<House css={styles.heroRightSvg}/>
 				</div>
+				<LinkSmoothScroll href='/#o-firmie'>
+					<a css={styles.heroGoDownFab}>
+						<Fab>
+							<KeyboardArrowDownIcon/>
+						</Fab>
+					</a>
+				</LinkSmoothScroll>
 			</div>
 			<Wave/>
 			<div css={styles.hero} id='o-firmie'>
