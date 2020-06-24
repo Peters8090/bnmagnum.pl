@@ -14,3 +14,8 @@ const OffersSearch: FC = () => {
 }
 
 export default OffersSearch
+
+export const getServerSideProps = async () => {
+	await new Promise((resolve => setTimeout(() => resolve(), 2000)))
+	return {props: {}}
+}

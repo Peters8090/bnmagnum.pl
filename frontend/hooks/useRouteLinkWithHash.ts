@@ -9,7 +9,6 @@ export const useRouteLinkWithHash = () => {
 	const handleRouteHashChange = (url: string) => setRouteLink(url)
 
 	useEffect(() => {
-		console.log(router)
 		setRouteLink(router.asPath)
 
 		router.events.on('routeChangeComplete', handleRouteHashChange)
