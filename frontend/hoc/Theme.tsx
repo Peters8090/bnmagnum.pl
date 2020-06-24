@@ -4,7 +4,12 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import responsiveFontSizes from '@material-ui/core/styles/responsiveFontSizes'
 
 export const Theme: FC = props => {
-	const theme = responsiveFontSizes(createMuiTheme({}))
+	const theme = responsiveFontSizes(createMuiTheme({
+		palette: {
+			primary: {main: '#56CCF2'},
+			type: 'dark',
+		},
+	}))
 
 	return (
 		<ThemeProvider theme={theme}>

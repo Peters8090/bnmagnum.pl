@@ -5,13 +5,17 @@ import {css} from '@emotion/core'
 import Container from '@material-ui/core/Container'
 import House from '../images/house.svg'
 import Wave from '../images/wave.svg'
+import Button from '@material-ui/core/Button'
+import useTheme from '@material-ui/core/styles/useTheme'
 
 const HomePage: FC = () => {
+	const theme = useTheme()
 	const styles = {
 		hero: css`
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			height: 100vh;
+			position: relative;
 		`,
 		heroLeft: css`
 		    display: flex;
@@ -22,6 +26,21 @@ const HomePage: FC = () => {
 		heroLeftTitle: css`
 		    font-family: 'Rubik', sans-serif;
 		    font-weight: 500;
+		`,
+		heroLeftButton: css`
+			background-color: ${theme.palette.primary.main};
+			border-radius: 32px;
+			width: 300px;
+			font-size: 30px;
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 500;
+			text-transform: none;
+			line-height: 1.4;
+			color: ${theme.palette.common.white};
+			
+			&:hover {
+				background-color: ${theme.palette.primary.main};
+			}
 		`,
 		heroLeftSubtitle: css`
 		    font-weight: 300;
@@ -43,9 +62,12 @@ const HomePage: FC = () => {
 					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
 						{Content.home.welcome}
 					</Typography>
-					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
+					<Typography variant='h3' align='justify' gutterBottom css={styles.heroLeftSubtitle}>
 						{Content.home.subtitle}
 					</Typography>
+					<Button variant='contained' disableElevation css={styles.heroLeftButton}>
+						Przejdź do wyszukiwarki
+					</Button>
 				</Container>
 				<div css={styles.heroRight}>
 					<House css={styles.heroRightSvg}/>
