@@ -4,6 +4,7 @@ import {Content} from '../misc/content'
 import {css} from '@emotion/core'
 import Container from '@material-ui/core/Container'
 import House from '../images/house.svg'
+import Wave from '../images/wave.svg'
 
 const HomePage: FC = () => {
 	const styles = {
@@ -50,6 +51,7 @@ const HomePage: FC = () => {
 					<House css={styles.heroRightSvg}/>
 				</div>
 			</div>
+			<Wave/>
 			<div css={styles.hero} id='o-firmie'>
 				<Container maxWidth='sm' css={styles.heroLeft}>
 					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
@@ -63,6 +65,7 @@ const HomePage: FC = () => {
 					<House css={styles.heroRightSvg}/>
 				</div>
 			</div>
+			<Wave/>
 			<div css={styles.hero} id='nasi-pracownicy'>
 				<Container maxWidth='sm' css={styles.heroLeft}>
 					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
@@ -76,6 +79,7 @@ const HomePage: FC = () => {
 					<House css={styles.heroRightSvg}/>
 				</div>
 			</div>
+			<Wave/>
 			<div css={styles.hero} id='kontakt'>
 				<Container maxWidth='sm' css={styles.heroLeft}>
 					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
