@@ -72,8 +72,6 @@ const HomePage: FC = () => {
 				box-shadow: none;
 			}
 		`,
-		about: css`
-		`,
 		aboutLeft: css`
 		    border-radius: 80px;
 		    width: 100%;
@@ -89,6 +87,36 @@ const HomePage: FC = () => {
 		    font-weight: 200;
 		    line-height: 1.2;
 		    text-align: justify;
+		`,
+		ourEmployees: css`
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		`,
+		ourEmployeesEmployee: css`
+			display: grid;
+			grid-template-columns: 0.5fr 1fr;
+			grid-column-gap: ${theme.spacing(5)}px;
+			align-items: center;
+			margin-top: ${theme.spacing(7.5)}px;
+			
+			&:first-child {
+				margin-top: ${theme.spacing(3)}px;
+			}
+		`,
+		ourEmployeesEmployeeImg: css`
+			border-radius: 130px;
+			object-fit: contain;
+			height: 100%;
+			min-height: 250px;
+		`,
+		ourEmployeesEmployeeDetailsTitle: css`
+			font-family: 'Rubik', sans-serif;
+			font-weight: 500;
+		`,
+		ourEmployeesEmployeeDetailsDescription: css`
+		    font-weight: 300;
+		    width: 400px;
 		`,
 	}
 
@@ -119,7 +147,7 @@ const HomePage: FC = () => {
 			</div>
 			<Wave/>
 			<Grid container justify='center' alignItems='center' id='o-firmie'
-			      css={[styles.about, styles.section]}>
+			      css={styles.section}>
 				<Grid item lg={4} md={5} xs={8}>
 					<img src='https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg'
 					     alt='dom' css={styles.aboutLeft}/>
@@ -133,6 +161,45 @@ const HomePage: FC = () => {
 					</Typography>
 				</Grid>
 			</Grid>
+			<div id='nasi-pracownicy' css={styles.ourEmployees}>
+				<PageTitle text='Nasi pracownicy'/>
+				<div>
+					<div css={styles.ourEmployeesEmployee}>
+						<img
+							css={styles.ourEmployeesEmployeeImg}
+							src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
+							alt="zdjęcie Jana Kowalskiego"/>
+						<div>
+							<Typography variant='h4' gutterBottom css={styles.ourEmployeesEmployeeDetailsTitle}>
+								Jan Kowalski
+							</Typography>
+							<Typography variant='h4' css={styles.ourEmployeesEmployeeDetailsDescription}>
+								Właściciel firmy
+								<br/>
+								Pośrednik nieruchomości od wielu lat
+								<br/>
+								Telefon: +48 123 456 789
+							</Typography>
+						</div>
+					</div>
+					<div css={styles.ourEmployeesEmployee}>
+						<img
+							css={styles.ourEmployeesEmployeeImg}
+							src='http://localhost/IMG_2954%201.png'
+							alt="zdjęcie Jana Kowalskiego"/>
+						<div>
+							<Typography variant='h4' gutterBottom css={styles.ourEmployeesEmployeeDetailsTitle}>
+								Jan Kowalski
+							</Typography>
+							<Typography variant='h4' css={styles.ourEmployeesEmployeeDetailsDescription}>
+								Właściciel firmy
+								<br/>
+								Pośrednik nieruchomości od wielu lat
+							</Typography>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 }
