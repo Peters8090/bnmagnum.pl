@@ -11,13 +11,14 @@ import Fab from '@material-ui/core/Fab'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import LinkSmoothScroll from '../utility/LinkSmoothScroll'
 import {PageTitle} from '../components/pages/index/PageTitle'
+import Grid from '@material-ui/core/Grid'
 
 const HomePage: FC = () => {
 	const theme = useTheme()
 	const styles = {
 		section: css`
 			height: 100vh;
-			padding: 0 5%;
+			padding: 0 2%;
 		`,
 		hero: css`
 			display: grid;
@@ -72,10 +73,6 @@ const HomePage: FC = () => {
 			}
 		`,
 		about: css`
-			display: grid;
-			grid-template-columns: 0.8fr 1fr;
-			grid-column-gap: ${theme.spacing(5)}px;
-			align-items: center;
 		`,
 		aboutLeft: css`
 		    border-radius: 80px;
@@ -121,18 +118,21 @@ const HomePage: FC = () => {
 				</LinkSmoothScroll>
 			</div>
 			<Wave/>
-			<div id='o-firmie' css={[styles.about, styles.section]}>
-				<img src='https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg'
-				     alt='dom' css={styles.aboutLeft}/>
-				<div css={styles.aboutRight}>
+			<Grid container justify='center' alignItems='center' id='o-firmie'
+			      css={[styles.about, styles.section]}>
+				<Grid item lg={4} md={5} xs={8}>
+					<img src='https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg'
+					     alt='dom' css={styles.aboutLeft}/>
+				</Grid>
+				<Grid item lg={6} md={5} css={styles.aboutRight}>
 					<PageTitle text='O firmie' css={styles.aboutRightTitle}/>
 					<Typography variant='h3' css={styles.aboutRightContent}>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras diam nulla, accumsan nec augue
 						ultrices, aliquam malesuada nibh. Fusce arcu ante, blandit ut hendrerit vitae, eleifend vel
 						lorem.
 					</Typography>
-				</div>
-			</div>
+				</Grid>
+			</Grid>
 		</div>
 	)
 }
