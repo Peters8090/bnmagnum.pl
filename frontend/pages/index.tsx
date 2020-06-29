@@ -77,7 +77,7 @@ const HomePage: FC = () => {
 		    width: 100%;
 		`,
 		aboutRight: css`
-		    padding: 0 2%;
+		    padding: 0 5%;
 		`,
 		aboutRightTitle: css`
 		    text-align: right;
@@ -94,21 +94,23 @@ const HomePage: FC = () => {
 		    align-items: center;
 		`,
 		ourEmployeesEmployee: css`
-			display: grid;
-			grid-template-columns: 0.5fr 1fr;
-			grid-column-gap: ${theme.spacing(5)}px;
+			display: flex;
+			
 			align-items: center;
 			margin-top: ${theme.spacing(7.5)}px;
 			
-			&:first-child {
+			&:first-of-type {
 				margin-top: ${theme.spacing(3)}px;
 			}
 		`,
+		ourEmployeesEmployeeImgWrapper: css`
+			flex: 1;
+			text-align: center;
+		`,
 		ourEmployeesEmployeeImg: css`
 			border-radius: 130px;
-			object-fit: contain;
-			height: 100%;
-			min-height: 250px;
+			height: 250px;
+			margin-right: ${theme.spacing(7.5)}px;
 		`,
 		ourEmployeesEmployeeDetailsTitle: css`
 			font-family: 'Rubik', sans-serif;
@@ -165,10 +167,12 @@ const HomePage: FC = () => {
 				<PageTitle text='Nasi pracownicy'/>
 				<div>
 					<div css={styles.ourEmployeesEmployee}>
-						<img
-							css={styles.ourEmployeesEmployeeImg}
-							src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
-							alt="zdjęcie Jana Kowalskiego"/>
+						<div css={styles.ourEmployeesEmployeeImgWrapper}>
+							<img
+								css={styles.ourEmployeesEmployeeImg}
+								src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
+								alt="zdjęcie Jana Kowalskiego"/>
+						</div>
 						<div>
 							<Typography variant='h4' gutterBottom css={styles.ourEmployeesEmployeeDetailsTitle}>
 								Jan Kowalski
@@ -183,10 +187,12 @@ const HomePage: FC = () => {
 						</div>
 					</div>
 					<div css={styles.ourEmployeesEmployee}>
-						<img
-							css={styles.ourEmployeesEmployeeImg}
-							src='http://localhost/IMG_2954%201.png'
-							alt="zdjęcie Jana Kowalskiego"/>
+						<div css={styles.ourEmployeesEmployeeImgWrapper}>
+							<img
+								css={styles.ourEmployeesEmployeeImg}
+								src='http://localhost/IMG_2954.png'
+								alt="zdjęcie Jana Kowalskiego"/>
+						</div>
 						<div>
 							<Typography variant='h4' gutterBottom css={styles.ourEmployeesEmployeeDetailsTitle}>
 								Jan Kowalski
