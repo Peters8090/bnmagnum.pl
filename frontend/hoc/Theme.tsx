@@ -9,7 +9,9 @@ export const Theme: FC = props => {
 			primary: {main: '#56CCF2'},
 			type: 'dark',
 		},
-	}))
+	}), {
+		factor: 3,
+	})
 
 	return (
 		<ThemeProvider theme={theme}>

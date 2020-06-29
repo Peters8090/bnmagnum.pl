@@ -10,14 +10,18 @@ import useTheme from '@material-ui/core/styles/useTheme'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import LinkSmoothScroll from '../utility/LinkSmoothScroll'
+import {PageTitle} from '../components/pages/index/PageTitle'
 
 const HomePage: FC = () => {
 	const theme = useTheme()
 	const styles = {
+		section: css`
+			height: 100vh;
+			padding: 0 5%;
+		`,
 		hero: css`
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			height: 100vh;
 			position: relative;
 		`,
 		heroLeft: css`
@@ -29,6 +33,7 @@ const HomePage: FC = () => {
 		heroLeftTitle: css`
 		    font-family: 'Rubik', sans-serif;
 		    font-weight: 500;
+		    text-align: center;
 		`,
 		heroLeftButton: css`
 			background-color: ${theme.palette.primary.main};
@@ -47,6 +52,7 @@ const HomePage: FC = () => {
 		`,
 		heroLeftSubtitle: css`
 		    font-weight: 300;
+		    text-align: justify;
 		`,
 		heroRight: css`
 		    display: flex;
@@ -65,16 +71,38 @@ const HomePage: FC = () => {
 				box-shadow: none;
 			}
 		`,
+		about: css`
+			display: grid;
+			grid-template-columns: 0.8fr 1fr;
+			grid-column-gap: ${theme.spacing(5)}px;
+			align-items: center;
+		`,
+		aboutLeft: css`
+		    border-radius: 80px;
+		    width: 100%;
+		`,
+		aboutRight: css`
+		    padding: 0 2%;
+		`,
+		aboutRightTitle: css`
+		    text-align: right;
+		    padding-right: 2%;
+		`,
+		aboutRightContent: css`
+		    font-weight: 200;
+		    line-height: 1.2;
+		    text-align: justify;
+		`,
 	}
 
 	return (
-		<>
-			<div css={styles.hero}>
+		<div>
+			<div css={[styles.hero, styles.section]}>
 				<Container maxWidth='sm' css={styles.heroLeft}>
-					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
+					<Typography variant='h1' css={styles.heroLeftTitle}>
 						{Content.home.welcome}
 					</Typography>
-					<Typography variant='h3' align='justify' gutterBottom css={styles.heroLeftSubtitle}>
+					<Typography variant='h3' gutterBottom css={styles.heroLeftSubtitle}>
 						{Content.home.subtitle}
 					</Typography>
 					<Button variant='contained' disableElevation css={styles.heroLeftButton}>
@@ -93,48 +121,19 @@ const HomePage: FC = () => {
 				</LinkSmoothScroll>
 			</div>
 			<Wave/>
-			<div css={styles.hero} id='o-firmie'>
-				<Container maxWidth='sm' css={styles.heroLeft}>
-					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
-						O firmie
+			<div id='o-firmie' css={[styles.about, styles.section]}>
+				<img src='https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg'
+				     alt='dom' css={styles.aboutLeft}/>
+				<div css={styles.aboutRight}>
+					<PageTitle text='O firmie' css={styles.aboutRightTitle}/>
+					<Typography variant='h3' css={styles.aboutRightContent}>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras diam nulla, accumsan nec augue
+						ultrices, aliquam malesuada nibh. Fusce arcu ante, blandit ut hendrerit vitae, eleifend vel
+						lorem.
 					</Typography>
-					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
-						{Content.home.subtitle}
-					</Typography>
-				</Container>
-				<div css={styles.heroRight}>
-					<House css={styles.heroRightSvg}/>
 				</div>
 			</div>
-			<Wave/>
-			<div css={styles.hero} id='nasi-pracownicy'>
-				<Container maxWidth='sm' css={styles.heroLeft}>
-					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
-						Nasi pracownicy
-					</Typography>
-					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
-						{Content.home.subtitle}
-					</Typography>
-				</Container>
-				<div css={styles.heroRight}>
-					<House css={styles.heroRightSvg}/>
-				</div>
-			</div>
-			<Wave/>
-			<div css={styles.hero} id='kontakt'>
-				<Container maxWidth='sm' css={styles.heroLeft}>
-					<Typography variant='h1' align='center' css={styles.heroLeftTitle}>
-						Kontakt
-					</Typography>
-					<Typography variant='h3' align='justify' css={styles.heroLeftSubtitle}>
-						{Content.home.subtitle}
-					</Typography>
-				</Container>
-				<div css={styles.heroRight}>
-					<House css={styles.heroRightSvg}/>
-				</div>
-			</div>
-		</>
+		</div>
 	)
 }
 
