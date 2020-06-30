@@ -4,7 +4,6 @@ import {Content} from '../misc/content'
 import {css} from '@emotion/core'
 import Container from '@material-ui/core/Container'
 import House from '../images/house.svg'
-import Wave from '../images/wave.svg'
 import FooterShape from '../images/footer_shape.svg'
 import Button from '@material-ui/core/Button'
 import useTheme from '@material-ui/core/styles/useTheme'
@@ -13,17 +12,18 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import LinkSmoothScroll from '../utility/LinkSmoothScroll'
 import {PageTitle} from '../components/pages/index/PageTitle'
 import Grid from '@material-ui/core/Grid'
+import {useCurrentNavigationHeight} from '../components/Navigation/Navigation'
 
 const HomePage: FC = () => {
+	const navHeight = useCurrentNavigationHeight()
 	const theme = useTheme()
 	const styles = {
 		root: css`
 		    display: flex;
 		    flex-direction: column;
 		`,
-		section: css`
-			height: 100vh;
-			padding: 0 2%;
+		getSection: (minHeight = true) => css`
+			${minHeight ? 'min-height' : 'height'}: calc(100vh - ${navHeight}px);
 		`,
 		hero: css`
 			display: grid;
@@ -96,6 +96,7 @@ const HomePage: FC = () => {
 		ourEmployees: css`
 		    display: flex;
 		    flex-direction: column;
+		    justify-content: center;
 		    align-items: center;
 		`,
 		ourEmployeesEmployee: css`
@@ -125,16 +126,19 @@ const HomePage: FC = () => {
 		    font-weight: 300;
 		    width: 400px;
 		`,
+		footerWrapper: css`
+		    display: flex;
+		    flex-direction: column;
+		`,
 		footer: css`
 		    width: 100%;
 		    background-color: #E0E0E0;
 		`,
 	}
 
-
 	return (
 		<div css={styles.root}>
-			<div css={[styles.section, styles.hero]}>
+			<div css={[styles.getSection(), styles.hero]}>
 				<Container maxWidth='sm' css={styles.heroLeft}>
 					<Typography variant='h1' css={styles.heroLeftTitle}>
 						{Content.home.welcome}
@@ -157,9 +161,8 @@ const HomePage: FC = () => {
 					</a>
 				</LinkSmoothScroll>
 			</div>
-			<img src={Wave}/>
 			<Grid container justify='center' alignItems='center' id='o-firmie'
-			      css={styles.section}>
+			      css={styles.getSection()}>
 				<Grid item lg={4} md={5} xs={8}>
 					<img src='https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg'
 					     alt='dom' css={styles.aboutLeft}/>
@@ -173,7 +176,7 @@ const HomePage: FC = () => {
 					</Typography>
 				</Grid>
 			</Grid>
-			<div id='nasi-pracownicy' css={styles.ourEmployees}>
+			<div id='nasi-pracownicy' css={[styles.getSection(), styles.ourEmployees]}>
 				<PageTitle text='Nasi pracownicy'/>
 				<div>
 					<div css={styles.ourEmployeesEmployee}>
@@ -216,14 +219,11 @@ const HomePage: FC = () => {
 					</div>
 				</div>
 			</div>
-			<div style={{
-				display: 'flex',
-				flexDirection: 'column',
-				height: 'calc(100vh - 62px)',
-			}}>
+			<div css={[styles.getSection(false), styles.footerWrapper]}>
 				<img src={FooterShape}/>
-				<footer id='kontakt' css={[styles.section, styles.footer]} style={{
+				<footer id='kontakt' css={[styles.footer]} style={{
 					flex: 1,
+					height: '100%',
 				}}>
 				</footer>
 			</div>

@@ -10,7 +10,7 @@ export const Theme: FC = props => {
 			type: 'dark',
 		},
 	}), {
-		factor: 3,
+		factor: 2,
 	})
 
 	return (
