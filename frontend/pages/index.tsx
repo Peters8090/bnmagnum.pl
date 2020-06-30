@@ -5,6 +5,7 @@ import {css} from '@emotion/core'
 import Container from '@material-ui/core/Container'
 import House from '../images/house.svg'
 import Wave from '../images/wave.svg'
+import FooterShape from '../images/footer_shape.svg'
 import Button from '@material-ui/core/Button'
 import useTheme from '@material-ui/core/styles/useTheme'
 import Fab from '@material-ui/core/Fab'
@@ -16,6 +17,10 @@ import Grid from '@material-ui/core/Grid'
 const HomePage: FC = () => {
 	const theme = useTheme()
 	const styles = {
+		root: css`
+		    display: flex;
+		    flex-direction: column;
+		`,
 		section: css`
 			height: 100vh;
 			padding: 0 2%;
@@ -120,11 +125,16 @@ const HomePage: FC = () => {
 		    font-weight: 300;
 		    width: 400px;
 		`,
+		footer: css`
+		    width: 100%;
+		    background-color: #E0E0E0;
+		`,
 	}
 
+
 	return (
-		<div>
-			<div css={[styles.hero, styles.section]}>
+		<div css={styles.root}>
+			<div css={[styles.section, styles.hero]}>
 				<Container maxWidth='sm' css={styles.heroLeft}>
 					<Typography variant='h1' css={styles.heroLeftTitle}>
 						{Content.home.welcome}
@@ -137,7 +147,7 @@ const HomePage: FC = () => {
 					</Button>
 				</Container>
 				<div css={styles.heroRight}>
-					<House css={styles.heroRightSvg}/>
+					<img src={House} css={styles.heroRightSvg}/>
 				</div>
 				<LinkSmoothScroll href='/#o-firmie'>
 					<a css={styles.heroGoDownFab}>
@@ -147,7 +157,7 @@ const HomePage: FC = () => {
 					</a>
 				</LinkSmoothScroll>
 			</div>
-			<Wave/>
+			<img src={Wave}/>
 			<Grid container justify='center' alignItems='center' id='o-firmie'
 			      css={styles.section}>
 				<Grid item lg={4} md={5} xs={8}>
@@ -205,6 +215,17 @@ const HomePage: FC = () => {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div style={{
+				display: 'flex',
+				flexDirection: 'column',
+				height: 'calc(100vh - 62px)',
+			}}>
+				<img src={FooterShape}/>
+				<footer id='kontakt' css={[styles.section, styles.footer]} style={{
+					flex: 1,
+				}}>
+				</footer>
 			</div>
 		</div>
 	)
