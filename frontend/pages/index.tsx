@@ -3,16 +3,16 @@ import Typography from '@material-ui/core/Typography'
 import {Content} from '../misc/content'
 import {css} from '@emotion/core'
 import Container from '@material-ui/core/Container'
-import House from '../images/house.svg'
-import FooterShape from '../images/footer_shape.svg'
+import House from '../assets/images/house.svg'
+import FooterShape from '../assets/images/footer_shape.svg'
 import Button from '@material-ui/core/Button'
 import useTheme from '@material-ui/core/styles/useTheme'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
-import LinkSmoothScroll from '../utility/LinkSmoothScroll'
+import {NextLinkSmoothScroll} from '../hoc/Layout/Navigation/NavigationItem/NextLinkSmoothScroll/NextLinkSmoothScroll'
 import {PageTitle} from '../components/pages/index/PageTitle'
 import Grid from '@material-ui/core/Grid'
-import {useCurrentNavigationHeight} from '../components/Navigation/Navigation'
+import {useCurrentNavigationHeight} from '../hooks/useCurrentNavigationHeight'
 
 const HomePage: FC = () => {
     const navHeight = useCurrentNavigationHeight()
@@ -175,13 +175,13 @@ const HomePage: FC = () => {
                 <div css={styles.heroRight}>
                     <img src={House} css={styles.heroRightSvg}/>
                 </div>
-                <LinkSmoothScroll href='/#o-firmie'>
+                <NextLinkSmoothScroll href='/#o-firmie'>
                     <a css={styles.heroGoDownFab}>
                         <Fab>
                             <KeyboardArrowDownIcon/>
                         </Fab>
                     </a>
-                </LinkSmoothScroll>
+                </NextLinkSmoothScroll>
             </div>
             <Grid container justify='center' alignItems='center' id='o-firmie'
                   css={styles.getSection()}>
@@ -225,7 +225,7 @@ const HomePage: FC = () => {
                         <div css={styles.ourEmployeesEmployeeImgWrapper}>
                             <img
                                 css={styles.ourEmployeesEmployeeImg}
-                                src='http://localhost/IMG_2954.png'
+                                src='https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg'
                                 alt='zdjęcie Jana Kowalskiego'/>
                         </div>
                         <div>

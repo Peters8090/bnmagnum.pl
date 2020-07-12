@@ -1,16 +1,15 @@
 import {AppProps} from 'next/app'
-import {Layout} from '../hoc/Layout'
-import {PageLoadingIndicator} from '../components/PageLoadingIndicator'
+import {Layout} from '../hoc/Layout/Layout'
+import {Theme} from '../hoc/Theme/Theme'
 
 const App = ({Component, pageProps}: AppProps) => {
-	return (
-		<>
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
-			<PageLoadingIndicator/>
-		</>
-	)
+    return (
+        <Theme>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </Theme>
+    )
 }
 
 export default App
