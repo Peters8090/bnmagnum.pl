@@ -1,7 +1,6 @@
 import {FC} from 'react'
 import {css} from '@emotion/core'
-import {Layout} from '../hoc/Layout/Layout'
-import {Content} from '../misc/content'
+import {Content} from '../contents/content'
 
 const NotFoundPage: FC = () => {
     const styles = {
@@ -42,18 +41,16 @@ const NotFoundPage: FC = () => {
     }
 
     return (
-        <Layout>
-            <div css={styles.div2}>
-                <div>
-                    <h1 css={styles.h1}>404</h1>
-                    <div css={styles.div}>
-                        <h2 css={styles.h2}>
-                            {Content.error.not_found}
-                        </h2>
-                    </div>
+        <div css={styles.div2}>
+            <div>
+                <h1 css={styles.h1}>404</h1>
+                <div css={styles.div}>
+                    <h2 css={styles.h2}>
+                        {Content.error.not_found}
+                    </h2>
                 </div>
             </div>
-        </Layout>
+        </div>
     )
 }
 

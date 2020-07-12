@@ -2,7 +2,7 @@ import {FC} from 'react'
 import AppBar from '@material-ui/core/AppBar/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import {Content} from '../../../misc/content'
+import {Content} from '../../../contents/content'
 import {NavigationItem} from './NavigationItem/NavigationItem'
 import {css} from '@emotion/core'
 
