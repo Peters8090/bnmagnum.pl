@@ -11,8 +11,8 @@ export const GoDownFab: FC = () => {
         root: css`
 			position: absolute;
 			bottom: ${theme.spacing(7.5)}px;
-			left: 50vw;
-			right: 50vw;
+			left: 50%;
+			transform: translateX(-50%);
 			* {
 				box-shadow: none;
 			}
