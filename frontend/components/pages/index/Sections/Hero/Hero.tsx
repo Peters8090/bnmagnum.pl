@@ -24,10 +24,10 @@ export const Hero: FC = () => {
     return (
         <div css={styles.root}>
             <HeroLeft/>
-            <HeroRight/>
             <Hidden smDown>
-                <GoDownFab/>
+                <HeroRight/>
             </Hidden>
+            <GoDownFab/>
         </div>
     )
 }

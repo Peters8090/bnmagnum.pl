@@ -14,7 +14,7 @@ export const Footer: FC = () => {
     const styles = {
         root: css`
 		    width: 100%;
-		    height: calc(100vh - ${navHeight}px);
+		    min-height: calc(100vh - ${navHeight}px);
 		    background-color: #E0E0E0;
 		    display: flex;
 		    flex-direction: column;
@@ -36,7 +36,7 @@ export const Footer: FC = () => {
 		    }
 		`,
         content: css`
-          padding: 0 ${theme.spacing(12)}px;
+          padding: 0 5%;
         `,
         title: css`
             margin-top: ${theme.spacing(5)}px;
