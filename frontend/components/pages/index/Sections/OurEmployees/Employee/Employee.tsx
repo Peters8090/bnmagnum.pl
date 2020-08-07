@@ -16,10 +16,14 @@ export const Employee: FC<EmployeeProps> = props => {
 			display: flex;
 			
 			align-items: center;
-			margin-top: ${theme.spacing(7.5)}px;
+			margin: ${theme.spacing(7.5)}px 0;
 			
 			&:first-of-type {
 				margin-top: ${theme.spacing(3)}px;
+			}
+			
+			${theme.breakpoints.down('sm')} {
+			    flex-direction: column;
 			}
 		`,
         imageWrapper: css`
@@ -29,15 +33,34 @@ export const Employee: FC<EmployeeProps> = props => {
         image: css`
 			border-radius: 130px;
 			height: 250px;
-			margin-right: ${theme.spacing(7.5)}px;
+			
+			${theme.breakpoints.up('md')} {
+			  margin-right: ${theme.spacing(7.5)}px;
+			}
+			
+			${theme.breakpoints.down('sm')} {
+			    height: 150px;
+			    margin-bottom: ${theme.spacing(1)}px;
+			}
 		`,
         title: css`
 			font-family: 'Rubik', sans-serif;
 			font-weight: 500;
+			
+			${theme.breakpoints.down('sm')} {
+			    text-align: center;
+			}
 		`,
         description: css`
 		    font-weight: 300;
-		    width: 400px;
+		    
+		    ${theme.breakpoints.up('md')} {
+		      width: 400px;
+		    }
+		    
+		    ${theme.breakpoints.down('sm')} {
+		        margin: 0 ${theme.spacing(2)}px;
+		    }
 		`,
     }
 
