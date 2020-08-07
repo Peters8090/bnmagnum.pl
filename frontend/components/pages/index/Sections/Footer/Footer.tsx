@@ -4,42 +4,51 @@ import Grid from '@material-ui/core/Grid'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core'
 import {useCurrentNavigationHeight} from '../../../../../hooks/useCurrentNavigationHeight'
-import FooterShape from '../../../../../assets/images/footer_shape.svg'
 import {CompanyData} from './Section/Sections/CompanyData/CompanyData'
+import {useScrollbarWidth} from 'react-use'
 
 export const Footer: FC = () => {
     const navHeight = useCurrentNavigationHeight()
+    const scrollBarWidth = useScrollbarWidth()!
     const theme = useTheme()
     const styles = {
         root: css`
-		    display: flex;
-		    height: calc(100vh - ${navHeight}px);
-		    flex-direction: column;
-		`,
-        content: css`
 		    width: 100%;
-		    height: 100%;
-		    flex: 1;
+		    height: calc(100vh - ${navHeight}px);
 		    background-color: #E0E0E0;
-		    padding: 0 ${theme.spacing(12)}px;
 		    display: flex;
 		    flex-direction: column;
 		    align-items: center;
+		    
+		    &::before {
+		      width: 100%;
+		      height: 50px;
+		      background-color: transparent;
+		      content: '';
+		      
+		      border-right: calc(50vw - ${scrollBarWidth / 2}px) solid transparent;
+		      border-left: calc(50vw - ${scrollBarWidth / 2}px) solid transparent;
+		      border-top: 100px solid white;
+		      
+		      ${theme.breakpoints.down('sm')} {
+		          border-top-width: 50px;
+		      }
+		    }
 		`,
+        content: css`
+          padding: 0 ${theme.spacing(12)}px;
+        `,
         title: css`
             margin-top: ${theme.spacing(5)}px;
         `,
     }
 
     return (
-        <div css={styles.root}>
-            <img src={FooterShape} alt=''/>
-            <footer id='kontakt' css={styles.content}>
-                <PageTitle text='Kontakt z nami' css={styles.title}/>
-                <Grid container>
-                    <CompanyData/>
-                </Grid>
-            </footer>
-        </div>
+        <footer id='kontakt' css={styles.root}>
+            <PageTitle text='Kontakt z nami' css={styles.title}/>
+            <Grid container css={styles.content}>
+                <CompanyData/>
+            </Grid>
+        </footer>
     )
 }
