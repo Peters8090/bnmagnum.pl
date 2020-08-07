@@ -19,6 +19,7 @@ export const HeroLeft: FC = () => {
 		    font-family: 'Rubik', sans-serif;
 		    font-weight: 500;
 		    text-align: center;
+		    margin-top: ${theme.spacing(1)}px;
 		`,
         subtitle: css`
 		    font-weight: 300;
@@ -28,12 +29,14 @@ export const HeroLeft: FC = () => {
 			background-color: ${theme.palette.primary.main};
 			border-radius: 32px;
 			width: 300px;
+			max-width: 80vw;
 			font-size: 30px;
 			font-family: 'Montserrat', sans-serif;
 			font-weight: 500;
 			text-transform: none;
 			line-height: 1.4;
 			color: ${theme.palette.common.white};
+			
 			
 			&:hover {
 				background-color: ${theme.palette.primary.main};

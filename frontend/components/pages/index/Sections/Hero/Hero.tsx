@@ -15,8 +15,10 @@ export const Hero: FC = () => {
 			
 			
 			${theme.breakpoints.down('sm')} {
-			    grid-template-columns: 1fr;
-			    grid-template-rows: 1fr 1fr;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			  flex-direction: column;
 			}
 		`,
     }
