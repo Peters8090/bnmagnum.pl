@@ -17,6 +17,10 @@ export const HeroRight: FC = () => {
 		`,
         image: css`
 		    width: 80%;
+		    
+		    ${theme.breakpoints.down('sm')} {
+		        
+		    }
 		`,
     }
 

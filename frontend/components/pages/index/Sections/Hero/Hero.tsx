@@ -3,7 +3,7 @@ import {css} from '@emotion/core'
 import {HeroLeft} from './HeroLeft/HeroLeft'
 import {HeroRight} from './HeroRight/HeroRight'
 import {GoDownFab} from './GoDownFab/GoDownFab'
-import {useTheme} from '@material-ui/core'
+import {Hidden, useTheme} from '@material-ui/core'
 
 export const Hero: FC = () => {
     const theme = useTheme()
@@ -12,6 +12,7 @@ export const Hero: FC = () => {
 			position: relative;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
+			
 			
 			${theme.breakpoints.down('sm')} {
 			    grid-template-columns: 1fr;
@@ -24,7 +25,9 @@ export const Hero: FC = () => {
         <div css={styles.root}>
             <HeroLeft/>
             <HeroRight/>
-            <GoDownFab/>
+            <Hidden smDown>
+                <GoDownFab/>
+            </Hidden>
         </div>
     )
 }

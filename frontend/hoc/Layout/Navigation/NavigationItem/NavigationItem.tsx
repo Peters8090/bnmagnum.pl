@@ -4,6 +4,7 @@ import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
 import {useRouteLinkWithHash} from '../../../../hooks/useRouteLinkWithHash'
 import {NextLinkSmoothScroll} from './NextLinkSmoothScroll/NextLinkSmoothScroll'
+import {Button, useMediaQuery} from '@material-ui/core'
 
 
 interface NavigationItemProps {
@@ -15,21 +16,27 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
     const currentPageLink = useRouteLinkWithHash()
     const theme = useTheme()
     const styles = {
+        button: css`
+            border-radius: 0;
+        `,
         text: css`
     		font-family: 'Rubik', sans-serif;
     		font-weight: ${currentPageLink === props.href ? 500 : 300};
     		padding: 0 ${theme.spacing(2)}px;
-    		cursor: pointer;
+    		text-align: center;
+    		text-transform: none;
     	`,
     }
 
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
     return (
         <NextLinkSmoothScroll href={props.href}>
-            <a>
+            <Button component='a' fullWidth={isMobile} disableRipple={!isMobile} css={styles.button}>
                 <Typography css={styles.text}>
                     {props.text}
                 </Typography>
-            </a>
+            </Button>
         </NextLinkSmoothScroll>
     )
 }
