@@ -7,20 +7,10 @@ export const HeroRight: FC = () => {
     const theme = useTheme()
     const styles = {
         root: css`
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    
-		    ${theme.breakpoints.down('xs')} {
-		        align-items: flex-start;
-		    }
+            ${theme.customMixins.flexCentered};
 		`,
         image: css`
 		    width: 80%;
-		    
-		    ${theme.breakpoints.down('sm')} {
-		        
-		    }
 		`,
     }
 

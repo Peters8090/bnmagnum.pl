@@ -2,7 +2,7 @@ import {FC} from 'react'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
-import {useRouteLinkWithHash} from '../../../../hooks/useRouteLinkWithHash'
+import {useCurrentRouteLinkWithHash} from '../../../../hooks/useCurrentRouteLinkWithHash'
 import {NextLinkSmoothScroll} from './NextLinkSmoothScroll/NextLinkSmoothScroll'
 import {Button, useMediaQuery} from '@material-ui/core'
 
@@ -13,7 +13,7 @@ interface NavigationItemProps {
 }
 
 export const NavigationItem: FC<NavigationItemProps> = props => {
-    const currentPageLink = useRouteLinkWithHash()
+    const currentPageLink = useCurrentRouteLinkWithHash()
     const theme = useTheme()
     const styles = {
         button: css`

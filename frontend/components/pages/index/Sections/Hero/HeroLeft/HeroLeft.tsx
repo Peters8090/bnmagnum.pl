@@ -10,15 +10,14 @@ export const HeroLeft: FC = () => {
     const theme = useTheme()
     const styles = {
         root: css`
-		    display: flex;
+            ${theme.customMixins.flexCentered};
 		    flex-direction: column;
-		    justify-content: center;
-		    align-items: center;
 		`,
         title: css`
 		    font-family: 'Rubik', sans-serif;
 		    font-weight: 500;
 		    text-align: center;
+		    
 		    margin-top: ${theme.spacing(1)}px;
 		`,
         subtitle: css`
@@ -26,18 +25,18 @@ export const HeroLeft: FC = () => {
 		    text-align: justify;
 		`,
         button: css`
-			background-color: ${theme.palette.primary.main};
-			border-radius: 32px;
 			width: 300px;
 			max-width: 80vw;
-			font-size: 30px;
-			font-family: 'Montserrat', sans-serif;
-			font-weight: 500;
-			text-transform: none;
-			line-height: 1.4;
+			
 			color: ${theme.palette.common.white};
+			font-family: 'Montserrat', sans-serif;
+			text-transform: none;
+			font-size: 30px;
+			font-weight: 500;
+			line-height: 1.4;
 			
-			
+			border-radius: 32px;			
+			background-color: ${theme.palette.primary.main};			
 			&:hover {
 				background-color: ${theme.palette.primary.main};
 			}

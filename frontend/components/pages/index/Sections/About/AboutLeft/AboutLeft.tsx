@@ -5,8 +5,8 @@ import {css} from '@emotion/core'
 export const AboutLeft: FC = () => {
     const styles = {
         aboutLeft: css`
-		    border-radius: 80px;
 		    width: 100%;
+		    border-radius: 80px;
 		`,
     }
 

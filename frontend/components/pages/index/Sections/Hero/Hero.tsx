@@ -13,12 +13,9 @@ export const Hero: FC = () => {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			
-			
 			${theme.breakpoints.down('sm')} {
-			  display: flex;
-			  justify-content: center;
-			  align-items: center;
-			  flex-direction: column;
+			    ${theme.customMixins.flexCentered};
+			    flex-direction: column;
 			}
 		`,
     }

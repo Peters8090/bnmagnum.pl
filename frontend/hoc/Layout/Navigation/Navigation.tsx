@@ -18,9 +18,7 @@ export const Navigation: FC = () => {
 		    justify-content: space-evenly;
 		`,
         navigationItems: css`
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
+            ${theme.customMixins.flexCentered};
 		    
 		    ${theme.breakpoints.down('sm')} {
 		        flex-direction: column;

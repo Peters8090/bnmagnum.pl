@@ -1,23 +1,24 @@
-import {FC} from 'react'
 import {PageTitle} from '../../shared/PageTitle'
 import {css} from '@emotion/core'
 import {Employee} from './Employee/Employee'
 import {useTheme} from '@material-ui/core'
+import {Route} from '../../../../../interfaces/route'
+import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 
-export const OurEmployees: FC = () => {
+export const OurEmployees: Route = () => {
     const theme = useTheme()
     const styles = {
         ourEmployees: css`
-            padding: ${theme.spacing(4)}px 0;
-		    display: flex;
-		    flex-direction: column;
-		    justify-content: center;
-		    align-items: center;
+          padding: ${theme.spacing(4)}px 0;
+          ${theme.customMixins.flexCentered};
+          flex-direction: column;
 		`,
     }
 
+    const linkId = convertRouteHashToLinkId(OurEmployees.useRouteName())
+
     return (
-        <div id='nasi-pracownicy' css={[styles.ourEmployees]}>
+        <div id={linkId} css={styles.ourEmployees}>
             <PageTitle text='Nasi pracownicy'/>
             <div>
                 <Employee title='Jan Kowalski'
@@ -30,3 +31,5 @@ export const OurEmployees: FC = () => {
         </div>
     )
 }
+
+OurEmployees.useRouteName = () => '/#nasi-pracownicy'

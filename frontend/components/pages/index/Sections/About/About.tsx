@@ -1,22 +1,27 @@
-import {FC} from 'react'
 import Grid from '@material-ui/core/Grid'
 import {AboutLeft} from './AboutLeft/AboutLeft'
 import {AboutRight} from './AboutRight/AboutRight'
 import css from '@emotion/css'
+import {useTheme} from '@material-ui/core'
+import {Route} from '../../../../../interfaces/route'
+import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 
-export const About: FC = () => {
+export const About: Route = () => {
+    const theme = useTheme()
     const styles = {
         root: css`
-            display: flex;
-    		justify-content: center;
-    		align-items: center;
+            ${theme.customMixins.flexCentered};
     	`,
     }
 
+    const linkId = convertRouteHashToLinkId(About.useRouteName())
+
     return (
-        <Grid container css={styles.root} id='o-firmie'>
+        <Grid container css={styles.root} id={linkId}>
             <AboutLeft/>
             <AboutRight/>
         </Grid>
     )
 }
+
+About.useRouteName = () => '/#o-firmie'
