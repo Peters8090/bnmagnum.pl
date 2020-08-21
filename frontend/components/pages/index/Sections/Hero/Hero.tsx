@@ -1,11 +1,12 @@
-import {FC} from 'react'
 import {css} from '@emotion/core'
 import {HeroLeft} from './HeroLeft/HeroLeft'
 import {HeroRight} from './HeroRight/HeroRight'
 import {GoDownFab} from './GoDownFab/GoDownFab'
 import {Hidden, useTheme} from '@material-ui/core'
+import {Route} from '../../../../../interfaces/route'
+import HomePage from '../../../../../pages'
 
-export const Hero: FC = () => {
+export const Hero: Route = () => {
     const theme = useTheme()
     const styles = {
         root: css`
@@ -30,3 +31,6 @@ export const Hero: FC = () => {
         </div>
     )
 }
+
+Hero.name = ''
+Hero.useRouteName = () => HomePage.useRouteName()

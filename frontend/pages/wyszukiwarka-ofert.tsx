@@ -1,8 +1,8 @@
-import {FC} from 'react'
 import css from '@emotion/css'
 import {Typography, useTheme} from '@material-ui/core'
+import {Route} from '../interfaces/route'
 
-const OffersSearch: FC = () => {
+const OffersSearch: Route = () => {
     const theme = useTheme()
     const styles = {
         root: css`
@@ -19,6 +19,8 @@ const OffersSearch: FC = () => {
         </div>
     )
 }
+
+OffersSearch.useRouteName = () => '/wyszukiwarka-ofert'
 
 export default OffersSearch
 

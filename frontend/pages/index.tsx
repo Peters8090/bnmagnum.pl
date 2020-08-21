@@ -1,12 +1,12 @@
-import {FC} from 'react'
 import {css} from '@emotion/core'
 import {useCurrentNavigationHeight} from '../hooks/useCurrentNavigationHeight'
 import {Hero} from '../components/pages/index/Sections/Hero/Hero'
 import {About} from '../components/pages/index/Sections/About/About'
 import {OurEmployees} from '../components/pages/index/Sections/OurEmployees/OurEmployees'
 import {Footer} from '../components/pages/index/Sections/Footer/Footer'
+import {Route} from '../interfaces/route'
 
-const HomePage: FC = () => {
+const HomePage: Route = () => {
     const navHeight = useCurrentNavigationHeight()
     const styles = {
         root: css`
@@ -28,5 +28,8 @@ const HomePage: FC = () => {
         </div>
     )
 }
+
+HomePage.useRouteName = () => '/'
+
 
 export default HomePage
