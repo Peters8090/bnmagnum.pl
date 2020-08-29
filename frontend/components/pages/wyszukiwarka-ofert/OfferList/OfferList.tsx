@@ -6,6 +6,7 @@ export const OfferList: FC = () => {
     const styles = {
         root: css`
     		overflow-y: scroll;
+            background-color: #E0E0E0;
     	`,
     }
 

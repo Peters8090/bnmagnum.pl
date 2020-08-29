@@ -7,7 +7,6 @@ export const Offer: FC = () => {
     const styles = {
         root: css`
             width: 100%;
-            background-color: #E0E0E0;
             border: 2px solid #BDBDBD;
             padding: ${theme.spacing(1.2)}px;
             transition: background-color 250ms;
