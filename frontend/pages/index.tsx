@@ -29,7 +29,8 @@ const HomePage: Route = () => {
     )
 }
 
-HomePage.useRouteName = () => '/'
+HomePage.name = 'Strona główna'
+HomePage.routeName = '/'
 
 
 export default HomePage

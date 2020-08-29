@@ -47,7 +47,7 @@ export const Footer: Route = () => {
         `,
     }
 
-    const linkId = convertRouteHashToLinkId(Footer.useRouteName())
+    const linkId = convertRouteHashToLinkId(Footer.routeName)
 
     return (
         <footer id={linkId} css={styles.root}>
@@ -59,4 +59,5 @@ export const Footer: Route = () => {
     )
 }
 
-Footer.useRouteName = () => `/#kontakt`
+Footer.name = 'Kontakt'
+Footer.routeName = `/#kontakt`

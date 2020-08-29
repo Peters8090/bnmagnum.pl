@@ -15,7 +15,7 @@ export const OurEmployees: Route = () => {
 		`,
     }
 
-    const linkId = convertRouteHashToLinkId(OurEmployees.useRouteName())
+    const linkId = convertRouteHashToLinkId(OurEmployees.routeName)
 
     return (
         <div id={linkId} css={styles.ourEmployees}>
@@ -32,4 +32,6 @@ export const OurEmployees: Route = () => {
     )
 }
 
-OurEmployees.useRouteName = () => '/#nasi-pracownicy'
+
+OurEmployees.name = 'Nasi pracownicy'
+OurEmployees.routeName = '/#nasi-pracownicy'

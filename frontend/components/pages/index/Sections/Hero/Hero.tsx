@@ -4,7 +4,6 @@ import {HeroRight} from './HeroRight/HeroRight'
 import {GoDownFab} from './GoDownFab/GoDownFab'
 import {Hidden, useTheme} from '@material-ui/core'
 import {Route} from '../../../../../interfaces/route'
-import HomePage from '../../../../../pages'
 
 export const Hero: Route = () => {
     const theme = useTheme()
@@ -32,5 +31,5 @@ export const Hero: Route = () => {
     )
 }
 
-Hero.name = ''
-Hero.useRouteName = () => HomePage.useRouteName()
+Hero.name = 'HomePage.name'
+Hero.routeName = 'HomePage.routeName'

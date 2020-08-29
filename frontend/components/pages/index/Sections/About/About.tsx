@@ -14,7 +14,7 @@ export const About: Route = () => {
     	`,
     }
 
-    const linkId = convertRouteHashToLinkId(About.useRouteName())
+    const linkId = convertRouteHashToLinkId(About.routeName)
 
     return (
         <Grid container css={styles.root} id={linkId}>
@@ -24,4 +24,5 @@ export const About: Route = () => {
     )
 }
 
-About.useRouteName = () => '/#o-firmie'
+About.name = 'O firmie'
+About.routeName = '/#o-firmie'

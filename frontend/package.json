@@ -9,21 +9,21 @@
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^10.0.27",
-    "@emotion/core": "^10.0.28",
-    "@material-ui/core": "^4.10.2",
+    "@emotion/core": "^10.0.35",
+    "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "next": "9.3.5",
-    "next-images": "^1.4.0",
-    "nextjs-progressbar": "0.0.5",
+    "next": "9.5.3-canary.25",
+    "next-images": "^1.4.1",
+    "nextjs-progressbar": "0.0.6",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-scroll": "^1.7.16",
+    "react-scroll": "^1.8.1",
     "react-use": "^15.3.3"
   },
   "devDependencies": {
-    "@types/node": "^14.0.13",
-    "@types/react": "^16.9.36",
+    "@types/node": "^14.6.2",
+    "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
-    "typescript": "^3.9.5"
+    "typescript": "4.0.2"
   }
 }
