@@ -1,15 +1,16 @@
 import {PageTitle} from '../../shared/PageTitle'
-import Grid from '@material-ui/core/Grid'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core'
 import {useCurrentNavigationHeight} from '../../../../../hooks/useCurrentNavigationHeight'
 import {CompanyData} from './Section/Sections/CompanyData/CompanyData'
 import {useScrollbarWidth} from 'react-use'
-import {Route} from '../../../../../interfaces/route'
+import {RouteType} from '../../../../../interfaces and types/RouteType'
 import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
+import {ContactForm} from './Section/Sections/ContactForm/ContactForm'
+import {CustomGrid} from '../../../../shared/Custom Material-UI/CustomGrid'
 
 
-export const Footer: Route = () => {
+export const Footer: RouteType = () => {
     const navHeight = useCurrentNavigationHeight()
     const scrollBarWidth = useScrollbarWidth()!
     const theme = useTheme()
@@ -52,9 +53,10 @@ export const Footer: Route = () => {
     return (
         <footer id={linkId} css={styles.root}>
             <PageTitle text='Kontakt z nami' css={styles.title}/>
-            <Grid container css={styles.content}>
+            <CustomGrid container spacing={3} justify='space-around' css={styles.content}>
                 <CompanyData/>
-            </Grid>
+                <ContactForm/>
+            </CustomGrid>
         </footer>
     )
 }

@@ -44,18 +44,15 @@ export const Navigation: FC = () => {
         </Typography>
     )
 
-    const navItems = (
-        <div css={styles.navigationItems}>
-            {/*<NavigationItem text='Home' href='/'/>*/}
-            {/*<NavigationItem text='O firmie' href='/#o-firmie'/>*/}
-            {/*<NavigationItem text='Nasi pracownicy' href='/#nasi-pracownicy'/>*/}
-            {/*<NavigationItem text='Wyszukiwarka ofert' href='/wyszukiwarka-ofert'/>*/}
-            {/*<NavigationItem text='Kontakt' href='/#kontakt'/>*/}
-            {routeList.map(route => <NavigationItem text={route.displayName} href={route.routeName}/>)}
-        </div>
-    )
 
     const [drawerOpen, setDrawerOpen] = useState(false)
+
+    const navItems = (
+        <div css={styles.navigationItems}>
+            {routeList.map(route => <NavigationItem text={route.displayName} href={route.routeName}
+                                                    onClick={() => setDrawerOpen(false)}/>)}
+        </div>
+    )
 
     return (
         <AppBar position='sticky' color='inherit' variant='outlined'>

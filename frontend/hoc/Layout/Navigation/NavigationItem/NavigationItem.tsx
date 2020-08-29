@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import {FC, MouseEventHandler} from 'react'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
@@ -10,6 +10,7 @@ import {Button, useMediaQuery} from '@material-ui/core'
 interface NavigationItemProps {
     text: string
     href: string
+    onClick?: MouseEventHandler
 }
 
 export const NavigationItem: FC<NavigationItemProps> = props => {
@@ -32,7 +33,8 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
 
     return (
         <NextLinkSmoothScroll href={props.href}>
-            <Button component='a' fullWidth={isMobile} disableRipple={!isMobile} css={styles.button}>
+            <Button component='a' onClick={props.onClick} fullWidth={isMobile} disableRipple={!isMobile}
+                    css={styles.button}>
                 <Typography css={styles.text}>
                     {props.text}
                 </Typography>

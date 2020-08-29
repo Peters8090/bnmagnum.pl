@@ -22,7 +22,8 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 export const Theme: FC = props => {
     const theme = responsiveFontSizes(createMuiTheme({
         palette: {
-            primary: {main: '#56CCF2'},
+            primary: {main: '#f50057'},
+            secondary: {main: '#56CCF2'},
         },
         customMixins: {
             flexCentered: css`

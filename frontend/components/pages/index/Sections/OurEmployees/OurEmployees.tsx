@@ -2,10 +2,10 @@ import {PageTitle} from '../../shared/PageTitle'
 import {css} from '@emotion/core'
 import {Employee} from './Employee/Employee'
 import {useTheme} from '@material-ui/core'
-import {Route} from '../../../../../interfaces/route'
+import {RouteType} from '../../../../../interfaces and types/RouteType'
 import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 
-export const OurEmployees: Route = () => {
+export const OurEmployees: RouteType = () => {
     const theme = useTheme()
     const styles = {
         ourEmployees: css`

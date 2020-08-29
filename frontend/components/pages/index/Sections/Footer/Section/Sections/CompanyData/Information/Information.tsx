@@ -11,20 +11,26 @@ interface InformationProps {
 export const Information: FC<InformationProps> = props => {
     const theme = useTheme()
     const styles = {
-        companyData: css`
+        root: css`
             margin: ${theme.spacing(2)}px 0;
+            word-wrap: anywhere;
+            word-break: break-all;
+            white-space: pre-wrap;
         `,
-        companyDataText: css`
+        title: css`
+            text-transform: uppercase;
+        `,
+        content: css`
             font-weight: 300;
         `,
     }
 
     return (
-        <div css={styles.companyData}>
-            <Typography>
+        <div css={styles.root}>
+            <Typography css={styles.title}>
                 {props.title}
             </Typography>
-            <Typography variant='h4' css={styles.companyDataText}>
+            <Typography variant='h4' align='justify' css={styles.content}>
                 {props.content}
             </Typography>
         </div>

@@ -1,8 +1,9 @@
 import {FC, ReactNode} from 'react'
-import Grid, {GridProps} from '@material-ui/core/Grid'
+import {GridProps} from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core'
+import {CustomGrid} from '../../../../../shared/Custom Material-UI/CustomGrid'
 
 interface SectionProps {
     title: string
@@ -20,11 +21,11 @@ export const Section: FC<SectionProps> = props => {
     }
 
     return (
-        <Grid item {...props.gridProps}>
+        <CustomGrid item {...props.gridProps}>
             <Typography variant='h5' gutterBottom css={styles.title}>
                 {props.title}
             </Typography>
             {props.children}
-        </Grid>
+        </CustomGrid>
     )
 }

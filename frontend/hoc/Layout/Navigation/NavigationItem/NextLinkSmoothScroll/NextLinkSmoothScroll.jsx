@@ -126,7 +126,14 @@ export class NextLinkSmoothScroll extends React.Component {
             children = <a>{children}</a>
         }
         const child = Children.only(children)
-        const props = {onClick: this.linkClicked}
+        const props = {
+            onClick: event => {
+                if (typeof child.props.onClick === 'function') {
+                    child.props.onClick(event)
+                }
+                this.linkClicked(event)
+            },
+        }
         if (child.type === 'a' && !('href' in child.props)) {
             props.href = this.props.href
         }

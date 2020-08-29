@@ -3,10 +3,10 @@ import {AboutLeft} from './AboutLeft/AboutLeft'
 import {AboutRight} from './AboutRight/AboutRight'
 import css from '@emotion/css'
 import {useTheme} from '@material-ui/core'
-import {Route} from '../../../../../interfaces/route'
+import {RouteType} from '../../../../../interfaces and types/RouteType'
 import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 
-export const About: Route = () => {
+export const About: RouteType = () => {
     const theme = useTheme()
     const styles = {
         root: css`

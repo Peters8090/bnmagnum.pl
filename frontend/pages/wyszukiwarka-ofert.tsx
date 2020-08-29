@@ -1,8 +1,8 @@
 import css from '@emotion/css'
 import {Typography, useTheme} from '@material-ui/core'
-import {Route} from '../interfaces/route'
+import {RouteType} from '../interfaces and types/RouteType'
 
-const OffersSearch: Route = () => {
+const OffersSearch: RouteType = () => {
     const theme = useTheme()
     const styles = {
         root: css`
@@ -26,6 +26,6 @@ OffersSearch.routeName = '/wyszukiwarka-ofert'
 export default OffersSearch
 
 export const getServerSideProps = async () => {
-    await new Promise((resolve => setTimeout(() => resolve(), 2000)))
+    // await new Promise((resolve => setTimeout(() => resolve(), 2000)))
     return {props: {}}
 }

@@ -38,9 +38,9 @@ export const HeroWelcome: FC = () => {
 			line-height: 1.4;
 			
 			border-radius: 32px;			
-			background-color: ${theme.palette.primary.main};			
+			background-color: ${theme.palette.secondary.main};			
 			&:hover {
-				background-color: ${theme.palette.primary.main};
+				background-color: ${theme.palette.secondary.main};
 			}
 		`,
     }

@@ -4,9 +4,9 @@ import {Hero} from '../components/pages/index/Sections/Hero/Hero'
 import {About} from '../components/pages/index/Sections/About/About'
 import {OurEmployees} from '../components/pages/index/Sections/OurEmployees/OurEmployees'
 import {Footer} from '../components/pages/index/Sections/Footer/Footer'
-import {Route} from '../interfaces/route'
+import {RouteType} from '../interfaces and types/RouteType'
 
-const HomePage: Route = () => {
+const HomePage: RouteType = () => {
     const navHeight = useCurrentNavigationHeight()
     const styles = {
         root: css`

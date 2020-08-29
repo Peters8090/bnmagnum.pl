@@ -19,7 +19,7 @@ export const Layout: FC = props => {
         <Paper square elevation={0} css={styles.root}>
             <Navigation/>
             {props.children}
-            <NextNProgress color={theme.palette.secondary.main}/>
+            <NextNProgress color={theme.palette.primary.main}/>
         </Paper>
     )
 }
