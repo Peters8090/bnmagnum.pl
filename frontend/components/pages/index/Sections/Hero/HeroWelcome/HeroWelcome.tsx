@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core'
 import Link from 'next/link'
-import OffersSearch from '../../../../../../pages/wyszukiwarka-ofert'
+import OfferSearch from '../../../../../../pages/wyszukiwarka-ofert'
 
 export const HeroWelcome: FC = () => {
     const theme = useTheme()
@@ -53,7 +53,7 @@ export const HeroWelcome: FC = () => {
             <Typography variant='h3' gutterBottom css={styles.subtitle}>
                 {Content.home.subtitle}
             </Typography>
-            <Link href={OffersSearch.routeName}>
+            <Link href={OfferSearch.routeName}>
                 <Button variant='contained' disableElevation css={styles.button}>
                     Przejdź do wyszukiwarki
                 </Button>

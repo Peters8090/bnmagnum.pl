@@ -1,4 +1,4 @@
-import {FC, useState} from 'react'
+import {forwardRef, ForwardRefExoticComponent, RefAttributes, useState} from 'react'
 import AppBar from '@material-ui/core/AppBar/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -9,7 +9,7 @@ import {routeList} from '../../../contents/routeList'
 import {NavigationItem} from './NavigationItem/NavigationItem'
 
 
-export const Navigation: FC = () => {
+export const Navigation: ForwardRefExoticComponent<RefAttributes<unknown>> = forwardRef((_, ref) => {
     const theme = useTheme()
     const styles = {
         logo: css`
@@ -55,7 +55,7 @@ export const Navigation: FC = () => {
     )
 
     return (
-        <AppBar position='sticky' color='inherit' variant='outlined'>
+        <AppBar ref={ref} position='sticky' color='inherit' variant='outlined'>
             <Toolbar css={styles.toolbar}>
                 {logo}
                 <Hidden smDown>
@@ -78,4 +78,4 @@ export const Navigation: FC = () => {
             </Toolbar>
         </AppBar>
     )
-}
+})

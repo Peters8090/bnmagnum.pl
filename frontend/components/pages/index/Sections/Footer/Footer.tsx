@@ -1,13 +1,13 @@
 import {PageTitle} from '../../shared/PageTitle'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core'
-import {useCurrentNavigationHeight} from '../../../../../hooks/useCurrentNavigationHeight'
 import {CompanyData} from './Section/Sections/CompanyData/CompanyData'
 import {useScrollbarWidth} from 'react-use'
 import {RouteType} from '../../../../../interfaces and types/RouteType'
 import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 import {ContactForm} from './Section/Sections/ContactForm/ContactForm'
 import {CustomGrid} from '../../../../shared/Custom Material-UI/CustomGrid'
+import {useCurrentNavigationHeight} from '../../../../../hooks/useCurrentNavigationHeight'
 
 
 export const Footer: RouteType = () => {

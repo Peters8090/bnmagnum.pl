@@ -1,13 +1,10 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import {useContext} from 'react'
+import {LayoutContext} from '../hoc/Layout/Layout'
+import useComponentSize from '@rehooks/component-size'
 
 export const useCurrentNavigationHeight = () => {
-    const cond1 = useMediaQuery('@media (min-width:600px)')
-    const cond2 = useMediaQuery('@media (min-width:0px) and (orientation: landscape)')
+    const {navigationRef} = useContext(LayoutContext)
+    const {height} = useComponentSize(navigationRef)
 
-    if (cond1)
-        return 66
-    else if (cond2)
-        return 50
-    else
-        return 58
+    return height
 }
