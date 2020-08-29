@@ -23,7 +23,7 @@ export const Theme: FC = props => {
     const theme = responsiveFontSizes(createMuiTheme({
         palette: {
             primary: {main: '#f50057'},
-            secondary: {main: '#56CCF2'},
+            secondary: {main: '#1976d2'},
         },
         customMixins: {
             flexCentered: css`

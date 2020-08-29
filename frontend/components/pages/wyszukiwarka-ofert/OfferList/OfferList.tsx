@@ -1,12 +1,19 @@
 import {FC} from 'react'
-import {Typography} from '@material-ui/core'
+import {Offer} from './Offer/Offer'
+import {css} from '@emotion/core'
 
 export const OfferList: FC = () => {
+    const styles = {
+        root: css`
+    		overflow-y: scroll;
+    	`,
+    }
+
     return (
-        <div>
-            <Typography>
-                Lista ofert
-            </Typography>
+        <div css={styles.root}>
+            {new Array(10).fill(null).map((_, i) => (
+                <Offer key={i}/>
+            ))}
         </div>
     )
 }
