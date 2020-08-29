@@ -24,5 +24,5 @@ export const About: Route = () => {
     )
 }
 
-About.name = 'O firmie'
+About.displayName = 'O firmie'
 About.routeName = '/#o-firmie'

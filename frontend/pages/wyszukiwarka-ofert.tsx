@@ -20,7 +20,7 @@ const OffersSearch: Route = () => {
     )
 }
 
-OffersSearch.name = 'Wyszukiwarka ofert'
+OffersSearch.displayName = 'Wyszukiwarka ofert'
 OffersSearch.routeName = '/wyszukiwarka-ofert'
 
 export default OffersSearch

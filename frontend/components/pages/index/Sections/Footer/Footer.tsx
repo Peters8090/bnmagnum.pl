@@ -59,5 +59,5 @@ export const Footer: Route = () => {
     )
 }
 
-Footer.name = 'Kontakt'
+Footer.displayName = 'Kontakt'
 Footer.routeName = `/#kontakt`

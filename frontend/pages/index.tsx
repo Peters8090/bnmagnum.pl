@@ -29,7 +29,7 @@ const HomePage: Route = () => {
     )
 }
 
-HomePage.name = 'Strona główna'
+HomePage.displayName = 'Home'
 HomePage.routeName = '/'
 
 

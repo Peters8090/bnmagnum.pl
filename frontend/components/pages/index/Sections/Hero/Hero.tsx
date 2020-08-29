@@ -1,9 +1,10 @@
 import {css} from '@emotion/core'
-import {HeroLeft} from './HeroLeft/HeroLeft'
-import {HeroRight} from './HeroRight/HeroRight'
+import {HeroWelcome} from './HeroWelcome/HeroWelcome'
+import {HeroImage} from './HeroImage/HeroImage'
 import {GoDownFab} from './GoDownFab/GoDownFab'
 import {Hidden, useTheme} from '@material-ui/core'
 import {Route} from '../../../../../interfaces/route'
+import HomePage from '../../../../../pages'
 
 export const Hero: Route = () => {
     const theme = useTheme()
@@ -22,14 +23,14 @@ export const Hero: Route = () => {
 
     return (
         <div css={styles.root}>
-            <HeroLeft/>
+            <HeroWelcome/>
             <Hidden smDown>
-                <HeroRight/>
+                <HeroImage/>
             </Hidden>
             <GoDownFab/>
         </div>
     )
 }
 
-Hero.name = 'HomePage.name'
-Hero.routeName = 'HomePage.routeName'
+Hero.displayName = HomePage.displayName
+Hero.routeName = HomePage.routeName

@@ -3,9 +3,10 @@ import AppBar from '@material-ui/core/AppBar/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import {Content} from '../../../contents/content'
-import {NavigationItem} from './NavigationItem/NavigationItem'
 import {css} from '@emotion/core'
 import {Divider, Drawer, Hidden, Icon, IconButton, useTheme} from '@material-ui/core'
+import {routeList} from '../../../contents/routeList'
+import {NavigationItem} from './NavigationItem/NavigationItem'
 
 
 export const Navigation: FC = () => {
@@ -45,11 +46,12 @@ export const Navigation: FC = () => {
 
     const navItems = (
         <div css={styles.navigationItems}>
-            <NavigationItem text='Home' href='/'/>
-            <NavigationItem text='O firmie' href='/#o-firmie'/>
-            <NavigationItem text='Nasi pracownicy' href='/#nasi-pracownicy'/>
-            <NavigationItem text='Wyszukiwarka ofert' href='/wyszukiwarka-ofert'/>
-            <NavigationItem text='Kontakt' href='/#kontakt'/>
+            {/*<NavigationItem text='Home' href='/'/>*/}
+            {/*<NavigationItem text='O firmie' href='/#o-firmie'/>*/}
+            {/*<NavigationItem text='Nasi pracownicy' href='/#nasi-pracownicy'/>*/}
+            {/*<NavigationItem text='Wyszukiwarka ofert' href='/wyszukiwarka-ofert'/>*/}
+            {/*<NavigationItem text='Kontakt' href='/#kontakt'/>*/}
+            {routeList.map(route => <NavigationItem text={route.displayName} href={route.routeName}/>)}
         </div>
     )
 

@@ -3,7 +3,7 @@ import House from '../../../../../../assets/images/house.svg'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core'
 
-export const HeroRight: FC = () => {
+export const HeroImage: FC = () => {
     const theme = useTheme()
     const styles = {
         root: css`

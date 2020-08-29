@@ -33,5 +33,5 @@ export const OurEmployees: Route = () => {
 }
 
 
-OurEmployees.name = 'Nasi pracownicy'
+OurEmployees.displayName = 'Nasi pracownicy'
 OurEmployees.routeName = '/#nasi-pracownicy'
