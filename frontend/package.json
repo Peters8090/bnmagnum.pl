@@ -23,6 +23,7 @@
     "react-dom": "16.13.1",
     "react-hook-form": "^6.6.0",
     "react-scroll": "^1.8.1",
+    "react-split-pane": "^2.0.3",
     "react-use": "^15.3.3"
   },
   "devDependencies": {
