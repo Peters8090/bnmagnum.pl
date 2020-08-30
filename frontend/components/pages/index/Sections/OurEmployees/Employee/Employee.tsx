@@ -1,7 +1,7 @@
 import {FC, Fragment} from 'react'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 
 interface EmployeeProps {
     title: string

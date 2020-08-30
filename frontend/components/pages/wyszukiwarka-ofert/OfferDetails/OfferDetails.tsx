@@ -1,5 +1,6 @@
 import {FC} from 'react'
-import {Typography, useTheme} from '@material-ui/core'
+import {Typography} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import {css} from '@emotion/core'
 
 export const OfferDetails: FC = () => {

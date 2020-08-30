@@ -1,8 +1,8 @@
 import {FC, ReactNode} from 'react'
 import {GridProps} from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import {useTheme} from '@material-ui/core/styles'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core'
 import {CustomGrid} from '../../../../../shared/Custom Material-UI/CustomGrid'
 
 interface SectionProps {

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import {Content} from '../../../../../../contents/content'
 import Button from '@material-ui/core/Button'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import Link from 'next/link'
 import OfferSearch from '../../../../../../pages/wyszukiwarka-ofert'
 

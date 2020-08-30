@@ -1,6 +1,6 @@
 import {PageTitle} from '../../shared/PageTitle'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import {CompanyData} from './Section/Sections/CompanyData/CompanyData'
 import {useScrollbarWidth} from 'react-use'
 import {RouteType} from '../../../../../interfaces and types/RouteType'

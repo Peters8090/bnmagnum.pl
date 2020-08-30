@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import House from '../../../../../../assets/images/house.svg'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 
 export const HeroImage: FC = () => {
     const theme = useTheme()

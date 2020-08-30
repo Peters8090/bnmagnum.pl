@@ -1,5 +1,6 @@
 import {FC} from 'react'
-import {Chip, Typography, useTheme} from '@material-ui/core'
+import {Chip, Typography} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import {css} from '@emotion/core'
 
 export const Offer: FC = () => {

@@ -3,7 +3,7 @@ import {NextLinkSmoothScroll} from '../../../../../../hoc/Layout/Navigation/Navi
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import {About} from '../../About/About'
 
 export const GoDownFab: FC = () => {

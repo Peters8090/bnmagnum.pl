@@ -1,7 +1,7 @@
 import {PageTitle} from '../../shared/PageTitle'
 import {css} from '@emotion/core'
 import {Employee} from './Employee/Employee'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import {RouteType} from '../../../../../interfaces and types/RouteType'
 import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 

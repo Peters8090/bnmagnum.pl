@@ -3,7 +3,7 @@ import {Navigation} from './Navigation/Navigation'
 import Paper from '@material-ui/core/Paper'
 import {css} from '@emotion/core'
 import NextNProgress from 'nextjs-progressbar'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 
 interface LayoutContextProps {
     navigationRef: MutableRefObject<HTMLElement | undefined>

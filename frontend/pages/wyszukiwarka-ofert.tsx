@@ -3,7 +3,7 @@ import {RouteType} from '../interfaces and types/RouteType'
 import {OfferList} from '../components/pages/wyszukiwarka-ofert/OfferList/OfferList'
 import {OfferDetails} from '../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails'
 import {useCurrentNavigationHeight} from '../hooks/useCurrentNavigationHeight'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 
 const OfferSearch: RouteType = () => {
     const theme = useTheme()

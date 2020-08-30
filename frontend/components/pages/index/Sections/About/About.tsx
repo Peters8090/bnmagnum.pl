@@ -2,7 +2,7 @@ import Grid from '@material-ui/core/Grid'
 import {AboutLeft} from './AboutLeft/AboutLeft'
 import {AboutRight} from './AboutRight/AboutRight'
 import css from '@emotion/css'
-import {useTheme} from '@material-ui/core'
+import {useTheme} from '@material-ui/core/styles'
 import {RouteType} from '../../../../../interfaces and types/RouteType'
 import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 
