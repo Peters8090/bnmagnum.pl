@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import {Content} from '../../../contents/content'
 import {css} from '@emotion/core'
 import {Divider, Drawer, Hidden, Icon, IconButton} from '@material-ui/core'
-import {useTheme} from '@material-ui/styles'
+import {useTheme} from '@material-ui/core/styles'
 import {routeList} from '../../../contents/routeList'
 import {NavigationItem} from './NavigationItem/NavigationItem'
 

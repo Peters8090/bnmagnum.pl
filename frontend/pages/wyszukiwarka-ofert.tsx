@@ -14,6 +14,13 @@ const OfferSearch: RouteType = () => {
     	    grid-template-columns: 1fr 1fr;
     	    height: calc(100vh - ${navHeight}px);
     	    
+    	    & > * {
+    	      overflow-y: scroll;
+    	      outline: 0.5px solid gray;
+    	    }
+    	    
+            background-color: #E0E0E0;
+    	    
     	    ${theme.breakpoints.down('sm')} {
     	        grid-template-columns: 1fr;
     	        grid-template-rows: 1fr 1fr;
