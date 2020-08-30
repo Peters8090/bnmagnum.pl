@@ -40,6 +40,8 @@ export const OfferDetails: FC = () => {
         `,
         thumbnails: css`
             display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             
             ${theme.breakpoints.up('md')} {
               flex-direction: column;
