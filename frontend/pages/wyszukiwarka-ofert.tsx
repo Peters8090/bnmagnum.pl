@@ -4,14 +4,14 @@ import {OfferList} from '../components/pages/wyszukiwarka-ofert/OfferList/OfferL
 import {OfferDetails} from '../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails'
 import {useCurrentNavigationHeight} from '../hooks/useCurrentNavigationHeight'
 import {useTheme} from '@material-ui/core/styles'
-import SplitPane from 'react-split-pane'
-import {useMediaQuery} from '@material-ui/core'
 
 const OfferSearch: RouteType = () => {
     const theme = useTheme()
     const navHeight = useCurrentNavigationHeight()
     const styles = {
         root: css`
+    	    display: grid;
+    	    grid-template-columns: 1fr 1fr;
     	    height: calc(100vh - ${navHeight}px);
     	    
     	    & > * {
@@ -20,16 +20,19 @@ const OfferSearch: RouteType = () => {
     	    }
     	    
             background-color: #E0E0E0;
+    	    
+    	    ${theme.breakpoints.down('sm')} {
+    	        grid-template-columns: 1fr;
+    	        grid-template-rows: 1fr 1fr;
+    	    }
     	`,
     }
 
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-
     return (
-        <SplitPane css={styles.root} split={isMobile ? 'horizontal' : 'vertical'}>
+        <div css={styles.root}>
             <OfferList/>
             <OfferDetails/>
-        </SplitPane>
+        </div>
     )
 }
 
