@@ -1,13 +1,11 @@
 import {forwardRef, ForwardRefExoticComponent, RefAttributes, useState} from 'react'
 import AppBar from '@material-ui/core/AppBar/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import {Content} from '../../../contents/content'
 import {css} from '@emotion/core'
 import {Divider, Drawer, Hidden, Icon, IconButton} from '@material-ui/core'
 import {useTheme} from '@material-ui/core/styles'
-import {getRouteList} from '../../../contents/getRouteList'
-import {NavigationItem} from './NavigationItem/NavigationItem'
+import {NavigationItems} from './NavigationItems/NavigationItems'
+import {Logo} from './Logo/Logo'
 
 
 export const Navigation: ForwardRefExoticComponent<RefAttributes<unknown>> = forwardRef((_, ref) => {
@@ -19,17 +17,7 @@ export const Navigation: ForwardRefExoticComponent<RefAttributes<unknown>> = for
         toolbar: css`
 		    justify-content: space-evenly;
 		`,
-        navigationItems: css`
-            ${theme.customMixins.flexCentered};
-		    
-		    ${theme.breakpoints.down('sm')} {
-		        flex-direction: column;
-		        
-		        & > * {
-		          margin: ${theme.spacing(0.5)}px 0;
-		        }
-		    }
-		`,
+
         drawerLogoWrapper: css`
             margin: 0 ${theme.spacing(3)}px;
             margin-top: ${theme.spacing(2)}px;
@@ -39,28 +27,15 @@ export const Navigation: ForwardRefExoticComponent<RefAttributes<unknown>> = for
         `,
     }
 
-    const logo = (
-        <Typography variant='h6' css={styles.logo}>
-            {Content.navigation.logo_text}
-        </Typography>
-    )
-
-
     const [drawerOpen, setDrawerOpen] = useState(false)
 
-    const navItems = (
-        <div css={styles.navigationItems}>
-            {getRouteList().map(route => <NavigationItem text={route.displayName} href={route.routeName}
-                                                         onClick={() => setDrawerOpen(false)}/>)}
-        </div>
-    )
 
     return (
         <AppBar ref={ref} position='sticky' color='inherit' variant='outlined'>
             <Toolbar css={styles.toolbar}>
-                {logo}
+                <Logo/>
                 <Hidden smDown>
-                    {navItems}
+                    <NavigationItems/>
                 </Hidden>
                 <Hidden mdUp>
                     <IconButton onClick={() => setDrawerOpen(true)}>
@@ -70,10 +45,10 @@ export const Navigation: ForwardRefExoticComponent<RefAttributes<unknown>> = for
                 <Hidden mdUp>
                     <Drawer anchor='right' open={drawerOpen} onClose={() => setDrawerOpen(false)}>
                         <div css={styles.drawerLogoWrapper}>
-                            {logo}
+                            <Logo/>
                         </div>
                         <Divider css={styles.drawerDivider}/>
-                        {navItems}
+                        <NavigationItems navigationItemProps={{onClick: () => setDrawerOpen(false)}}/>
                     </Drawer>
                 </Hidden>
             </Toolbar>

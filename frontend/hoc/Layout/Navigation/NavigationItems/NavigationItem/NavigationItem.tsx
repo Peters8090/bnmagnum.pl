@@ -2,12 +2,12 @@ import {FC, MouseEventHandler} from 'react'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
-import {useCurrentRouteLinkWithHash} from '../../../../hooks/useCurrentRouteLinkWithHash'
+import {useCurrentRouteLinkWithHash} from '../../../../../hooks/useCurrentRouteLinkWithHash'
 import {NextLinkSmoothScroll} from './NextLinkSmoothScroll/NextLinkSmoothScroll'
 import {Button, useMediaQuery} from '@material-ui/core'
 
 
-interface NavigationItemProps {
+export interface NavigationItemProps {
     text: string
     href: string
     onClick?: MouseEventHandler

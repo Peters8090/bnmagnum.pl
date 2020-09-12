@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import {NextLinkSmoothScroll} from '../../../../../../hoc/Layout/Navigation/NavigationItem/NextLinkSmoothScroll/NextLinkSmoothScroll'
+import {NextLinkSmoothScroll} from '../../../../../../hoc/Layout/Navigation/NavigationItems/NavigationItem/NextLinkSmoothScroll/NextLinkSmoothScroll'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import {css} from '@emotion/core'
