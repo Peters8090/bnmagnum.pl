@@ -4,7 +4,7 @@ import {OurEmployees} from '../components/pages/index/Sections/OurEmployees/OurE
 import OfferSearch from '../pages/wyszukiwarka-ofert'
 import {Footer} from '../components/pages/index/Sections/Footer/Footer'
 
-export const routeList: { displayName: string, routeName: string }[] = [Hero, About, OurEmployees, OfferSearch, Footer].map(route => ({
+export const getRouteList: () => { displayName: string, routeName: string }[] = () => [Hero, About, OurEmployees, OfferSearch, Footer].map(route => ({
     displayName: route.displayName,
     routeName: route.routeName,
 }))

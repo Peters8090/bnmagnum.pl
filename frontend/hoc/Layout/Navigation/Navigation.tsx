@@ -6,7 +6,7 @@ import {Content} from '../../../contents/content'
 import {css} from '@emotion/core'
 import {Divider, Drawer, Hidden, Icon, IconButton} from '@material-ui/core'
 import {useTheme} from '@material-ui/core/styles'
-import {routeList} from '../../../contents/routeList'
+import {getRouteList} from '../../../contents/getRouteList'
 import {NavigationItem} from './NavigationItem/NavigationItem'
 
 
@@ -50,8 +50,8 @@ export const Navigation: ForwardRefExoticComponent<RefAttributes<unknown>> = for
 
     const navItems = (
         <div css={styles.navigationItems}>
-            {routeList.map(route => <NavigationItem text={route.displayName} href={route.routeName}
-                                                    onClick={() => setDrawerOpen(false)}/>)}
+            {getRouteList().map(route => <NavigationItem text={route.displayName} href={route.routeName}
+                                                         onClick={() => setDrawerOpen(false)}/>)}
         </div>
     )
 
