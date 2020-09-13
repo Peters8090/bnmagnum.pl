@@ -8,17 +8,19 @@ import {useRouter} from 'next/router'
 import {useMediaQuery} from '@material-ui/core'
 import {HiddenCond} from '../../components/shared/HiddenCond/HiddenCond'
 
-const OfferSearch: RouteType = () => {
+export const useOfferName = () => {
     const {query} = useRouter()
-    const offerName = query.offerName!?.[0]
+    return query.offerName!?.[0]
+}
+
+const OfferSearch: RouteType = () => {
     const theme = useTheme()
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
     const navHeight = useCurrentNavigationHeight()
+    const offerName = useOfferName()
     const styles = {
         root: css`
     	    display: grid;
-    	    grid-template-columns: 1fr 1fr;
-    	    //grid-template-columns: ${offerName ? '1fr 1fr' : '1fr'};
     	    height: calc(100vh - ${navHeight}px);
     	    
     	    & > * {
@@ -28,6 +30,7 @@ const OfferSearch: RouteType = () => {
             background-color: #E0E0E0;
             
             ${theme.breakpoints.up('md')} {
+    	        grid-template-columns: 1fr 1fr;
     	        & > * {
     	          outline: 0.5px solid gray;
     	        }
@@ -52,6 +55,6 @@ const OfferSearch: RouteType = () => {
 }
 
 OfferSearch.displayName = 'Wyszukiwarka ofert'
-OfferSearch.routeName = '/wyszukiwarka-ofert'
+OfferSearch.routeName = '/wyszukiwarka-ofert/[[...offerName]]'
 
 export default OfferSearch

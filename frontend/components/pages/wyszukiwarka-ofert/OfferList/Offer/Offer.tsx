@@ -3,14 +3,23 @@ import {Chip, Typography} from '@material-ui/core'
 import {useTheme} from '@material-ui/core/styles'
 import {css} from '@emotion/core'
 import Link from 'next/link'
+import OfferSearch, {useOfferName} from '../../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
+import {convertRouteHrefToAs} from '../../../../../functions/convertRouteHrefToAs'
 
 interface OfferProps {
     id: number
 }
 
 export const Offer: FC<OfferProps> = props => {
+    const currentlySelectedOfferName = useOfferName()
+    const myOfferName = `oferta${props.id}`
+
     const theme = useTheme()
+
     const styles = {
+        rootSelectAndHover: css`
+            cursor: pointer;
+        `,
         root: css`
             width: 100%;
             border: 2px solid #BDBDBD;
@@ -22,6 +31,10 @@ export const Offer: FC<OfferProps> = props => {
               background-color: #BDBDBD;
               cursor: pointer;
             }
+            
+            ${currentlySelectedOfferName === myOfferName && css`
+              background-color: #BDBDBD;
+            `};
         `,
         main: css`
             display: flex;
@@ -57,7 +70,7 @@ export const Offer: FC<OfferProps> = props => {
 
 
     return (
-        <Link href='/wyszukiwarka-ofert/[...offerName]' as={`/wyszukiwarka-ofert/oferta${props.id}`}>
+        <Link href={OfferSearch.routeName} as={convertRouteHrefToAs(OfferSearch.routeName, myOfferName)}>
             <div css={styles.root}>
                 <div css={styles.main}>
                     <img
