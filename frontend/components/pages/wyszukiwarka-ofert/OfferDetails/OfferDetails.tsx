@@ -3,7 +3,6 @@ import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core/styles'
 import {Fab, Icon, Typography} from '@material-ui/core'
 import Link from 'next/link'
-import OfferSearch from '../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
 
 export const OfferDetails: FC = () => {
     const theme = useTheme()
@@ -91,7 +90,7 @@ export const OfferDetails: FC = () => {
                 </div>
             </div>
             <Typography variant='h4' align='center' css={styles.title}>Targówek, Warszawa, mazowieckie</Typography>
-            <Link href={OfferSearch.routeName}>
+            <Link href='/wyszukiwarka-ofert/[...offerName]' as='/wyszukiwarka-ofert'>
                 <Fab color='primary' css={styles.goBackFab}>
                     <Icon>clear</Icon>
                 </Fab>
