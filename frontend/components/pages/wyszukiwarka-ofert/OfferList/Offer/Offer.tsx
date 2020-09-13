@@ -2,8 +2,13 @@ import {FC} from 'react'
 import {Chip, Typography} from '@material-ui/core'
 import {useTheme} from '@material-ui/core/styles'
 import {css} from '@emotion/core'
+import Link from 'next/link'
 
-export const Offer: FC = () => {
+interface OfferProps {
+    id: number
+}
+
+export const Offer: FC<OfferProps> = props => {
     const theme = useTheme()
     const styles = {
         root: css`
@@ -52,30 +57,31 @@ export const Offer: FC = () => {
 
 
     return (
-        <div css={styles.root}>
-            <div css={styles.main}>
-                <img
-                    css={styles.image}
-                    src='https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic'
-                    alt='image'/>
-                <Typography
-                    css={styles.title}
-                    gutterBottom
-                    variant='h5'>
-                    Targówek, Warszawa, mazowieckie
-                </Typography>
-                <div css={styles.priceWrapper}>
-                    <Typography variant='h5' css={styles.price}>
-                        1 689 999 zł
+        <Link href='/wyszukiwarka-ofert/[...offerName]' as={`/wyszukiwarka-ofert/oferta${props.id}`}>
+            <div css={styles.root}>
+                <div css={styles.main}>
+                    <img
+                        css={styles.image}
+                        src='https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic'
+                        alt='image'/>
+                    <Typography
+                        css={styles.title}
+                        gutterBottom
+                        variant='h5'>
+                        Targówek, Warszawa, mazowieckie
                     </Typography>
+                    <div css={styles.priceWrapper}>
+                        <Typography variant='h5' css={styles.price}>
+                            1 689 999 zł
+                        </Typography>
+                    </div>
+                </div>
+                <div css={styles.chips}>
+                    {['300 m²', '2015 rok', 'ogród', 'basen', 'internet', 'telewizja', 'gaz', 'woda'].map((info) => (
+                        <Chip key={info} label={info} color='secondary' size='small'/>
+                    ))}
                 </div>
             </div>
-            <div css={styles.chips}>
-                {['300 m²', '2015 rok', 'ogród', 'basen', 'internet', 'telewizja', 'gaz', 'woda'].map((info) => (
-                    <Chip key={info} label={info} color='secondary' size='small'/>
-                ))}
-            </div>
-
-        </div>
+        </Link>
     )
 }

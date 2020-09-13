@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core/styles'
 import Link from 'next/link'
-import OfferSearch from '../../../../../../pages/wyszukiwarka-ofert'
+import OfferSearch from '../../../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
 
 export const HeroWelcome: FC = () => {
     const theme = useTheme()

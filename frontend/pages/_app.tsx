@@ -1,11 +1,10 @@
 import {AppProps} from 'next/app'
 import {Layout} from '../hoc/Layout/Layout'
 import {Theme} from '../hoc/Theme/Theme'
-import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 
 const App = ({Component, pageProps}: AppProps) => {
-    const router = useRouter()
+    // const router = useRouter()
     useEffect(() => {
         // material-ui SSR setup
         const jssStyles = document.querySelector('#jss-server-side')
@@ -13,7 +12,7 @@ const App = ({Component, pageProps}: AppProps) => {
             jssStyles.parentElement!.removeChild(jssStyles)
         }
 
-        router.events.on('routeChangeStart', () => window.scrollTo(0, 0))
+        // router.events.on('routeChangeStart', () => window.scrollTo(0, 0))
     }, [])
 
 

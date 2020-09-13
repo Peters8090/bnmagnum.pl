@@ -5,7 +5,7 @@ export const OfferList: FC = () => {
     return (
         <div>
             {new Array(10).fill(null).map((_, i) => (
-                <Offer key={i}/>
+                <Offer key={i} id={i}/>
             ))}
         </div>
     )

@@ -30,4 +30,8 @@ p {
   white-space: pre-line;
 }
 
+#__next-build-watcher, #__next-prerender-indicator {
+  display: none !important;
+}
+
 `}/>
