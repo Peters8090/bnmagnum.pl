@@ -15,7 +15,6 @@ const App = ({Component, pageProps}: AppProps) => {
         // router.events.on('routeChangeStart', () => window.scrollTo(0, 0))
     }, [])
 
-
     return (
         <Theme>
             <Layout>

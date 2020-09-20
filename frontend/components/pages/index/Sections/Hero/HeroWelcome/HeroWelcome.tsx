@@ -7,6 +7,7 @@ import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core/styles'
 import Link from 'next/link'
 import OfferSearch from '../../../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
+import {RouteLink} from '../../../../../../functions/RouteLink'
 
 export const HeroWelcome: FC = () => {
     const theme = useTheme()
@@ -53,7 +54,7 @@ export const HeroWelcome: FC = () => {
             <Typography variant='h3' gutterBottom css={styles.subtitle}>
                 {Content.home.subtitle}
             </Typography>
-            <Link href={OfferSearch.routeName}>
+            <Link {...(RouteLink(OfferSearch))}>
                 <Button variant='contained' disableElevation css={styles.button}>
                     Przejdź do wyszukiwarki
                 </Button>

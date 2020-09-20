@@ -100,15 +100,15 @@ export class NextLinkSmoothScroll extends React.Component {
         const href = this.props.href
 
         if (location.pathname === href.split('#')[0]) {
-            Router.push(this.props.href)
+            Router.push(this.props.href, this.props?.as)
             window.scrollTo(scrollX, scrollY)
             return smoothScroll(this.props.href)
         } else {
             Router
-                .push(this.props.href)
+                .push(this.props.href, this.props?.as)
                 .then(() => {
-                    window.scrollTo(scrollX, scrollY)
-                    return smoothScroll(this.props.href)
+                    // window.scrollTo(scrollX, scrollY)
+                    // return smoothScroll(this.props.href)
                 })
                 .then(() => {
                     this.props.done && this.props.done()

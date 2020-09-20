@@ -4,7 +4,7 @@ import {useTheme} from '@material-ui/core/styles'
 import {css} from '@emotion/core'
 import Link from 'next/link'
 import OfferSearch, {useOfferName} from '../../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
-import {convertRouteHrefToAs} from '../../../../../functions/convertRouteHrefToAs'
+import {RouteLink} from '../../../../../functions/RouteLink'
 
 interface OfferProps {
     id: number
@@ -70,7 +70,7 @@ export const Offer: FC<OfferProps> = props => {
 
 
     return (
-        <Link href={OfferSearch.routeName} as={convertRouteHrefToAs(OfferSearch.routeName, myOfferName)}>
+        <Link {...RouteLink(OfferSearch, myOfferName)}>
             <div css={styles.root}>
                 <div css={styles.main}>
                     <img

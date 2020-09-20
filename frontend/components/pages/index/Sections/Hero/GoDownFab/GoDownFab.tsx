@@ -5,6 +5,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import {css} from '@emotion/core'
 import {useTheme} from '@material-ui/core/styles'
 import {About} from '../../About/About'
+import {RouteLink} from '../../../../../../functions/RouteLink'
 
 export const GoDownFab: FC = () => {
     const theme = useTheme()
@@ -26,7 +27,7 @@ export const GoDownFab: FC = () => {
     }
 
     return (
-        <NextLinkSmoothScroll href={About.routeName}>
+        <NextLinkSmoothScroll {...RouteLink(About)}>
             <a css={styles.root}>
                 <Fab>
                     <KeyboardArrowDownIcon/>

@@ -2,19 +2,23 @@ import {FC, MouseEventHandler} from 'react'
 import Typography from '@material-ui/core/Typography'
 import {css} from '@emotion/core'
 import useTheme from '@material-ui/core/styles/useTheme'
-import {useCurrentRouteLinkWithHash} from '../../../../../hooks/useCurrentRouteLinkWithHash'
 import {NextLinkSmoothScroll} from './NextLinkSmoothScroll/NextLinkSmoothScroll'
 import {Button, useMediaQuery} from '@material-ui/core'
+import {LinkProps} from 'next/link'
+import {useRouter} from 'next/router'
 
 
 export interface NavigationItemProps {
     text: string
-    href: string
     onClick?: MouseEventHandler
+    LinkProps: LinkProps
 }
 
 export const NavigationItem: FC<NavigationItemProps> = props => {
-    const currentPageLink = useCurrentRouteLinkWithHash()
+    const router = useRouter()
+    const isCurrent: boolean = router.asPath === props.LinkProps.as || router.pathname === props.LinkProps.href
+
+    console.log({router, LinkProps: props.LinkProps})
     const theme = useTheme()
     const styles = {
         button: css`
@@ -22,7 +26,7 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
         `,
         text: css`
     		font-family: 'Rubik', sans-serif;
-    		font-weight: ${currentPageLink === props.href ? 500 : 300};
+    		font-weight: ${isCurrent ? 500 : 300};
     		padding: 0 ${theme.spacing(2)}px;
     		text-align: center;
     		text-transform: none;
@@ -32,7 +36,7 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
-        <NextLinkSmoothScroll href={props.href}>
+        <NextLinkSmoothScroll {...props.LinkProps}>
             <Button component='a' onClick={props.onClick} fullWidth={isMobile} disableRipple={!isMobile}
                     css={styles.button}>
                 <Typography css={styles.text}>

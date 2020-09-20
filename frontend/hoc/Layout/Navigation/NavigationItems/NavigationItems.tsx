@@ -7,6 +7,8 @@ import OfferSearch from '../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
 import {Footer} from '../../../../components/pages/index/Sections/Footer/Footer'
 import {NavigationItem, NavigationItemProps} from './NavigationItem/NavigationItem'
 import {FC} from 'react'
+import {RouteLink} from '../../../../functions/RouteLink'
+import {RouteType} from '../../../../interfaces and types/RouteType'
 
 interface NavigationItemsProps {
     navigationItemProps?: Partial<NavigationItemProps>
@@ -28,11 +30,12 @@ export const NavigationItems: FC<NavigationItemsProps> = props => {
 		`,
     }
 
-    const routeList: { displayName: string, routeName: string }[] = [Hero, About, OurEmployees, OfferSearch, Footer]
+    const routeList: RouteType[] = [Hero, About, OurEmployees, OfferSearch, Footer]
     return (
         <div css={styles.root}>
             {routeList.map(route => <NavigationItem text={route.displayName}
-                                                    href={route.routeName} {...props.navigationItemProps}/>)}
+                                                    LinkProps={RouteLink(route)}
+                                                    {...props.navigationItemProps}/>)}
         </div>
     )
 }
