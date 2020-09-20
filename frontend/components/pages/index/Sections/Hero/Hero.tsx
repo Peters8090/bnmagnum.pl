@@ -34,4 +34,4 @@ export const Hero: RouteType = () => {
 }
 
 Hero.displayName = 'Home'
-Hero.routeName = '/#'
+Hero.routeName = '/'
