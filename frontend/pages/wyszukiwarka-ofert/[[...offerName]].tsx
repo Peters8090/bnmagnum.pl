@@ -19,26 +19,19 @@ const OfferSearch: RouteType = () => {
     const navHeight = useCurrentNavigationHeight()
     const offerName = useOfferName()
     const styles = {
-        root: css`
-    	    display: grid;
-    	    height: calc(100vh - ${navHeight}px);
-    	    
-    	    & > * {
-    	      overflow-y: scroll;
-    	    }
-    	    
+        root: css`    	    
             background-color: #E0E0E0;
             
             ${theme.breakpoints.up('md')} {
+    	        display: grid;
+    	        height: calc(100vh - ${navHeight}px);
+    	        
     	        grid-template-columns: 1fr 1fr;
     	        & > * {
     	          outline: 0.5px solid gray;
+    	          overflow-y: scroll;
     	        }
             }
-    	    
-    	    ${theme.breakpoints.down('sm')} {
-    	        grid-template-columns: 1fr;
-    	    }
     	`,
     }
 

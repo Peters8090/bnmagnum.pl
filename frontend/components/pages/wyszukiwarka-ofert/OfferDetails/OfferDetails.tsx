@@ -141,10 +141,10 @@ export const OfferDetails: FC = () => {
             <div css={styles.agentCard}>
                 <Icon css={styles.agentCardIcon}>phone</Icon>
                 <Typography css={styles.agentCardText} component='div'>
-                    Magdalena <br/>
-                    <span css={styles.agentCardTextHighlighted}>
+                    Magdalena<br/>
+                    <a css={styles.agentCardTextHighlighted} href='tel:+48 123 456 789'>
                         +48 123 456 789
-                    </span>
+                    </a>
                 </Typography>
             </div>
 
