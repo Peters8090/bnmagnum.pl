@@ -19,6 +19,7 @@ export const NavigationItem: FC<NavigationItemProps> = props => {
     const isCurrent: boolean = router.asPath === props.LinkProps.as
         || ((props.LinkProps.href as string).includes('[[...'))
         && router.pathname === props.LinkProps.href
+
     const theme = useTheme()
     const styles = {
         button: css`

@@ -1,8 +1,11 @@
 import {FC} from 'react'
 import {css} from '@emotion/core'
-import {useTheme} from '@material-ui/core/styles'
-import {Fab, Icon, Typography} from '@material-ui/core'
+import {lighten, useTheme} from '@material-ui/core/styles'
+import {Container, Divider, Fab, Icon, Typography} from '@material-ui/core'
 import Link from 'next/link'
+import {RouteLink} from '../../../../functions/RouteLink'
+import OfferSearch from '../../../../pages/wyszukiwarka-ofert/[[...offerName]]'
+import HouseLocation from '../../../../assets/placeholders/house_location.png'
 
 export const OfferDetails: FC = () => {
     const theme = useTheme()
@@ -69,6 +72,50 @@ export const OfferDetails: FC = () => {
             right: ${theme.spacing(3)}px;
             bottom: ${theme.spacing(3)}px;
         `,
+        agentCard: css`
+            display: flex;
+            align-items: center;
+            
+            margin: ${theme.spacing(2)}px 0;
+        `,
+        agentCardIcon: css`
+            font-size: 50px;
+            margin-right: ${theme.spacing(2)}px;
+        `,
+        agentCardText: css`
+            font-weight: 500;
+            font-size: 22px;
+        `,
+        agentCardTextHighlighted: css`
+            color: ${theme.palette.secondary.main};
+        `,
+        section: css`
+            margin-bottom: ${theme.spacing(3)}px;
+        `,
+        sectionTitle: css`
+            font-weight: 600;
+        `,
+        sectionDesc: css`
+            font-weight: 400;
+        `,
+        detailText: css`
+            display: flex;
+            justify-content: space-between;
+            margin: ${theme.spacing(0.5)}px 0;
+        `,
+        detailTextName: css`
+            font-weight: 500;
+            color: ${lighten(theme.palette.text.primary, 0.2)};
+        `,
+        detailDivider: css`
+            height: 3px;
+        `,
+        houseLocationImg: css`
+            width: 100%;
+            display: block;
+            margin: ${theme.spacing(1)}px auto 0;
+            border: 1px solid #BDBDBD;
+        `,
     }
 
     return (
@@ -90,7 +137,61 @@ export const OfferDetails: FC = () => {
                 </div>
             </div>
             <Typography variant='h4' align='center' css={styles.title}>Targówek, Warszawa, mazowieckie</Typography>
-            <Link href='/wyszukiwarka-ofert/[...offerName]' as='/wyszukiwarka-ofert'>
+
+            <div css={styles.agentCard}>
+                <Icon css={styles.agentCardIcon}>phone</Icon>
+                <Typography css={styles.agentCardText} component='div'>
+                    Magdalena <br/>
+                    <span css={styles.agentCardTextHighlighted}>
+                        +48 123 456 789
+                    </span>
+                </Typography>
+            </div>
+
+            <Container maxWidth='sm'>
+                <div css={styles.section}>
+                    <Typography variant='h6' gutterBottom css={styles.sectionTitle}>
+                        Opis
+                    </Typography>
+                    <Typography align='justify' variant='h6' css={styles.sectionDesc}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate, debitis eligendi
+                        est
+                        expedita labore nulla odit ut vero. Amet animi corporis dolor fuga incidunt iusto modi,
+                        provident
+                        similique! Autem blanditiis culpa distinctio, dolor dolore est eum exercitationem explicabo
+                        illum in
+                        incidunt iusto magnam neque nihil nulla officia omnis perspiciatis, quae quaerat quibusdam
+                        repellat.
+                    </Typography>
+                </div>
+                <div css={styles.section}>
+                    <Typography variant='h6' gutterBottom css={styles.sectionTitle}>
+                        Szczegóły
+                    </Typography>
+                    {([['ID oferty', 8432], ['Cena', '1 689 999 zł'], ['Lokalizacja', 8432]] as [string, string | number][]).map(el => (
+                        <div>
+                            <div css={styles.detailText}>
+                                <Typography align='left' css={styles.detailTextName}
+                                            variant='h6'>
+                                    {el[0]}
+                                </Typography>
+                                <Typography align='right' color='textSecondary' variant='h6'>
+                                    {el[1]}
+                                </Typography>
+                            </div>
+                            <Divider css={styles.detailDivider}/>
+                        </div>
+                    ))}
+                </div>
+                <div css={styles.section}>
+                    <Typography variant='h6' gutterBottom css={styles.sectionTitle}>
+                        Przybliżona lokalizacja
+                    </Typography>
+                    <img src={HouseLocation} alt='Lokalizacja domu' css={styles.houseLocationImg}/>
+                </div>
+            </Container>
+
+            <Link {...RouteLink(OfferSearch)}>
                 <Fab color='primary' css={styles.goBackFab}>
                     <Icon>clear</Icon>
                 </Fab>
