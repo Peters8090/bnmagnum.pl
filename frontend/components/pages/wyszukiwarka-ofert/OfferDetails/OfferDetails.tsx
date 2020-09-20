@@ -113,8 +113,8 @@ export const OfferDetails: FC = () => {
         houseLocationImg: css`
             width: 100%;
             display: block;
-            margin: ${theme.spacing(1)}px auto 0;
-            border: 1px solid #BDBDBD;
+            margin: ${theme.spacing(1.5)}px auto 0;
+            border: 2px solid #BDBDBD;
         `,
     }
 
