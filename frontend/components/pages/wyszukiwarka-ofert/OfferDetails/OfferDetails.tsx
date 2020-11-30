@@ -5,8 +5,9 @@ import { Container, Divider, Fab, Icon, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { RouteLink } from "../../../../functions/RouteLink";
 import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+import { OfferProps } from "../OfferList/Offer/Offer";
 
-export const OfferDetails: FC = () => {
+export const OfferDetails: FC<OfferProps> = (props) => {
   const theme = useTheme();
   const styles = {
     root: css`
@@ -132,11 +133,7 @@ export const OfferDetails: FC = () => {
   return (
     <div css={styles.root}>
       <div css={styles.images}>
-        <img
-          src="https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic"
-          alt="image"
-          css={styles.mainImage}
-        />
+        <img src={props.normal.photos[0]} alt="image" css={styles.mainImage} />
         <div css={styles.thumbnails}>
           <img
             src="https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic"
@@ -153,16 +150,19 @@ export const OfferDetails: FC = () => {
         </div>
       </div>
       <Typography variant="h4" align="center" css={styles.title}>
-        Targówek, Warszawa, mazowieckie
+        {props.normal.title}
       </Typography>
 
       <div css={styles.agentCard}>
         <Icon css={styles.agentCardIcon}>phone</Icon>
         <Typography css={styles.agentCardText} component="div">
-          Magdalena
+          {props.normal.agent_surname}
           <br />
-          <a css={styles.agentCardTextHighlighted} href="tel:+48 123 456 789">
-            +48 123 456 789
+          <a
+            css={styles.agentCardTextHighlighted}
+            href={`tel:${props.normal.agent_phone_number}`}
+          >
+            {props.normal.agent_phone_number}
           </a>
         </Typography>
       </div>
@@ -173,39 +173,32 @@ export const OfferDetails: FC = () => {
             Opis
           </Typography>
           <Typography align="justify" variant="h6" css={styles.sectionDesc}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
-            cupiditate, debitis eligendi est expedita labore nulla odit ut vero.
-            Amet animi corporis dolor fuga incidunt iusto modi, provident
-            similique! Autem blanditiis culpa distinctio, dolor dolore est eum
-            exercitationem explicabo illum in incidunt iusto magnam neque nihil
-            nulla officia omnis perspiciatis, quae quaerat quibusdam repellat.
+            {props.normal.description}
           </Typography>
         </div>
         <div css={styles.section}>
           <Typography variant="h6" gutterBottom css={styles.sectionTitle}>
             Szczegóły
           </Typography>
-          {([
-            ["ID oferty", 8432],
-            ["Cena", "1 689 999 zł"],
-            ["Lokalizacja", 8432],
-          ] as [string, string | number][]).map((el) => (
-            <div>
-              <div css={styles.detailText}>
-                <Typography
-                  align="left"
-                  css={styles.detailTextName}
-                  variant="h6"
-                >
-                  {el[0]}
-                </Typography>
-                <Typography align="right" color="textSecondary" variant="h6">
-                  {el[1]}
-                </Typography>
+          {(Object.entries(props.params) as [string, string | number][]).map(
+            (el) => (
+              <div>
+                <div css={styles.detailText}>
+                  <Typography
+                    align="left"
+                    css={styles.detailTextName}
+                    variant="h6"
+                  >
+                    {el[0]}
+                  </Typography>
+                  <Typography align="right" color="textSecondary" variant="h6">
+                    {el[1]}
+                  </Typography>
+                </div>
+                <Divider css={styles.detailDivider} />
               </div>
-              <Divider css={styles.detailDivider} />
-            </div>
-          ))}
+            )
+          )}
         </div>
         <div css={styles.section}>
           <Typography variant="h6" gutterBottom css={styles.sectionTitle}>
@@ -215,7 +208,7 @@ export const OfferDetails: FC = () => {
             <iframe
               css={styles.googleMapsIframe}
               src={`https://www.google.com/maps?q=${encodeURI(
-                "Space+Needle,Seattle+WA"
+                props.normal.location
               )}&output=embed`}
             />
           </div>

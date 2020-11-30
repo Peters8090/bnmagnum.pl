@@ -18,7 +18,9 @@ export const useOfferName = () => {
 };
 
 interface OfferSearchProps {
-  docs: OfferProps[];
+  offersWithPagination: {
+    docs: OfferProps[];
+  };
 }
 
 const OfferSearch: RouteType<OfferSearchProps> = (props) => {
@@ -43,19 +45,23 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
     `,
   };
 
+  const selectedOffer = props.offersWithPagination.docs.find(
+    (o) => o.normal.slug === offerName
+  );
+
   return (
     <div css={styles.root}>
       <HiddenCond
         condition={isMobile ? !!offerName : false}
         implementation="css"
       >
-        <OfferList offers={props.offers.docs} />
+        <OfferList offers={props.offersWithPagination.docs} />
       </HiddenCond>
       <HiddenCond
-        condition={isMobile ? !offerName : !offerName}
+        condition={!!selectedOffer && (isMobile ? !offerName : !offerName)}
         implementation="css"
       >
-        <OfferDetails />
+        <OfferDetails {...selectedOffer!} />
       </HiddenCond>
     </div>
   );
@@ -80,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      offers: response.data,
+      offersWithPagination: response.data,
     },
   };
 };
