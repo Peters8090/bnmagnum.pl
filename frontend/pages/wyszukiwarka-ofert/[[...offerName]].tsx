@@ -10,13 +10,18 @@ import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import queryString from "query-string";
+import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
 
 export const useOfferName = () => {
   const { query } = useRouter();
   return query.offerName!?.[0];
 };
 
-const OfferSearch: RouteType = () => {
+interface OfferSearchProps {
+  docs: OfferProps[];
+}
+
+const OfferSearch: RouteType<OfferSearchProps> = (props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const navHeight = useCurrentNavigationHeight();
@@ -44,7 +49,7 @@ const OfferSearch: RouteType = () => {
         condition={isMobile ? !!offerName : false}
         implementation="css"
       >
-        <OfferList />
+        <OfferList offers={props.offers.docs} />
       </HiddenCond>
       <HiddenCond
         condition={isMobile ? !offerName : !offerName}
@@ -74,7 +79,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   });
 
   return {
-    props: response.data,
+    props: {
+      offers: response.data,
+    },
   };
 };
 
