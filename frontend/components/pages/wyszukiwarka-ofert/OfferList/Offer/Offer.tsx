@@ -7,6 +7,7 @@ import OfferSearch, {
   useOfferName,
 } from "../../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { RouteLink } from "../../../../../functions/RouteLink";
+import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
 
 export interface OfferProps {
   normal: {
@@ -98,7 +99,8 @@ export const Offer: FC<OfferProps> = (props) => {
           </Typography>
           <div css={styles.priceWrapper}>
             <Typography variant="h5" css={styles.price}>
-              {props.normal.price} {props.normal.currency}
+              {addSpaceEveryThreeCharacters(props.normal.price.toString())}{" "}
+              {props.normal.currency}
             </Typography>
           </div>
         </div>

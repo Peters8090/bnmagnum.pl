@@ -59,7 +59,7 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
       </HiddenCond>
       <HiddenCond
         condition={!!selectedOffer && (isMobile ? !offerName : !offerName)}
-        implementation="css"
+        implementation="js"
       >
         <OfferDetails {...selectedOffer!} />
       </HiddenCond>

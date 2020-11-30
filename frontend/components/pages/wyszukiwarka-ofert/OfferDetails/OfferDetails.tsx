@@ -6,8 +6,14 @@ import Link from "next/link";
 import { RouteLink } from "../../../../functions/RouteLink";
 import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { OfferProps } from "../OfferList/Offer/Offer";
+import { decode } from "he";
+import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEveryThreeCharacters";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
+  if (!props.normal) {
+    return null;
+  }
+
   const theme = useTheme();
   const styles = {
     root: css`
@@ -97,6 +103,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
     `,
     sectionDesc: css`
       font-weight: 400;
+      white-space: pre-line;
     `,
     detailText: css`
       display: flex;
@@ -162,7 +169,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             css={styles.agentCardTextHighlighted}
             href={`tel:${props.normal.agent_phone_number}`}
           >
-            {props.normal.agent_phone_number}
+            {addSpaceEveryThreeCharacters(props.normal.agent_phone_number)}
           </a>
         </Typography>
       </div>
@@ -173,7 +180,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             Opis
           </Typography>
           <Typography align="justify" variant="h6" css={styles.sectionDesc}>
-            {props.normal.description}
+            {decode(props.normal.description)}
           </Typography>
         </div>
         <div css={styles.section}>
