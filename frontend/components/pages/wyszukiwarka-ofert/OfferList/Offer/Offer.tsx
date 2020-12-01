@@ -57,8 +57,13 @@ export const Offer: FC<OfferProps> = (props) => {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: ${theme.spacing(1.5)}px;
       & > * {
         margin: 0 ${theme.spacing(1)}px;
+      }
+
+      ${theme.breakpoints.up("md")} {
+        margin-bottom: ${theme.spacing(2)}px;
       }
     `,
     image: css`
@@ -75,12 +80,12 @@ export const Offer: FC<OfferProps> = (props) => {
         margin: ${theme.spacing(0.5)}px ${theme.spacing(1)}px;
       }
     `,
-    priceWrapper: css`
+    titlePrice: css`
       flex: 1;
     `,
     price: css`
       font-weight: 500;
-      white-space: nowrap;
+      word-wrap: break-word;
       text-align: right;
     `,
   };
@@ -94,10 +99,10 @@ export const Offer: FC<OfferProps> = (props) => {
             src={props.normal.photos[0] ?? ""}
             alt="image"
           />
-          <Typography css={styles.title} gutterBottom variant="h5">
-            {props.normal.title}
-          </Typography>
-          <div css={styles.priceWrapper}>
+          <div css={styles.titlePrice}>
+            <Typography css={styles.title} gutterBottom variant="h5">
+              {props.normal.title}
+            </Typography>
             <Typography variant="h5" css={styles.price}>
               {addSpaceEveryThreeCharacters(props.normal.price.toString())}{" "}
               {props.normal.currency}
