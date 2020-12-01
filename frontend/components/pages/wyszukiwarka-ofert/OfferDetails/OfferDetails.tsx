@@ -18,6 +18,7 @@ import { decode } from "he";
 import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEveryThreeCharacters";
 import lodash from "lodash";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
+import NoImage from "../../../../assets/images/no-image.png";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   if (!props.normal) {
@@ -158,7 +159,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
 
   const [curPhotoGroup, setCurPhotoGroup] = useState(0);
 
-  // props.normal.photos.splice(0, props.normal.photos.length);
+  props.normal.photos.splice(0, props.normal.photos.length);
 
   const photosGroups = lodash.chunk(props.normal.photos.slice(1), 3);
 
@@ -170,10 +171,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       <div css={styles.imagesWithStepper}>
         <div css={styles.images}>
           <img
-            src={
-              props.normal.photos?.[0] ??
-              "https://www.bengi.nl/wp-content/uploads/2014/10/no-image-available1.png"
-            }
+            src={props.normal.photos?.[0] ?? NoImage}
             alt="image"
             css={styles.mainImage}
           />
@@ -201,6 +199,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             )}
           </div>
         </div>
+
         <MobileStepper
           variant="dots"
           steps={photosGroups.length}

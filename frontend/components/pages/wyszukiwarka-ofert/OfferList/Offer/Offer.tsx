@@ -8,6 +8,7 @@ import OfferSearch, {
 } from "../../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { RouteLink } from "../../../../../functions/RouteLink";
 import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
+import NoImage from "../../../../../assets/images/no-image.png";
 
 export interface OfferProps {
   normal: {
@@ -94,11 +95,7 @@ export const Offer: FC<OfferProps> = (props) => {
     <Link {...RouteLink(OfferSearch, props.normal.slug)}>
       <div css={styles.root}>
         <div css={styles.main}>
-          <img
-            css={styles.image}
-            src={props.normal.photos[0] ?? ""}
-            alt="image"
-          />
+          <img css={styles.image} src={NoImage} alt="image" />
           <div css={styles.titlePrice}>
             <Typography css={styles.title} gutterBottom variant="h5">
               {props.normal.title}
