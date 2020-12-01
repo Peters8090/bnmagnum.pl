@@ -1,13 +1,21 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { css } from "@emotion/core";
 import { lighten, useTheme } from "@material-ui/core/styles";
-import { Container, Divider, Fab, Icon, Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Divider,
+  Fab,
+  Icon,
+  Typography,
+} from "@material-ui/core";
 import Link from "next/link";
 import { RouteLink } from "../../../../functions/RouteLink";
 import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { OfferProps } from "../OfferList/Offer/Offer";
 import { decode } from "he";
 import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEveryThreeCharacters";
+import lodash from "lodash";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   if (!props.normal) {
@@ -137,25 +145,60 @@ export const OfferDetails: FC<OfferProps> = (props) => {
     `,
   };
 
+  const [curPhotoGroup, setCurPhotoGroup] = useState(0);
+
+  // props.normal.photos.splice(0, props.normal.photos.length);
+
+  const photosGroups = lodash.chunk(props.normal.photos.slice(1), 3);
+
   return (
     <div css={styles.root}>
       <div css={styles.images}>
-        <img src={props.normal.photos[0]} alt="image" css={styles.mainImage} />
+        <img
+          src={
+            props.normal.photos?.[0] ??
+            "https://www.bengi.nl/wp-content/uploads/2014/10/no-image-available1.png"
+          }
+          alt="image"
+          css={styles.mainImage}
+        />
         <div css={styles.thumbnails}>
-          <img
-            src="https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic"
-            alt="image"
-          />
-          <img
-            src="https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic"
-            alt="image"
-          />
-          <img
-            src="https://lh3.googleusercontent.com/mk4C8GtfBo8UmmwrDtQb1essiQPh_A1cN8S5liJ3jCRy1RSqAMCYgP6VW-yH70XFDic"
-            alt="image"
-          />
+          {photosGroups?.[curPhotoGroup]?.length && (
+            <>
+              {new Array(
+                Math.floor((3 - photosGroups[curPhotoGroup].length) / 2)
+              )
+                .fill(null)
+                .map((_, i) => (
+                  <div key={i} />
+                ))}
+              {photosGroups[curPhotoGroup].map((photo) => (
+                <img key={photo} src={photo} alt="image" />
+              ))}
+              {new Array(
+                Math.ceil((3 - photosGroups[curPhotoGroup].length) / 2)
+              )
+                .fill(null)
+                .map((_, i) => (
+                  <div key={i} />
+                ))}
+            </>
+          )}
         </div>
       </div>
+      <Button
+        onClick={() => setCurPhotoGroup((prev) => prev - 1)}
+        disabled={!photosGroups?.[curPhotoGroup - 1]}
+      >
+        Prev
+      </Button>
+      <Button
+        onClick={() => setCurPhotoGroup((prev) => prev + 1)}
+        disabled={!photosGroups?.[curPhotoGroup + 1]}
+      >
+        Next
+      </Button>
+
       <Typography variant="h4" align="center" css={styles.title}>
         {props.normal.title}
       </Typography>
