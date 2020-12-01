@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { css } from "@emotion/core";
 import { lighten, useTheme } from "@material-ui/core/styles";
 import {
@@ -7,6 +7,7 @@ import {
   Divider,
   Fab,
   Icon,
+  MobileStepper,
   Typography,
 } from "@material-ui/core";
 import Link from "next/link";
@@ -16,6 +17,7 @@ import { OfferProps } from "../OfferList/Offer/Offer";
 import { decode } from "he";
 import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEveryThreeCharacters";
 import lodash from "lodash";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   if (!props.normal) {
@@ -28,11 +30,15 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: ${theme.spacing(3)}px;
+    `,
+    imagesWithStepper: css`
+      ${theme.customMixins.flexCentered};
+      flex-direction: column;
+      margin: ${theme.spacing(3)}px 0;
     `,
     images: css`
       ${theme.customMixins.flexCentered};
-      margin: ${theme.spacing(3)}px 0;
-
       ${theme.breakpoints.down("sm")} {
         flex-direction: column;
       }
@@ -143,6 +149,11 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       margin: ${theme.spacing(1.5)}px auto 0;
       border: 2px solid #bdbdbd;
     `,
+
+    mobileStepper: css`
+      width: 100%;
+      background: transparent;
+    `,
   };
 
   const [curPhotoGroup, setCurPhotoGroup] = useState(0);
@@ -151,53 +162,73 @@ export const OfferDetails: FC<OfferProps> = (props) => {
 
   const photosGroups = lodash.chunk(props.normal.photos.slice(1), 3);
 
+  const handlePrevPhotoGroup = () => setCurPhotoGroup((prev) => prev - 1);
+  const handleNextPhotoGroup = () => setCurPhotoGroup((prev) => prev + 1);
+
   return (
     <div css={styles.root}>
-      <div css={styles.images}>
-        <img
-          src={
-            props.normal.photos?.[0] ??
-            "https://www.bengi.nl/wp-content/uploads/2014/10/no-image-available1.png"
-          }
-          alt="image"
-          css={styles.mainImage}
-        />
-        <div css={styles.thumbnails}>
-          {photosGroups?.[curPhotoGroup]?.length && (
-            <>
-              {new Array(
-                Math.floor((3 - photosGroups[curPhotoGroup].length) / 2)
-              )
-                .fill(null)
-                .map((_, i) => (
-                  <div key={i} />
+      <div css={styles.imagesWithStepper}>
+        <div css={styles.images}>
+          <img
+            src={
+              props.normal.photos?.[0] ??
+              "https://www.bengi.nl/wp-content/uploads/2014/10/no-image-available1.png"
+            }
+            alt="image"
+            css={styles.mainImage}
+          />
+          <div css={styles.thumbnails}>
+            {photosGroups?.[curPhotoGroup]?.length && (
+              <>
+                {new Array(
+                  Math.floor((3 - photosGroups[curPhotoGroup].length) / 2)
+                )
+                  .fill(null)
+                  .map((_, i) => (
+                    <div key={i} />
+                  ))}
+                {photosGroups[curPhotoGroup].map((photo) => (
+                  <img key={photo} src={photo} alt="image" />
                 ))}
-              {photosGroups[curPhotoGroup].map((photo) => (
-                <img key={photo} src={photo} alt="image" />
-              ))}
-              {new Array(
-                Math.ceil((3 - photosGroups[curPhotoGroup].length) / 2)
-              )
-                .fill(null)
-                .map((_, i) => (
-                  <div key={i} />
-                ))}
-            </>
-          )}
+                {new Array(
+                  Math.ceil((3 - photosGroups[curPhotoGroup].length) / 2)
+                )
+                  .fill(null)
+                  .map((_, i) => (
+                    <div key={i} />
+                  ))}
+              </>
+            )}
+          </div>
         </div>
+        <MobileStepper
+          variant="dots"
+          steps={photosGroups.length}
+          position="static"
+          activeStep={curPhotoGroup}
+          css={styles.mobileStepper}
+          nextButton={
+            <Button
+              size="small"
+              onClick={handleNextPhotoGroup}
+              disabled={!photosGroups?.[curPhotoGroup + 1]}
+            >
+              Dalej
+              <KeyboardArrowRight />
+            </Button>
+          }
+          backButton={
+            <Button
+              size="small"
+              onClick={handlePrevPhotoGroup}
+              disabled={!photosGroups?.[curPhotoGroup - 1]}
+            >
+              <KeyboardArrowLeft />
+              Poprzedni
+            </Button>
+          }
+        />
       </div>
-      <Button
-        onClick={() => setCurPhotoGroup((prev) => prev - 1)}
-        disabled={!photosGroups?.[curPhotoGroup - 1]}
-      >
-        Prev
-      </Button>
-      <Button
-        onClick={() => setCurPhotoGroup((prev) => prev + 1)}
-        disabled={!photosGroups?.[curPhotoGroup + 1]}
-      >
-        Next
-      </Button>
 
       <Typography variant="h4" align="center" css={styles.title}>
         {props.normal.title}
