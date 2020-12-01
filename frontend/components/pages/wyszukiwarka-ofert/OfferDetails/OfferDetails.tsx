@@ -159,8 +159,6 @@ export const OfferDetails: FC<OfferProps> = (props) => {
 
   const [curPhotoGroup, setCurPhotoGroup] = useState(0);
 
-  props.normal.photos.splice(0, props.normal.photos.length);
-
   const photosGroups = lodash.chunk(props.normal.photos.slice(1), 3);
 
   const handlePrevPhotoGroup = () => setCurPhotoGroup((prev) => prev - 1);
