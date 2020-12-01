@@ -68,20 +68,15 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const query = (() => {
-    if (context.req.url) {
-      const q = queryString.extract(context.req.url);
-      if (q) {
-        return "?" + q;
-      }
-      return "";
-    }
-    return "";
-  })();
+  const query = queryString.stringify(
+    Object.fromEntries(
+      Object.entries(context.query).filter(([key]) => !context?.params?.[key])
+    )
+  );
 
   const response = await axios({
     method: "GET",
-    url: `https://api.bnmagnum.pl${query}`,
+    url: `https://api.bnmagnum.pl?${query}`,
   });
 
   return {
