@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { css } from "@emotion/core";
 import { lighten, useTheme } from "@material-ui/core/styles";
 import {
@@ -8,6 +8,7 @@ import {
   Divider,
   Fab,
   Icon,
+  IconButton,
   MobileStepper,
   Typography,
 } from "@material-ui/core";
@@ -20,7 +21,6 @@ import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEver
 import lodash from "lodash";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import NoImage from "../../../../assets/images/no-image.png";
-import Lightbox from "react-image-lightbox";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   if (!props.normal) {
@@ -171,8 +171,26 @@ export const OfferDetails: FC<OfferProps> = (props) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
 
   const onCloseRequest = () => setGalleryOpen(false);
-  const onMovePrevRequest = () => setCurPhotoInGallery((prev) => prev - 1);
-  const onMoveNextRequest = () => setCurPhotoInGallery((prev) => prev + 1);
+  const onMovePrevRequest = () => {
+    setCurPhotoInGallery((prev) => prev - 1);
+  };
+  const onMoveNextRequest = () => {
+    setCurPhotoInGallery((prev) => prev + 1);
+  };
+
+  // useEffect(() => {
+  //   console.log({
+  //     photosGroups,
+  //     photos: props.normal.photos,
+  //     curPhotoInGallery,
+  //     curPhotoGroup,
+  //   });
+  //   setCurPhotoGroup(
+  //     photosGroups.findIndex((pg) =>
+  //       pg.find((p) => p === props.normal.photos[curPhotoInGallery - 1])
+  //     )
+  //   );
+  // }, [curPhotoInGallery]);
 
   return (
     <div css={styles.root}>
@@ -233,27 +251,41 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             },
           }}
         >
-          <Button
+          <Fab
             onClick={onMovePrevRequest}
+            color="secondary"
+            style={{
+              position: "fixed",
+              left: "1%",
+              top: "50%",
+              transform: "translateY(-50%)",
+            }}
             disabled={!props.normal.photos[curPhotoInGallery - 1]}
           >
-            Left
-          </Button>
+            <Icon style={{ fontSize: "60px" }}>keyboard_arrow_left</Icon>
+          </Fab>
           <img
             src={props.normal.photos[curPhotoInGallery]}
             style={{
               minWidth: "30vw",
               maxWidth: "80vw",
               maxHeight: "80vh",
-              borderRadius: "50px",
+              borderRadius: "25px",
             }}
           />
-          <Button
+          <Fab
             onClick={onMoveNextRequest}
+            color="secondary"
+            style={{
+              position: "fixed",
+              right: "1%",
+              top: "50%",
+              transform: "translateY(-50%)",
+            }}
             disabled={!props.normal.photos[curPhotoInGallery + 1]}
           >
-            Right
-          </Button>
+            <Icon style={{ fontSize: "60px" }}>keyboard_arrow_right</Icon>
+          </Fab>
         </Dialog>
 
         <MobileStepper
