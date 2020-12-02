@@ -249,6 +249,28 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             },
           }}
         >
+          <div
+            style={{
+              position: "fixed",
+              left: "1%",
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: "56px",
+              height: "56px",
+              borderRadius: "50%",
+            }}
+          />
+          <div
+            style={{
+              position: "fixed",
+              right: "1%",
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: "56px",
+              height: "56px",
+              borderRadius: "50%",
+            }}
+          />
           <Fab
             onClick={onMovePrevRequest}
             color="secondary"
