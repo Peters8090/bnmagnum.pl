@@ -4,6 +4,7 @@ import { lighten, useTheme } from "@material-ui/core/styles";
 import {
   Button,
   Container,
+  Dialog,
   Divider,
   Fab,
   Icon,
@@ -19,6 +20,7 @@ import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEver
 import lodash from "lodash";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import NoImage from "../../../../assets/images/no-image.png";
+import Lightbox from "react-image-lightbox";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   if (!props.normal) {
@@ -46,6 +48,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
 
       img {
         border-radius: 25px;
+        cursor: zoom-in;
 
         ${theme.breakpoints.down("sm")} {
           border-radius: 12.5px;
@@ -164,6 +167,13 @@ export const OfferDetails: FC<OfferProps> = (props) => {
   const handlePrevPhotoGroup = () => setCurPhotoGroup((prev) => prev - 1);
   const handleNextPhotoGroup = () => setCurPhotoGroup((prev) => prev + 1);
 
+  const [curPhotoInGallery, setCurPhotoInGallery] = useState(0);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+
+  const onCloseRequest = () => setGalleryOpen(false);
+  const onMovePrevRequest = () => setCurPhotoInGallery((prev) => prev - 1);
+  const onMoveNextRequest = () => setCurPhotoInGallery((prev) => prev + 1);
+
   return (
     <div css={styles.root}>
       <div css={styles.imagesWithStepper}>
@@ -172,6 +182,10 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             src={props.normal.photos?.[0] ?? NoImage}
             alt="image"
             css={styles.mainImage}
+            onClick={() => {
+              setCurPhotoInGallery(0);
+              setGalleryOpen(true);
+            }}
           />
           <div css={styles.thumbnails}>
             {photosGroups?.[curPhotoGroup]?.length && (
@@ -184,7 +198,17 @@ export const OfferDetails: FC<OfferProps> = (props) => {
                     <div key={i} />
                   ))}
                 {photosGroups[curPhotoGroup].map((photo) => (
-                  <img key={photo} src={photo} alt="image" />
+                  <img
+                    key={photo}
+                    src={photo}
+                    alt="image"
+                    onClick={() => {
+                      setCurPhotoInGallery(
+                        props.normal.photos.indexOf(photo) ?? 0
+                      );
+                      setGalleryOpen(true);
+                    }}
+                  />
                 ))}
                 {new Array(
                   Math.ceil((3 - photosGroups[curPhotoGroup].length) / 2)
@@ -197,6 +221,40 @@ export const OfferDetails: FC<OfferProps> = (props) => {
             )}
           </div>
         </div>
+
+        <Dialog
+          open={galleryOpen}
+          maxWidth={false}
+          onClose={onCloseRequest}
+          PaperProps={{
+            elevation: 0,
+            style: {
+              background: "none",
+            },
+          }}
+        >
+          <Button
+            onClick={onMovePrevRequest}
+            disabled={!props.normal.photos[curPhotoInGallery - 1]}
+          >
+            Left
+          </Button>
+          <img
+            src={props.normal.photos[curPhotoInGallery]}
+            style={{
+              minWidth: "30vw",
+              maxWidth: "80vw",
+              maxHeight: "80vh",
+              borderRadius: "50px",
+            }}
+          />
+          <Button
+            onClick={onMoveNextRequest}
+            disabled={!props.normal.photos[curPhotoInGallery + 1]}
+          >
+            Right
+          </Button>
+        </Dialog>
 
         <MobileStepper
           variant="dots"
