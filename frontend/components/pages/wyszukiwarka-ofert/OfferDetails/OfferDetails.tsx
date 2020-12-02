@@ -188,7 +188,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
     }
 
     setCurPhotoGroup(newCurPhotoGroup);
-  }, [curPhotoInGallery]);
+  }, [curPhotoInGallery, galleryOpen]);
 
   return (
     <div css={styles.root}>
