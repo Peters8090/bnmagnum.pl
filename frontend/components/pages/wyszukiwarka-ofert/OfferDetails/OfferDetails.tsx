@@ -178,19 +178,17 @@ export const OfferDetails: FC<OfferProps> = (props) => {
     setCurPhotoInGallery((prev) => prev + 1);
   };
 
-  // useEffect(() => {
-  //   console.log({
-  //     photosGroups,
-  //     photos: props.normal.photos,
-  //     curPhotoInGallery,
-  //     curPhotoGroup,
-  //   });
-  //   setCurPhotoGroup(
-  //     photosGroups.findIndex((pg) =>
-  //       pg.find((p) => p === props.normal.photos[curPhotoInGallery - 1])
-  //     )
-  //   );
-  // }, [curPhotoInGallery]);
+  useEffect(() => {
+    let newCurPhotoGroup = photosGroups.findIndex((pg) =>
+      pg.find((p) => p === props.normal.photos[curPhotoInGallery])
+    );
+
+    if (newCurPhotoGroup === -1) {
+      newCurPhotoGroup = 0;
+    }
+
+    setCurPhotoGroup(newCurPhotoGroup);
+  }, [curPhotoInGallery]);
 
   return (
     <div css={styles.root}>
@@ -271,8 +269,20 @@ export const OfferDetails: FC<OfferProps> = (props) => {
               maxWidth: "80vw",
               maxHeight: "80vh",
               borderRadius: "25px",
+              userSelect: "none",
             }}
           />
+
+          <MobileStepper
+            variant="dots"
+            steps={props.normal.photos.length}
+            position="bottom"
+            backButton={<div />}
+            nextButton={<div />}
+            activeStep={curPhotoInGallery}
+            css={styles.mobileStepper}
+          />
+
           <Fab
             onClick={onMoveNextRequest}
             color="secondary"
