@@ -5,6 +5,7 @@ import lodash from "lodash";
 import NoImage from "../../../../../assets/images/no-image.png";
 import { Dialog, Fab, Icon, MobileStepper, Button } from "@material-ui/core";
 import { KeyboardArrowRight, KeyboardArrowLeft } from "@material-ui/icons";
+import { ModalGallery } from "./ModalGallery/ModalGallery";
 
 interface PhotosProps {
   photos: string[];
@@ -80,16 +81,7 @@ export const Photos: FC<PhotosProps> = (props) => {
   const [curPhotoInGallery, setCurPhotoInGallery] = useState(0);
   const [galleryOpen, setGalleryOpen] = useState(false);
 
-  const onCloseRequest = () => setGalleryOpen(false);
-  const onMovePrevRequest = () => {
-    setCurPhotoInGallery((prev) => prev - 1);
-  };
-  const onMoveNextRequest = () => {
-    setCurPhotoInGallery((prev) => prev + 1);
-  };
-
   const curPhotoGroup = Math.max(Math.floor((curPhotoInGallery - 1) / 3), 0);
-  console.log({ curPhotoInGallery, curPhotoGroup });
 
   return (
     <div css={styles.imagesWithStepper}>
@@ -136,87 +128,13 @@ export const Photos: FC<PhotosProps> = (props) => {
         </div>
       </div>
 
-      <Dialog
+      <ModalGallery
+        onClose={() => setGalleryOpen(false)}
         open={galleryOpen}
-        maxWidth={false}
-        onClose={onCloseRequest}
-        PaperProps={{
-          elevation: 0,
-          style: {
-            background: "none",
-          },
-        }}
-      >
-        <div
-          style={{
-            position: "fixed",
-            left: "1%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "56px",
-            height: "56px",
-            borderRadius: "50%",
-          }}
-        />
-        <div
-          style={{
-            position: "fixed",
-            right: "1%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "56px",
-            height: "56px",
-            borderRadius: "50%",
-          }}
-        />
-        <Fab
-          onClick={onMovePrevRequest}
-          color="secondary"
-          style={{
-            position: "fixed",
-            left: "1%",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
-          disabled={!props.photos[curPhotoInGallery - 1]}
-        >
-          <Icon style={{ fontSize: "60px" }}>keyboard_arrow_left</Icon>
-        </Fab>
-        <img
-          src={props.photos[curPhotoInGallery]}
-          style={{
-            minWidth: "30vw",
-            maxWidth: "80vw",
-            maxHeight: "80vh",
-            borderRadius: "25px",
-            userSelect: "none",
-          }}
-        />
-
-        <MobileStepper
-          variant="dots"
-          steps={props.photos.length}
-          position="bottom"
-          backButton={<div />}
-          nextButton={<div />}
-          activeStep={curPhotoInGallery}
-          css={styles.mobileStepper}
-        />
-
-        <Fab
-          onClick={onMoveNextRequest}
-          color="secondary"
-          style={{
-            position: "fixed",
-            right: "1%",
-            top: "50%",
-            transform: "translateY(-50%)",
-          }}
-          disabled={!props.photos[curPhotoInGallery + 1]}
-        >
-          <Icon style={{ fontSize: "60px" }}>keyboard_arrow_right</Icon>
-        </Fab>
-      </Dialog>
+        photoIndex={curPhotoInGallery}
+        photos={props.photos}
+        setPhotoIndex={setCurPhotoInGallery}
+      />
 
       <MobileStepper
         variant="dots"
