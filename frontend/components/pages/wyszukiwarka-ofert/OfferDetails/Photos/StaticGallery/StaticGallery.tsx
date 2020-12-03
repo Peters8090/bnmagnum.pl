@@ -25,10 +25,11 @@ export const StaticGallery: FC = () => {
   const photoGroups = chunk(photos.slice(1), groupLength);
 
   const lastPhotoGroup = photoGroups[photoGroups.length - 1];
-
-  const difference = groupLength - lastPhotoGroup.length;
-  for (let i = 0; i < difference; i++) {
-    lastPhotoGroup.push("");
+  if (lastPhotoGroup) {
+    const difference = groupLength - lastPhotoGroup.length;
+    for (let i = 0; i < difference; i++) {
+      lastPhotoGroup.push("");
+    }
   }
 
   const photoGroupIndex = Math.max(Math.floor((photoIndex - 1) / 3), 0);

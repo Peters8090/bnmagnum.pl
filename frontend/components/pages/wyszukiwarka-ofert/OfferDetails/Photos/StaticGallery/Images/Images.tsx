@@ -9,12 +9,19 @@ interface ImagesProps {
 }
 
 export const Images: FC<ImagesProps> = (props) => {
+  const { photos, setPhotoIndex, setModalGalleryOpen } = useContext(
+    PhotosContext
+  );
+
   const theme = useTheme();
   const helperStyles = {
     image: css`
       border-radius: 25px;
 
-      cursor: zoom-in;
+      ${photos[0] &&
+      css`
+        cursor: zoom-in;
+      `};
 
       ${theme.breakpoints.down("sm")} {
         border-radius: 12.5px;
@@ -66,10 +73,6 @@ export const Images: FC<ImagesProps> = (props) => {
     `,
   };
 
-  const { photos, setPhotoIndex, setModalGalleryOpen } = useContext(
-    PhotosContext
-  );
-
   return (
     <div css={styles.images}>
       <img
@@ -77,27 +80,30 @@ export const Images: FC<ImagesProps> = (props) => {
         alt="image"
         css={styles.mainImage}
         onClick={() => {
-          setPhotoIndex(0);
-          setModalGalleryOpen(true);
+          if (photos[0]) {
+            setPhotoIndex(0);
+            setModalGalleryOpen(true);
+          }
         }}
       />
       <div css={styles.thumbnails}>
-        {props.photoGroup.map((photo) =>
-          photo.startsWith("http") ? (
-            <img
-              key={photo}
-              src={photo}
-              alt="image"
-              css={styles.thumbnail}
-              onClick={() => {
-                setPhotoIndex(photos.indexOf(photo) ?? 0);
-                setModalGalleryOpen(true);
-              }}
-            />
-          ) : (
-            <div css={styles.thumbnail} />
-          )
-        )}
+        {props.photoGroup &&
+          props.photoGroup.map((photo) =>
+            photo.startsWith("http") ? (
+              <img
+                key={photo}
+                src={photo}
+                alt="image"
+                css={styles.thumbnail}
+                onClick={() => {
+                  setPhotoIndex(photos.indexOf(photo) ?? 0);
+                  setModalGalleryOpen(true);
+                }}
+              />
+            ) : (
+              <div css={styles.thumbnail} />
+            )
+          )}
       </div>
     </div>
   );

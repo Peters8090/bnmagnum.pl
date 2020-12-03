@@ -10,7 +10,8 @@ interface SwitchPhotoButtonProps {
 export const SwitchPhotoButton: FC<SwitchPhotoButtonProps> = (props) => {
   const { photoIndex, photos, setPhotoIndex } = useContext(PhotosContext);
 
-  const afterClickPhotoIndex = photoIndex + (props.side === "right" ? 3 : -3);
+  const afterClickPhotoIndex =
+    Math.max(photoIndex, 1) + (props.side === "right" ? 3 : -3);
 
   return (
     <Button
