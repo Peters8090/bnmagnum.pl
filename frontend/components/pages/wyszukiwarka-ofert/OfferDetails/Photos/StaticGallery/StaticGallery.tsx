@@ -3,8 +3,8 @@ import { MobileStepper } from "@material-ui/core";
 import React, { Dispatch, FC, ReactNode, SetStateAction } from "react";
 import { SwitchPhotoButton } from "./SwitchPhotoButton/SwitchPhotoButton";
 import { useTheme } from "@material-ui/core/styles";
-import NoImage from "../../../../../../assets/images/no-image.png";
 import { chunk } from "lodash";
+import { Images } from "./Images/Images";
 
 interface StaticGalleryProps {
   photoIndex: number;
@@ -15,59 +15,8 @@ interface StaticGalleryProps {
 
 export const StaticGallery: FC<StaticGalleryProps> = (props) => {
   const theme = useTheme();
-  const helperStyles = {
-    image: css`
-      border-radius: 25px;
-      cursor: zoom-in;
 
-      ${theme.breakpoints.down("sm")} {
-        border-radius: 12.5px;
-      }
-    `,
-  };
   const styles = {
-    images: css`
-      ${theme.customMixins.flexCentered};
-      ${theme.breakpoints.down("sm")} {
-        flex-direction: column;
-      }
-    `,
-    mainImage: css`
-      ${helperStyles.image};
-      width: 300px;
-      height: 300px;
-
-      ${theme.breakpoints.down("sm")} {
-        width: 200px;
-        height: 200px;
-      }
-
-      object-fit: cover;
-    `,
-    thumbnails: css`
-      ${helperStyles.image};
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-
-      ${theme.breakpoints.up("md")} {
-        flex-direction: column;
-      }
-    `,
-    thumbnail: css`
-      ${helperStyles.image};
-
-      width: 100px;
-      height: 100px;
-
-      ${theme.breakpoints.down("sm")} {
-        width: 75px;
-        height: 75px;
-      }
-
-      object-fit: cover;
-      margin: ${theme.spacing(2)}px;
-    `,
     stepper: css`
       margin-top: ${theme.spacing(1)}px;
       width: 100%;
@@ -87,39 +36,15 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
   }
 
   const photoGroupIndex = Math.max(Math.floor((props.photoIndex - 1) / 3), 0);
-  const photoGroup = photoGroups[photoGroupIndex];
 
   return (
     <div>
-      <div css={styles.images}>
-        <img
-          src={props.photos?.[0] ?? NoImage}
-          alt="image"
-          css={styles.mainImage}
-          onClick={() => {
-            props.setPhotoIndex(0);
-            props.openModalGallery();
-          }}
-        />
-        <div css={styles.thumbnails}>
-          {photoGroup.map((photo) =>
-            photo.startsWith("http") ? (
-              <img
-                key={photo}
-                src={photo}
-                alt="image"
-                css={styles.thumbnail}
-                onClick={() => {
-                  props.setPhotoIndex(props.photos.indexOf(photo) ?? 0);
-                  props.openModalGallery();
-                }}
-              />
-            ) : (
-              <div css={styles.thumbnail} />
-            )
-          )}
-        </div>
-      </div>
+      <Images
+        photoGroup={photoGroups[photoGroupIndex]}
+        openModalGallery={props.openModalGallery}
+        photos={props.photos}
+        setPhotoIndex={props.setPhotoIndex}
+      />
       <MobileStepper
         variant="dots"
         steps={photoGroups.length}
