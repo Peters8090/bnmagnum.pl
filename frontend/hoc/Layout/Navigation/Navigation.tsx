@@ -7,7 +7,14 @@ import {
 import AppBar from "@material-ui/core/AppBar/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { css } from "@emotion/core";
-import { Divider, Drawer, Hidden, Icon, IconButton } from "@material-ui/core";
+import {
+  Divider,
+  Drawer,
+  Hidden,
+  Icon,
+  IconButton,
+  useMediaQuery,
+} from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { NavigationItems } from "./NavigationItems/NavigationItems";
 import { Logo } from "./Logo/Logo";
@@ -40,6 +47,8 @@ export const Navigation: ForwardRefExoticComponent<
 
   const router = useRouter();
 
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <AppBar ref={ref} position="sticky" color="inherit" variant="outlined">
       <Toolbar css={styles.toolbar}>
@@ -68,7 +77,7 @@ export const Navigation: ForwardRefExoticComponent<
           </Drawer>
         </Hidden>
       </Toolbar>
-      {router.route === OfferSearch.routeName && <Filters />}
+      {!isMobile && router.route === OfferSearch.routeName && <Filters />}
     </AppBar>
   );
 });

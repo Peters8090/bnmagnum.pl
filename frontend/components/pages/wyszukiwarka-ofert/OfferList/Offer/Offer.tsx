@@ -9,6 +9,7 @@ import OfferSearch, {
 import { RouteLink } from "../../../../../functions/RouteLink";
 import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
 import NoImage from "../../../../../assets/images/no-image.png";
+import { useUrlWithQueryString } from "../../../../../hooks/useUrlWithQueryString";
 
 export interface OfferProps {
   normal: {
@@ -90,6 +91,8 @@ export const Offer: FC<OfferProps> = (props) => {
       text-align: right;
     `,
   };
+
+  const { query } = useUrlWithQueryString();
 
   return (
     <Link {...RouteLink(OfferSearch, props.normal.slug)}>
