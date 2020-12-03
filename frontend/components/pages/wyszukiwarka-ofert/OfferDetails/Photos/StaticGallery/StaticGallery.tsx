@@ -55,6 +55,8 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
       }
     `,
     thumbnail: css`
+      ${helperStyles.image};
+
       width: 100px;
       height: 100px;
 
@@ -67,14 +69,25 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
       margin: ${theme.spacing(2)}px;
     `,
     stepper: css`
+      margin-top: ${theme.spacing(1)}px;
       width: 100%;
       background: transparent;
     `,
   };
 
-  const photosGroups = chunk(props.photos.slice(1), 3);
+  const groupLength = 3;
 
-  const curPhotoGroup = Math.max(Math.floor((props.photoIndex - 1) / 3), 0);
+  const photoGroups = chunk(props.photos.slice(1), groupLength);
+
+  const lastPhotoGroup = photoGroups[photoGroups.length - 1];
+
+  const difference = groupLength - lastPhotoGroup.length;
+  for (let i = 0; i < difference; i++) {
+    lastPhotoGroup.push("");
+  }
+
+  const photoGroupIndex = Math.max(Math.floor((props.photoIndex - 1) / 3), 0);
+  const photoGroup = photoGroups[photoGroupIndex];
 
   return (
     <div>
@@ -89,43 +102,29 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
           }}
         />
         <div css={styles.thumbnails}>
-          {photosGroups?.[curPhotoGroup]?.length && (
-            <>
-              {new Array(
-                Math.floor((3 - photosGroups[curPhotoGroup].length) / 2)
-              )
-                .fill(null)
-                .map((_, i) => (
-                  <div key={i} />
-                ))}
-              {photosGroups[curPhotoGroup].map((photo) => (
-                <img
-                  key={photo}
-                  src={photo}
-                  alt="image"
-                  css={styles.thumbnail}
-                  onClick={() => {
-                    props.setPhotoIndex(props.photos.indexOf(photo) ?? 0);
-                    props.openModalGallery();
-                  }}
-                />
-              ))}
-              {new Array(
-                Math.ceil((3 - photosGroups[curPhotoGroup].length) / 2)
-              )
-                .fill(null)
-                .map((_, i) => (
-                  <div key={i} />
-                ))}
-            </>
+          {photoGroup.map((photo) =>
+            photo.startsWith("http") ? (
+              <img
+                key={photo}
+                src={photo}
+                alt="image"
+                css={styles.thumbnail}
+                onClick={() => {
+                  props.setPhotoIndex(props.photos.indexOf(photo) ?? 0);
+                  props.openModalGallery();
+                }}
+              />
+            ) : (
+              <div css={styles.thumbnail} />
+            )
           )}
         </div>
       </div>
       <MobileStepper
         variant="dots"
-        steps={photosGroups.length}
+        steps={photoGroups.length}
         position="static"
-        activeStep={curPhotoGroup}
+        activeStep={photoGroupIndex}
         css={styles.stepper}
         {...(Object.fromEntries(
           [
@@ -135,7 +134,7 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
             prop,
             <SwitchPhotoButton
               side={side}
-              photoIndex={props.photoIndex}
+              photoIndex={Math.max(props.photoIndex, 1)}
               setPhotoIndex={props.setPhotoIndex}
               photos={props.photos}
             />,
