@@ -10,29 +10,30 @@ interface StaticGalleryProps {
   photoIndex: number;
   setPhotoIndex: Dispatch<SetStateAction<number>>;
   photos: string[];
-
   openModalGallery: () => void;
 }
 
 export const StaticGallery: FC<StaticGalleryProps> = (props) => {
   const theme = useTheme();
+  const helperStyles = {
+    image: css`
+      border-radius: 25px;
+      cursor: zoom-in;
+
+      ${theme.breakpoints.down("sm")} {
+        border-radius: 12.5px;
+      }
+    `,
+  };
   const styles = {
     images: css`
       ${theme.customMixins.flexCentered};
       ${theme.breakpoints.down("sm")} {
         flex-direction: column;
       }
-
-      img {
-        border-radius: 25px;
-        cursor: zoom-in;
-
-        ${theme.breakpoints.down("sm")} {
-          border-radius: 12.5px;
-        }
-      }
     `,
     mainImage: css`
+      ${helperStyles.image};
       width: 300px;
       height: 300px;
 
@@ -44,6 +45,7 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
       object-fit: cover;
     `,
     thumbnails: css`
+      ${helperStyles.image};
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -51,19 +53,18 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
       ${theme.breakpoints.up("md")} {
         flex-direction: column;
       }
+    `,
+    thumbnail: css`
+      width: 100px;
+      height: 100px;
 
-      & > * {
-        width: 100px;
-        height: 100px;
-
-        ${theme.breakpoints.down("sm")} {
-          width: 75px;
-          height: 75px;
-        }
-
-        object-fit: cover;
-        margin: ${theme.spacing(2)}px;
+      ${theme.breakpoints.down("sm")} {
+        width: 75px;
+        height: 75px;
       }
+
+      object-fit: cover;
+      margin: ${theme.spacing(2)}px;
     `,
     stepper: css`
       width: 100%;
@@ -102,6 +103,7 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
                   key={photo}
                   src={photo}
                   alt="image"
+                  css={styles.thumbnail}
                   onClick={() => {
                     props.setPhotoIndex(props.photos.indexOf(photo) ?? 0);
                     props.openModalGallery();
