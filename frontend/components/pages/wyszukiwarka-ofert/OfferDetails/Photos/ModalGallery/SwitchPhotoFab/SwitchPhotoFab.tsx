@@ -1,12 +1,10 @@
 import { css } from "@emotion/core";
 import { Fab, Icon } from "@material-ui/core";
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { FC, useContext } from "react";
+import { PhotosContext } from "../../Photos";
 
 interface SwitchPhotoFabProps {
   side: "left" | "right";
-  photoIndex: number;
-  setPhotoIndex: Dispatch<SetStateAction<number>>;
-  photos: string[];
 }
 
 export const SwitchPhotoFab: FC<SwitchPhotoFabProps> = (props) => {
@@ -27,15 +25,16 @@ export const SwitchPhotoFab: FC<SwitchPhotoFabProps> = (props) => {
     `,
   };
 
-  const afterClickPhotoIndex =
-    props.photoIndex + (props.side === "right" ? 1 : -1);
+  const { photoIndex, photos, setPhotoIndex } = useContext(PhotosContext);
+
+  const afterClickPhotoIndex = photoIndex + (props.side === "right" ? 1 : -1);
 
   return (
     <div css={styles.root}>
       <Fab
-        onClick={() => props.setPhotoIndex(afterClickPhotoIndex)}
+        onClick={() => setPhotoIndex(afterClickPhotoIndex)}
         color="secondary"
-        disabled={!props.photos[afterClickPhotoIndex]}
+        disabled={!photos[afterClickPhotoIndex]}
       >
         <Icon css={styles.icon}>keyboard_arrow_{props.side}</Icon>
       </Fab>

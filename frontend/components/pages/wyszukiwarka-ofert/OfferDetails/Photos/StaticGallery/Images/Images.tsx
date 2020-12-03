@@ -1,13 +1,11 @@
 import NoImage from "../../../../../../../assets/images/no-image.png";
 import { useTheme } from "@material-ui/core/styles";
 import { css } from "@emotion/core";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC, useContext } from "react";
+import { PhotosContext } from "../../Photos";
 
 interface ImagesProps {
   photoGroup: string[];
-  setPhotoIndex: Dispatch<SetStateAction<number>>;
-  openModalGallery: () => void;
-  photos: string[];
 }
 
 export const Images: FC<ImagesProps> = (props) => {
@@ -68,15 +66,19 @@ export const Images: FC<ImagesProps> = (props) => {
     `,
   };
 
+  const { photos, setPhotoIndex, setModalGalleryOpen } = useContext(
+    PhotosContext
+  );
+
   return (
     <div css={styles.images}>
       <img
-        src={props.photos?.[0] ?? NoImage}
+        src={photos[0] ?? NoImage}
         alt="image"
         css={styles.mainImage}
         onClick={() => {
-          props.setPhotoIndex(0);
-          props.openModalGallery();
+          setPhotoIndex(0);
+          setModalGalleryOpen(true);
         }}
       />
       <div css={styles.thumbnails}>
@@ -88,8 +90,8 @@ export const Images: FC<ImagesProps> = (props) => {
               alt="image"
               css={styles.thumbnail}
               onClick={() => {
-                props.setPhotoIndex(props.photos.indexOf(photo) ?? 0);
-                props.openModalGallery();
+                setPhotoIndex(photos.indexOf(photo) ?? 0);
+                setModalGalleryOpen(true);
               }}
             />
           ) : (

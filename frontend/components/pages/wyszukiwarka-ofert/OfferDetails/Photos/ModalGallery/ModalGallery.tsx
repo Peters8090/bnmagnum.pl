@@ -1,14 +1,11 @@
 import { css } from "@emotion/core";
 import { Dialog, MobileStepper } from "@material-ui/core";
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, { FC, useContext } from "react";
+import { PhotosContext } from "../Photos";
 import { SwitchPhotoFab } from "./SwitchPhotoFab/SwitchPhotoFab";
 
 interface ModalGalleryProps {
   open: boolean;
-  onClose: () => void;
-  photoIndex: number;
-  setPhotoIndex: Dispatch<SetStateAction<number>>;
-  photos: string[];
 }
 
 export const ModalGallery: FC<ModalGalleryProps> = (props) => {
@@ -26,11 +23,13 @@ export const ModalGallery: FC<ModalGalleryProps> = (props) => {
     `,
   };
 
+  const { photoIndex, photos, setModalGalleryOpen } = useContext(PhotosContext);
+
   return (
     <Dialog
       open={props.open}
       maxWidth={false}
-      onClose={props.onClose}
+      onClose={() => setModalGalleryOpen(false)}
       PaperProps={{
         elevation: 0,
         style: {
@@ -39,23 +38,18 @@ export const ModalGallery: FC<ModalGalleryProps> = (props) => {
       }}
     >
       {(["left", "right"] as const).map((side) => (
-        <SwitchPhotoFab
-          side={side}
-          photoIndex={props.photoIndex}
-          setPhotoIndex={props.setPhotoIndex}
-          photos={props.photos}
-        />
+        <SwitchPhotoFab side={side} />
       ))}
 
-      <img src={props.photos[props.photoIndex]} css={styles.photo} />
+      <img src={photos[photoIndex]} css={styles.photo} />
 
       <MobileStepper
         variant="dots"
-        steps={props.photos.length}
+        steps={photos.length}
         position="bottom"
         backButton={<div />}
         nextButton={<div />}
-        activeStep={props.photoIndex}
+        activeStep={photoIndex}
         css={styles.stepper}
       />
     </Dialog>

@@ -1,19 +1,13 @@
 import { css } from "@emotion/core";
 import { MobileStepper } from "@material-ui/core";
-import React, { Dispatch, FC, ReactNode, SetStateAction } from "react";
+import React, { FC, useContext } from "react";
 import { SwitchPhotoButton } from "./SwitchPhotoButton/SwitchPhotoButton";
 import { useTheme } from "@material-ui/core/styles";
 import { chunk } from "lodash";
 import { Images } from "./Images/Images";
+import { PhotosContext } from "../Photos";
 
-interface StaticGalleryProps {
-  photoIndex: number;
-  setPhotoIndex: Dispatch<SetStateAction<number>>;
-  photos: string[];
-  openModalGallery: () => void;
-}
-
-export const StaticGallery: FC<StaticGalleryProps> = (props) => {
+export const StaticGallery: FC = () => {
   const theme = useTheme();
 
   const styles = {
@@ -26,7 +20,9 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
 
   const groupLength = 3;
 
-  const photoGroups = chunk(props.photos.slice(1), groupLength);
+  const { photoIndex, photos } = useContext(PhotosContext);
+
+  const photoGroups = chunk(photos.slice(1), groupLength);
 
   const lastPhotoGroup = photoGroups[photoGroups.length - 1];
 
@@ -35,36 +31,19 @@ export const StaticGallery: FC<StaticGalleryProps> = (props) => {
     lastPhotoGroup.push("");
   }
 
-  const photoGroupIndex = Math.max(Math.floor((props.photoIndex - 1) / 3), 0);
+  const photoGroupIndex = Math.max(Math.floor((photoIndex - 1) / 3), 0);
 
   return (
     <div>
-      <Images
-        photoGroup={photoGroups[photoGroupIndex]}
-        openModalGallery={props.openModalGallery}
-        photos={props.photos}
-        setPhotoIndex={props.setPhotoIndex}
-      />
+      <Images photoGroup={photoGroups[photoGroupIndex]} />
       <MobileStepper
         variant="dots"
         steps={photoGroups.length}
         position="static"
         activeStep={photoGroupIndex}
         css={styles.stepper}
-        {...(Object.fromEntries(
-          [
-            ["nextButton", "right"] as const,
-            ["backButton", "left"] as const,
-          ].map(([prop, side]) => [
-            prop,
-            <SwitchPhotoButton
-              side={side}
-              photoIndex={Math.max(props.photoIndex, 1)}
-              setPhotoIndex={props.setPhotoIndex}
-              photos={props.photos}
-            />,
-          ])
-        ) as Record<"backButton" | "nextButton", ReactNode>)}
+        backButton={<SwitchPhotoButton side="left" />}
+        nextButton={<SwitchPhotoButton side="right" />}
       />
     </div>
   );

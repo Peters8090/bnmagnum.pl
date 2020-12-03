@@ -1,6 +1,5 @@
 import { css } from "@emotion/core";
 import { Typography } from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
 import { decode } from "he";
 import React, { FC } from "react";
 import { Section } from "../../Section";
