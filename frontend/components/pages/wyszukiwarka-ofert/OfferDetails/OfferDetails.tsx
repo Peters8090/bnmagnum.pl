@@ -1,4 +1,4 @@
-import React, { createContext, FC } from "react";
+import React, { FC } from "react";
 import { css } from "@emotion/core";
 import { useTheme } from "@material-ui/core/styles";
 import { Container, Fab, Icon, Typography } from "@material-ui/core";
@@ -11,7 +11,6 @@ import { DetailsSection } from "./Section/Sections/DetailsSection/DetailsSection
 import { DescriptionSection } from "./Section/Sections/DescriptionSection/DescriptionSection";
 import { GoogleMapsIFrameSection } from "./Section/Sections/GoogleMapsIFrameSection/GoogleMapsIFrameSection";
 import { Photos } from "./Photos/Photos";
-import { OfferDetailsContext } from "./OfferDetailsContext/OfferDetailsContext";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   const theme = useTheme();
@@ -33,31 +32,29 @@ export const OfferDetails: FC<OfferProps> = (props) => {
   };
 
   return (
-    <OfferDetailsContext.Provider value={props}>
-      <div css={styles.root}>
-        <Photos photos={props.normal.photos} />
+    <div css={styles.root}>
+      <Photos photos={props.normal.photos} />
 
-        <Typography variant="h4" align="center" css={styles.title}>
-          {props.normal.title}
-        </Typography>
+      <Typography variant="h4" align="center" css={styles.title}>
+        {props.normal.title}
+      </Typography>
 
-        <AgentCard
-          agentName={props.normal.agent_surname}
-          phoneNumber={props.normal.agent_phone_number}
-        />
+      <AgentCard
+        agentName={props.normal.agent_surname}
+        phoneNumber={props.normal.agent_phone_number}
+      />
 
-        <Container maxWidth="sm">
-          <DescriptionSection description={props.normal.description} />
-          <DetailsSection params={props.params} />
-          <GoogleMapsIFrameSection location={props.normal.location} />
-        </Container>
+      <Container maxWidth="sm">
+        <DescriptionSection description={props.normal.description} />
+        <DetailsSection params={props.params} />
+        <GoogleMapsIFrameSection location={props.normal.location} />
+      </Container>
 
-        <Link {...RouteLink(OfferSearch)}>
-          <Fab color="primary" css={styles.goBackFab}>
-            <Icon>clear</Icon>
-          </Fab>
-        </Link>
-      </div>
-    </OfferDetailsContext.Provider>
+      <Link {...RouteLink(OfferSearch)}>
+        <Fab color="primary" css={styles.goBackFab}>
+          <Icon>clear</Icon>
+        </Fab>
+      </Link>
+    </div>
   );
 };
