@@ -72,12 +72,10 @@ export const Photos: FC<PhotosProps> = (props) => {
     `,
   };
 
-  const [curPhotoGroup, setCurPhotoGroup] = useState(0);
-
   const photosGroups = lodash.chunk(props.photos.slice(1), 3);
 
-  const handlePrevPhotoGroup = () => setCurPhotoGroup((prev) => prev - 1);
-  const handleNextPhotoGroup = () => setCurPhotoGroup((prev) => prev + 1);
+  const handlePrevPhotoGroup = () => setCurPhotoInGallery((prev) => prev - 3);
+  const handleNextPhotoGroup = () => setCurPhotoInGallery((prev) => prev + 3);
 
   const [curPhotoInGallery, setCurPhotoInGallery] = useState(0);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -90,17 +88,8 @@ export const Photos: FC<PhotosProps> = (props) => {
     setCurPhotoInGallery((prev) => prev + 1);
   };
 
-  useEffect(() => {
-    let newCurPhotoGroup = photosGroups.findIndex((pg) =>
-      pg.find((p) => p === props.photos[curPhotoInGallery])
-    );
-
-    if (newCurPhotoGroup === -1) {
-      newCurPhotoGroup = 0;
-    }
-
-    setCurPhotoGroup(newCurPhotoGroup);
-  }, [curPhotoInGallery, galleryOpen]);
+  const curPhotoGroup = Math.max(Math.floor((curPhotoInGallery - 1) / 3), 0);
+  console.log({ curPhotoInGallery, curPhotoGroup });
 
   return (
     <div css={styles.imagesWithStepper}>
