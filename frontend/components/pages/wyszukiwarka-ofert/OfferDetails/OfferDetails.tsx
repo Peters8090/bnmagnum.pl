@@ -21,6 +21,10 @@ import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEver
 import lodash from "lodash";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import NoImage from "../../../../assets/images/no-image.png";
+import { AgentCard } from "./AgentCard/AgentCard";
+import { DetailsSection } from "./Section/Sections/DetailsSection/DetailsSection";
+import { DescriptionSection } from "./Section/Sections/DescriptionSection/DescriptionSection";
+import { GoogleMapsIFrameSection } from "./Section/Sections/GoogleMapsIFrameSection/GoogleMapsIFrameSection";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   if (!props.normal) {
@@ -95,63 +99,6 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       position: fixed;
       right: ${theme.spacing(3)}px;
       bottom: ${theme.spacing(3)}px;
-    `,
-    agentCard: css`
-      display: flex;
-      align-items: center;
-
-      margin: ${theme.spacing(2)}px 0;
-    `,
-    agentCardIcon: css`
-      font-size: 50px;
-      margin-right: ${theme.spacing(2)}px;
-    `,
-    agentCardText: css`
-      font-weight: 500;
-      font-size: 22px;
-    `,
-    agentCardTextHighlighted: css`
-      color: ${theme.palette.secondary.main};
-    `,
-    section: css`
-      margin-bottom: ${theme.spacing(3)}px;
-    `,
-    sectionTitle: css`
-      font-weight: 600;
-    `,
-    sectionDesc: css`
-      font-weight: 400;
-      white-space: pre-line;
-    `,
-    detailText: css`
-      display: flex;
-      justify-content: space-between;
-      margin: ${theme.spacing(0.5)}px 0;
-    `,
-    detailTextName: css`
-      font-weight: 500;
-      color: ${lighten(theme.palette.text.primary, 0.2)};
-    `,
-    detailDivider: css`
-      height: 3px;
-    `,
-    googleMapsIframeWrapper: css`
-      width: 100%;
-      position: relative;
-      padding-bottom: 75%;
-      height: 0;
-      overflow: hidden;
-    `,
-    googleMapsIframe: css`
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100% !important;
-      height: 100% !important;
-
-      display: block;
-      margin: ${theme.spacing(1.5)}px auto 0;
-      border: 2px solid #bdbdbd;
     `,
 
     mobileStepper: css`
@@ -353,66 +300,15 @@ export const OfferDetails: FC<OfferProps> = (props) => {
         {props.normal.title}
       </Typography>
 
-      <div css={styles.agentCard}>
-        <Icon css={styles.agentCardIcon}>phone</Icon>
-        <Typography css={styles.agentCardText} component="div">
-          {props.normal.agent_surname}
-          <br />
-          <a
-            css={styles.agentCardTextHighlighted}
-            href={`tel:${props.normal.agent_phone_number}`}
-          >
-            {addSpaceEveryThreeCharacters(props.normal.agent_phone_number)}
-          </a>
-        </Typography>
-      </div>
+      <AgentCard
+        agentName={props.normal.agent_surname}
+        phoneNumber={props.normal.agent_phone_number}
+      />
 
       <Container maxWidth="sm">
-        <div css={styles.section}>
-          <Typography variant="h6" gutterBottom css={styles.sectionTitle}>
-            Opis
-          </Typography>
-          <Typography align="justify" variant="h6" css={styles.sectionDesc}>
-            {decode(props.normal.description)}
-          </Typography>
-        </div>
-        <div css={styles.section}>
-          <Typography variant="h6" gutterBottom css={styles.sectionTitle}>
-            Szczegóły
-          </Typography>
-          {(Object.entries(props.params) as [string, string | number][]).map(
-            (el) => (
-              <div>
-                <div css={styles.detailText}>
-                  <Typography
-                    align="left"
-                    css={styles.detailTextName}
-                    variant="h6"
-                  >
-                    {el[0]}
-                  </Typography>
-                  <Typography align="right" color="textSecondary" variant="h6">
-                    {el[1]}
-                  </Typography>
-                </div>
-                <Divider css={styles.detailDivider} />
-              </div>
-            )
-          )}
-        </div>
-        <div css={styles.section}>
-          <Typography variant="h6" gutterBottom css={styles.sectionTitle}>
-            Przybliżona lokalizacja
-          </Typography>
-          <div css={styles.googleMapsIframeWrapper}>
-            <iframe
-              css={styles.googleMapsIframe}
-              src={`https://www.google.com/maps?q=${encodeURI(
-                props.normal.location
-              )}&output=embed`}
-            />
-          </div>
-        </div>
+        <DescriptionSection description={props.normal.description} />
+        <DetailsSection params={props.params} />
+        <GoogleMapsIFrameSection location={props.normal.location} />
       </Container>
 
       <Link {...RouteLink(OfferSearch)}>
