@@ -1,21 +1,28 @@
 import { css } from "@emotion/core";
-import { Dialog, Fab, Icon, MobileStepper } from "@material-ui/core";
+import { Dialog, MobileStepper } from "@material-ui/core";
 import React, { Dispatch, FC, SetStateAction } from "react";
 import { SwitchPhotoFab } from "./SwitchPhotoFab/SwitchPhotoFab";
 
 interface ModalGalleryProps {
+  open: boolean;
+  onClose: () => void;
   photoIndex: number;
   setPhotoIndex: Dispatch<SetStateAction<number>>;
-  open: boolean;
-  onClose: Dispatch<SetStateAction<boolean>>;
   photos: string[];
 }
 
 export const ModalGallery: FC<ModalGalleryProps> = (props) => {
   const styles = {
-    mobileStepper: css`
+    stepper: css`
       width: 100%;
       background: transparent;
+    `,
+    photo: css`
+      min-width: 30vw;
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 25px;
+      user-select: none;
     `,
   };
 
@@ -31,29 +38,16 @@ export const ModalGallery: FC<ModalGalleryProps> = (props) => {
         },
       }}
     >
-      <SwitchPhotoFab
-        side="left"
-        photoIndex={props.photoIndex}
-        setPhotoIndex={props.setPhotoIndex}
-        photos={props.photos}
-      />
-      <SwitchPhotoFab
-        side="right"
-        photoIndex={props.photoIndex}
-        setPhotoIndex={props.setPhotoIndex}
-        photos={props.photos}
-      />
+      {(["left", "right"] as const).map((side) => (
+        <SwitchPhotoFab
+          side={side}
+          photoIndex={props.photoIndex}
+          setPhotoIndex={props.setPhotoIndex}
+          photos={props.photos}
+        />
+      ))}
 
-      <img
-        src={props.photos[props.photoIndex]}
-        style={{
-          minWidth: "30vw",
-          maxWidth: "80vw",
-          maxHeight: "80vh",
-          borderRadius: "25px",
-          userSelect: "none",
-        }}
-      />
+      <img src={props.photos[props.photoIndex]} css={styles.photo} />
 
       <MobileStepper
         variant="dots"
@@ -62,7 +56,7 @@ export const ModalGallery: FC<ModalGalleryProps> = (props) => {
         backButton={<div />}
         nextButton={<div />}
         activeStep={props.photoIndex}
-        css={styles.mobileStepper}
+        css={styles.stepper}
       />
     </Dialog>
   );
