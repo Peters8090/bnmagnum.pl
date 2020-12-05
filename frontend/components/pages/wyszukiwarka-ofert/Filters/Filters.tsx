@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Filter } from "./Filter/Filter";
 import { useForm } from "react-hook-form";
 import { css } from "@emotion/core";
@@ -45,7 +45,7 @@ const filterList: FilterType[] = [
       },
       {
         value: "dzialki",
-        label: "dzialki",
+        label: "działki",
       },
       {
         value: "lokale",
@@ -86,7 +86,7 @@ const filterList: FilterType[] = [
 ];
 
 export const Filters = () => {
-  const { register, handleSubmit: handleHookFormSubmit } = useForm();
+  const { register, handleSubmit: handleHookFormSubmit, setValue } = useForm();
 
   const styles = {
     root: css`
@@ -100,11 +100,11 @@ export const Filters = () => {
 
   const router = useRouter();
 
-  const { url } = useUrlWithQueryString();
+  const { url, queryParsed } = useUrlWithQueryString();
 
   const handleSubmit = handleHookFormSubmit((data) => {
     const dataWithoutEmptyValues: any = Object.fromEntries(
-      Object.entries(data).filter(([_, val]) => val !== "")
+      Object.entries(data).filter(([_, val]) => val === 0 || !!val)
     );
 
     const dataQueryString = new URLSearchParams(
@@ -114,14 +114,21 @@ export const Filters = () => {
     router.push(url + (dataQueryString ? "?" + dataQueryString : ""));
   });
 
+  const [lastTimeout, setLastTimeout] = useState<NodeJS.Timeout>();
+
   return (
-    <form css={styles.root} onSubmit={handleSubmit}>
+    <form css={styles.root}>
       {filterList.map((filter) => (
-        <Filter {...filter} register={register} />
+        <Filter
+          {...filter}
+          register={register}
+          defaultValue={queryParsed[filter.name]}
+          handleSubmit={handleSubmit}
+          lastTimeout={lastTimeout}
+          setLastTimeout={setLastTimeout}
+          setValue={setValue}
+        />
       ))}
-      <button css={styles.submitButton} type="submit">
-        submit
-      </button>
     </form>
   );
 };

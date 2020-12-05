@@ -95,7 +95,7 @@ export const Offer: FC<OfferProps> = (props) => {
   const { query } = useUrlWithQueryString();
 
   return (
-    <Link {...RouteLink(OfferSearch, props.normal.slug)}>
+    <Link {...RouteLink(OfferSearch, props.normal.slug, query)}>
       <div css={styles.root}>
         <div css={styles.main}>
           <img

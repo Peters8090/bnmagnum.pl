@@ -15,7 +15,7 @@ export function RouteLink<T>(
       executedRegex[1] +
       (arg ? "/" + `${arg}` : "") +
       (queryString ? "?" + queryString : "");
-    console.log(as);
+    // console.log(as);
   }
 
   return { href, as };

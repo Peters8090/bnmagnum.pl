@@ -49,6 +49,8 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
     (o) => o.normal.slug === offerName
   );
 
+  // console.log(props, selectedOffer, offerName);
+
   return (
     <div css={styles.root}>
       <HiddenCond
@@ -57,9 +59,7 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
       >
         <OfferList offers={props.offersWithPagination.docs} />
       </HiddenCond>
-      {selectedOffer && (
-        <OfferDetails key={selectedOffer.normal.id} {...selectedOffer} />
-      )}
+      {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}
     </div>
   );
 };
@@ -70,6 +70,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       Object.entries(context.query).filter(([key]) => !context?.params?.[key])
     )
   );
+
+  // const query = queryString.stringify(
+  //   queryString.parseUrl(context.req.headers.referer!).query
+  // );
 
   const response = await axios({
     method: "GET",

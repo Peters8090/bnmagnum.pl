@@ -1,13 +1,33 @@
 import { css } from "@emotion/core";
 import { MenuItem, TextField } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
-import React, { FC } from "react";
+import React, {
+  ChangeEventHandler,
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+} from "react";
 import { useForm } from "react-hook-form";
 import { PropType } from "../../../../../types/PropType";
 import { FilterType } from "../Filters";
 
 type FilterProps = FilterType & {
   register: PropType<ReturnType<typeof useForm>, "register">;
+  defaultValue?: any;
+  handleSubmit: () => void;
+  lastTimeout: NodeJS.Timeout | undefined;
+  setLastTimeout: Dispatch<SetStateAction<NodeJS.Timeout | undefined>>;
+  setValue: (
+    name: string,
+    value: any,
+    config?:
+      | Partial<{
+          shouldValidate: boolean;
+          shouldDirty: boolean;
+        }>
+      | undefined
+  ) => void;
 };
 
 export const Filter: FC<FilterProps> = (props) => {
@@ -31,9 +51,24 @@ export const Filter: FC<FilterProps> = (props) => {
     `,
   };
 
+  const handleChange: ChangeEventHandler<{ value: any }> = (event) => {
+    props.setValue(props.name, event.target.value);
+    const timeoutId = setTimeout(props.handleSubmit, 1000);
+    if (props.lastTimeout) {
+      clearTimeout(props.lastTimeout);
+    }
+    props.setLastTimeout(timeoutId);
+  };
+
+  useEffect(() => {
+    props.register({
+      name: props.name,
+    });
+  }, [props.register]);
+
   return (
     <TextField
-      inputRef={props.register}
+      defaultValue={props.defaultValue}
       variant="filled"
       size="small"
       label={props.label}
@@ -46,7 +81,7 @@ export const Filter: FC<FilterProps> = (props) => {
       InputProps={{
         disableUnderline: true,
       }}
-      onChange={() => console.log("a")}
+      onChange={handleChange}
     >
       {props.select &&
         props.values.map(({ label, value }) => (
