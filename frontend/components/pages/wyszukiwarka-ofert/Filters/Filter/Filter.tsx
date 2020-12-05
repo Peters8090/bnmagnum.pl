@@ -53,11 +53,15 @@ export const Filter: FC<FilterProps> = (props) => {
 
   const handleChange: ChangeEventHandler<{ value: any }> = (event) => {
     props.setValue(props.name, event.target.value);
-    const timeoutId = setTimeout(props.handleSubmit, 1000);
-    if (props.lastTimeout) {
-      clearTimeout(props.lastTimeout);
+    if (props.select) {
+      props.handleSubmit();
+    } else {
+      const timeoutId = setTimeout(props.handleSubmit, 1000);
+      if (props.lastTimeout) {
+        clearTimeout(props.lastTimeout);
+      }
+      props.setLastTimeout(timeoutId);
     }
-    props.setLastTimeout(timeoutId);
   };
 
   useEffect(() => {
@@ -84,9 +88,10 @@ export const Filter: FC<FilterProps> = (props) => {
       onChange={handleChange}
     >
       {props.select &&
-        props.values.map(({ label, value }) => (
-          <MenuItem value={value}>{label}</MenuItem>
-        ))}
+        [
+          { label: "Nie wybrano", value: undefined },
+          ...props.values,
+        ].map(({ label, value }) => <MenuItem value={value}>{label}</MenuItem>)}
     </TextField>
   );
 };
