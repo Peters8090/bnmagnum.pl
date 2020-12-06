@@ -1,13 +1,7 @@
 import { css } from "@emotion/core";
-import { MenuItem, TextField } from "@material-ui/core";
+import { MenuItem, Slider, TextField, Typography } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
-import React, {
-  ChangeEventHandler,
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-} from "react";
+import React, { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PropType } from "../../../../../types/PropType";
 import { FilterType } from "../Filters";
@@ -35,6 +29,8 @@ export const Filter: FC<FilterProps> = (props) => {
   const styles = {
     root: css`
       margin: ${theme.spacing(2)}px ${theme.spacing(1.5)}px;
+    `,
+    textField: css`
       min-width: 214px;
 
       .MuiInputBase-root,
@@ -51,9 +47,13 @@ export const Filter: FC<FilterProps> = (props) => {
     `,
   };
 
-  const handleChange: ChangeEventHandler<{ value: any }> = (event) => {
-    props.setValue(props.name, event.target.value);
-    if (props.type === "select") {
+  const handleChange = (value: any) => {
+    if (props.type === "range") {
+      props.setValue(props.name, `[${value[0]}-${value[1]}]`);
+    } else {
+      props.setValue(props.name, value);
+    }
+    if (["range", "select"].includes(props.type)) {
       props.handleSubmit();
     } else {
       const timeoutId = setTimeout(props.handleSubmit, 1000);
@@ -70,6 +70,24 @@ export const Filter: FC<FilterProps> = (props) => {
     });
   }, [props.register]);
 
+  if (props.type === "range") {
+    return (
+      <div>
+        <Typography gutterBottom>
+          {props.label} {props.range[0]} - {props.range[1]}
+        </Typography>
+        <Slider
+          css={styles.root}
+          valueLabelDisplay="on"
+          min={props.range[0]}
+          max={props.range[1]}
+          defaultValue={props.range}
+          onChangeCommitted={(_, value) => handleChange(value)}
+        />
+      </div>
+    );
+  }
+
   return (
     <TextField
       defaultValue={props.defaultValue}
@@ -77,7 +95,7 @@ export const Filter: FC<FilterProps> = (props) => {
       size="small"
       label={props.label}
       name={props.name}
-      css={styles.root}
+      css={[styles.root, styles.textField]}
       select={props.type === "select"}
       InputLabelProps={{
         focused: false,
@@ -85,7 +103,7 @@ export const Filter: FC<FilterProps> = (props) => {
       InputProps={{
         disableUnderline: true,
       }}
-      onChange={handleChange}
+      onChange={(e) => handleChange(e.target.value)}
     >
       {props.type === "select" &&
         [
