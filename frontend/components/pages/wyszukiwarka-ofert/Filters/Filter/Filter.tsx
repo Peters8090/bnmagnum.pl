@@ -51,11 +51,10 @@ export const Filter: FC<FilterProps> = (props) => {
   const theme = useTheme();
   const styles = {
     root: css`
-      margin: ${theme.spacing(2)}px ${theme.spacing(1.5)}px;
+      margin: ${theme.spacing(2)}px ${theme.spacing(4)}px;
+      min-width: 250px;
     `,
     textField: css`
-      min-width: 214px;
-
       .MuiInputBase-root,
       .MuiFormLabel-root {
         padding-left: ${theme.spacing(1)}px;
@@ -68,8 +67,15 @@ export const Filter: FC<FilterProps> = (props) => {
         display: none;
       }
     `,
+    sliderRoot: css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    `,
     slider: css`
       width: 200px;
+
       .MuiSlider-valueLabel {
         text-align: center;
         font-size: 10px;
@@ -117,11 +123,11 @@ export const Filter: FC<FilterProps> = (props) => {
     );
 
     return (
-      <div>
+      <div css={[styles.root, styles.sliderRoot]}>
         <Typography gutterBottom>{props.label}</Typography>
         <Slider
-          css={[styles.root, styles.slider]}
-          valueLabelDisplay="on"
+          css={styles.slider}
+          valueLabelDisplay="auto"
           min={0}
           max={100}
           valueLabelFormat={(value) => {
@@ -145,7 +151,32 @@ export const Filter: FC<FilterProps> = (props) => {
               props.unit
             }`.replace(/  +/g, " ");
           }}
-          defaultValue={[props.range[0], props.range[2]]}
+          defaultValue={
+            props.defaultValue
+              ? (() => {
+                  const findInterpolationValue = (x: number, i: number) => {
+                    for (let i = 0; i <= 100; i++) {
+                      if (interpolation(i) === x) {
+                        return i;
+                      }
+                    }
+                    if (i === 0) {
+                      return 0;
+                    }
+                    return 100;
+                  };
+
+                  const ret = /^\[([0-9.]+|null)-([0-9.]+|null)]$/
+                    .exec(props.defaultValue)
+                    ?.slice(1)
+                    .map((el, i) => findInterpolationValue(+el, i));
+
+                  console.log(ret);
+
+                  return ret;
+                })()
+              : [0, 100]
+          }
           scale={(x) => interpolation(x)}
           onChangeCommitted={(_, value) =>
             Array.isArray(value) &&

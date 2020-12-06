@@ -74,7 +74,7 @@ const filterList: FilterType[] = [
     label: "Powierzchnia",
     name: "powierzchnia",
     type: "range",
-    range: [0, 150, 2_000],
+    range: [0, 200, 2500],
     unit: "m²",
   },
   {
