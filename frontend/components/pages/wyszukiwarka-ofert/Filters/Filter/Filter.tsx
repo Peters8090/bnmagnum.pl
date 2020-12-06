@@ -45,6 +45,12 @@ export const Filter: FC<FilterProps> = (props) => {
         display: none;
       }
     `,
+    slider: css`
+      .MuiSlider-valueLabel {
+        text-align: center;
+        font-size: 10px;
+      }
+    `,
   };
 
   const handleChange = (value: any) => {
@@ -70,17 +76,59 @@ export const Filter: FC<FilterProps> = (props) => {
     });
   }, [props.register]);
 
+  const getF = (
+    x_1: number,
+    y_1: number,
+    x_2: number,
+    y_2: number,
+    x_3: number,
+    y_3: number
+  ) => (x: number) =>
+    (y_1 * (x - x_2) * (x - x_3)) / ((x_1 - x_2) * (x_1 - x_3)) +
+    (y_2 * (x - x_1) * (x - x_3)) / ((x_2 - x_1) * (x_2 - x_3)) +
+    (y_3 * (x - x_1) * (x - x_2)) / ((x_3 - x_1) * (x_3 - x_2));
+
   if (props.type === "range") {
+    const quadratic = getF(
+      -100,
+      props.range[1],
+      0,
+      props.range[0],
+      100,
+      props.range[1]
+    );
+
+    const linear = getF(
+      0,
+      props.range[0],
+      50,
+      props.range[1] / 2,
+      100,
+      props.range[1]
+    );
+
     return (
       <div>
         <Typography gutterBottom>
           {props.label} {props.range[0]} - {props.range[1]}
         </Typography>
         <Slider
-          css={styles.root}
+          css={[styles.root, styles.slider]}
           valueLabelDisplay="on"
-          min={props.range[0]}
-          max={props.range[1]}
+          min={0}
+          max={100}
+          valueLabelFormat={(value) => {
+            if (value > 1_000_000) {
+              return `${Math.floor(value / 1_000_000)} mln`;
+            }
+            if (value > 1000) {
+              return `${Math.floor(value / 1000)} tys`;
+            }
+            return value;
+          }}
+          scale={(x) =>
+            Math.floor(props.curve === "linear" ? linear(x) : quadratic(x))
+          }
           defaultValue={props.range}
           onChangeCommitted={(_, value) => handleChange(value)}
         />

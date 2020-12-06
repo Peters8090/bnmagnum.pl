@@ -19,6 +19,8 @@ export type FilterType = {
   | {
       type: "range";
       range: [number, number];
+      unit: string;
+      curve: "linear" | "quadratic";
     }
 );
 
@@ -32,7 +34,9 @@ const filterList: FilterType[] = [
     label: "Cena",
     name: "price",
     type: "range",
-    range: [0, 20_000_000],
+    range: [0, 10_000_000],
+    unit: "zł",
+    curve: "quadratic",
   },
   {
     label: "Rodzaj nieruchomości",
@@ -72,7 +76,9 @@ const filterList: FilterType[] = [
     label: "Powierzchnia",
     name: "powierzchnia",
     type: "range",
-    range: [0, 1_000_000],
+    range: [0, 100_000],
+    unit: "m²",
+    curve: "quadratic",
   },
   {
     label: "Lokalizacja",
@@ -84,6 +90,8 @@ const filterList: FilterType[] = [
     name: "liczbapokoi",
     type: "range",
     range: [0, 10],
+    unit: "",
+    curve: "linear",
   },
   {
     label: "Strona",
