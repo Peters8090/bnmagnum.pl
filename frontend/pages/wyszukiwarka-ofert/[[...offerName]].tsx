@@ -7,10 +7,12 @@ import { useTheme } from "@material-ui/core/styles";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@material-ui/core";
 import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
-import { GetServerSideProps } from "next";
 import axios from "axios";
 import queryString from "query-string";
 import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
+import { RouteLink } from "../../functions/RouteLink";
+import { useUrlWithQueryString } from "../../hooks/useUrlWithQueryString";
+import { useEffect } from "react";
 
 export const useOfferName = () => {
   const { query } = useRouter();
@@ -49,7 +51,17 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
     (o) => o.normal.slug === offerName
   );
 
-  // console.log(props, selectedOffer, offerName);
+  const router = useRouter();
+
+  const { query } = useUrlWithQueryString();
+
+  useEffect(() => {
+    if (!selectedOffer) {
+      const { href, as } = RouteLink(OfferSearch, undefined, query);
+
+      router.push(href, as);
+    }
+  }, [selectedOffer]);
 
   return (
     <div css={styles.root}>

@@ -11,11 +11,16 @@ export function RouteLink<T>(
   const regex = /^(\/[a-zA-Z-]*)((\/)(\[{1,2}([a-zA-Z0-9.]*)]{1,2}))*$/;
   const executedRegex = regex.exec(routeName);
   if (executedRegex) {
-    as = [
-      executedRegex[1],
-      arg ? `${arg}` : "",
-      queryString ? "?" + queryString : "",
-    ].join("/");
+    const asParts = [];
+    asParts.push(executedRegex[1]);
+    if (arg) {
+      asParts.push(arg);
+    }
+    if (queryString) {
+      asParts.push("?" + queryString);
+    }
+
+    as = asParts.join("/");
   }
 
   return { href, as };
