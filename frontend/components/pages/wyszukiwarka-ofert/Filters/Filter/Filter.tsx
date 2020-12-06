@@ -77,33 +77,39 @@ export const Filter: FC<FilterProps> = (props) => {
   }, [props.register]);
 
   const getF = (
-    x_1: number,
-    y_1: number,
-    x_2: number,
-    y_2: number,
-    x_3: number,
-    y_3: number
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    x3: number,
+    y3: number,
+    x4: number,
+    y4: number,
+    x5: number,
+    y5: number
   ) => (x: number) =>
-    (y_1 * (x - x_2) * (x - x_3)) / ((x_1 - x_2) * (x_1 - x_3)) +
-    (y_2 * (x - x_1) * (x - x_3)) / ((x_2 - x_1) * (x_2 - x_3)) +
-    (y_3 * (x - x_1) * (x - x_2)) / ((x_3 - x_1) * (x_3 - x_2));
+    (y1 * ((x - x2) * (x - x3) * (x - x4) * (x - x5))) /
+      ((x1 - x2) * (x1 - x3) * (x1 - x4) * (x1 - x5)) +
+    (y2 * ((x - x1) * (x - x3) * (x - x4) * (x - x5))) /
+      ((x2 - x1) * (x2 - x3) * (x2 - x4) * (x2 - x5)) +
+    (y3 * ((x - x1) * (x - x2) * (x - x4) * (x - x5))) /
+      ((x3 - x1) * (x3 - x2) * (x3 - x4) * (x3 - x5)) +
+    (y4 * ((x - x1) * (x - x2) * (x - x3) * (x - x5))) /
+      ((x4 - x1) * (x4 - x2) * (x4 - x3) * (x4 - x5)) +
+    (y5 * ((x - x1) * (x - x2) * (x - x3) * (x - x4))) /
+      ((x5 - x1) * (x5 - x2) * (x5 - x3) * (x5 - x4));
 
   if (props.type === "range") {
     const quadratic = getF(
-      -100,
-      props.range[1],
-      0,
-      props.range[0],
-      100,
-      props.range[1]
-    );
-
-    const linear = getF(
       0,
       props.range[0],
       50,
-      props.range[1] / 2,
+      props.range[1],
       100,
+      props.range[2],
+      -100,
+      props.range[2],
+      -50,
       props.range[1]
     );
 
@@ -127,9 +133,9 @@ export const Filter: FC<FilterProps> = (props) => {
             return value;
           }}
           scale={(x) =>
-            Math.floor(props.curve === "linear" ? linear(x) : quadratic(x))
+            Math.floor(props.curve === "linear" ? quadratic(x) : quadratic(x))
           }
-          defaultValue={props.range}
+          defaultValue={[props.range[0], props.range[2]]}
           onChangeCommitted={(_, value) => handleChange(value)}
         />
       </div>

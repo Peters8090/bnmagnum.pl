@@ -18,7 +18,7 @@ export type FilterType = {
     }
   | {
       type: "range";
-      range: [number, number];
+      range: [number, number, number];
       unit: string;
       curve: "linear" | "quadratic";
     }
@@ -34,7 +34,7 @@ const filterList: FilterType[] = [
     label: "Cena",
     name: "price",
     type: "range",
-    range: [0, 10_000_000],
+    range: [0, 1_000_000, 10_000_000],
     unit: "zł",
     curve: "quadratic",
   },
@@ -76,7 +76,7 @@ const filterList: FilterType[] = [
     label: "Powierzchnia",
     name: "powierzchnia",
     type: "range",
-    range: [0, 100_000],
+    range: [0, 6500, 100_000],
     unit: "m²",
     curve: "quadratic",
   },
@@ -89,7 +89,7 @@ const filterList: FilterType[] = [
     label: "Liczba pokoi",
     name: "liczbapokoi",
     type: "range",
-    range: [0, 10],
+    range: [0, 5, 10],
     unit: "",
     curve: "linear",
   },
