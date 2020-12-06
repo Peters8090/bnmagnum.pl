@@ -64,26 +64,18 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+OfferSearch.getInitialProps = async (context) => {
   const query = queryString.stringify(
-    Object.fromEntries(
-      Object.entries(context.query).filter(([key]) => !context?.params?.[key])
-    )
+    queryString.parseUrl(context.asPath ?? "").query
   );
-
-  // const query = queryString.stringify(
-  //   queryString.parseUrl(context.req.headers.referer!).query
-  // );
 
   const response = await axios({
     method: "GET",
-    url: `https://api.bnmagnum.pl?${query}`,
+    url: `https://api.bnmagnum.pl?${query || ""}`,
   });
 
   return {
-    props: {
-      offersWithPagination: response.data,
-    },
+    offersWithPagination: response.data,
   };
 };
 

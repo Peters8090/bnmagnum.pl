@@ -1,6 +1,6 @@
-import {FC} from 'react'
+import { NextPage } from "next";
 
-export interface RouteType<T = {}> extends FC<T> {
-    displayName: string
-    routeName: string
-}
+export type RouteType<T = {}> = NextPage<T> & {
+  displayName: string;
+  routeName: string;
+};
