@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { KeyboardArrowLeft } from "@material-ui/icons";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import React, { FC, useContext } from "react";
 import { PhotosContext } from "../../Photos";
 
@@ -19,7 +19,7 @@ export const SwitchPhotoButton: FC<SwitchPhotoButtonProps> = (props) => {
       onClick={() => setPhotoIndex(afterClickPhotoIndex)}
       disabled={!photos[afterClickPhotoIndex]}
     >
-      <KeyboardArrowLeft />
+      {props.side === "right" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       {props.side === "right" ? "Następny" : "Poprzedni"}
     </Button>
   );

@@ -1,5 +1,6 @@
 import { css } from "@emotion/core";
 import { Fab, Icon } from "@material-ui/core";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import React, { FC, useContext } from "react";
 import { PhotosContext } from "../../Photos";
 
@@ -36,7 +37,11 @@ export const SwitchPhotoFab: FC<SwitchPhotoFabProps> = (props) => {
         color="secondary"
         disabled={!photos[afterClickPhotoIndex]}
       >
-        <Icon css={styles.icon}>keyboard_arrow_{props.side}</Icon>
+        {props.side === "right" ? (
+          <KeyboardArrowRight css={styles.icon} />
+        ) : (
+          <KeyboardArrowLeft css={styles.icon} />
+        )}
       </Fab>
     </div>
   );
