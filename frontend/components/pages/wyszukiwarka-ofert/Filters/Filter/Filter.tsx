@@ -53,7 +53,7 @@ export const Filter: FC<FilterProps> = (props) => {
 
   const handleChange: ChangeEventHandler<{ value: any }> = (event) => {
     props.setValue(props.name, event.target.value);
-    if (props.select) {
+    if (props.type === "select") {
       props.handleSubmit();
     } else {
       const timeoutId = setTimeout(props.handleSubmit, 1000);
@@ -78,7 +78,7 @@ export const Filter: FC<FilterProps> = (props) => {
       label={props.label}
       name={props.name}
       css={styles.root}
-      select={props.select}
+      select={props.type === "select"}
       InputLabelProps={{
         focused: false,
       }}
@@ -87,7 +87,7 @@ export const Filter: FC<FilterProps> = (props) => {
       }}
       onChange={handleChange}
     >
-      {props.select &&
+      {props.type === "select" &&
         [
           { label: "Nie wybrano", value: undefined },
           ...props.values,

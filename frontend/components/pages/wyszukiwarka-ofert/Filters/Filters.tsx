@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import { Filter } from "./Filter/Filter";
-import { useForm } from "react-hook-form";
 import { css } from "@emotion/core";
 import { useRouter } from "next/router";
-import queryString from "query-string";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useUrlWithQueryString } from "../../../../hooks/useUrlWithQueryString";
+import { Filter } from "./Filter/Filter";
 
 export type FilterType = {
   name: string;
   label: string;
 } & (
   | {
+      type: "select";
       values: { label: string; value: string }[];
-      select: true;
     }
   | {
-      select: false;
+      type: "text";
+    }
+  | {
+      type: "range";
+      range: [number, number];
     }
 );
 
@@ -23,17 +26,19 @@ const filterList: FilterType[] = [
   {
     label: "Szukaj...",
     name: "advertisement_text",
-    select: false,
+    type: "text",
   },
   {
     label: "Cena",
     name: "price",
-    select: false,
+    type: "range",
+    range: [0, 20_000_000],
   },
   {
     label: "Rodzaj nieruchomości",
     name: "property_type",
-    select: true,
+    type: "select",
+
     values: [
       {
         value: "mieszkania",
@@ -56,7 +61,8 @@ const filterList: FilterType[] = [
   {
     label: "Typ transakcji",
     name: "transaction_type",
-    select: true,
+    type: "select",
+
     values: [
       { value: "sprzedaz", label: "Sprzedaż" },
       { value: "wynajem", label: "Wynajem" },
@@ -65,23 +71,24 @@ const filterList: FilterType[] = [
   {
     label: "Powierzchnia",
     name: "powierzchnia",
-    select: false,
+    type: "range",
+    range: [0, 1_000_000],
   },
   {
     label: "Lokalizacja",
     name: "location",
-    select: false,
+    type: "text",
   },
   {
     label: "Liczba pokoi",
     name: "liczbapokoi",
-    select: false,
+    type: "range",
+    range: [0, 10],
   },
-
   {
     label: "Strona",
     name: "page",
-    select: false,
+    type: "text",
   },
 ];
 
