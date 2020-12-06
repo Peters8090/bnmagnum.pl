@@ -1,18 +1,18 @@
 import css from "@emotion/css";
-import { RouteType } from "../../interfaces and types/RouteType";
-import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
-import { OfferDetails } from "../../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails";
-import { useCurrentNavigationHeight } from "../../hooks/useCurrentNavigationHeight";
-import { useTheme } from "@material-ui/core/styles";
-import { useRouter } from "next/router";
 import { useMediaQuery } from "@material-ui/core";
-import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
+import { useTheme } from "@material-ui/core/styles";
 import axios from "axios";
+import { useRouter } from "next/router";
 import queryString from "query-string";
-import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
-import { RouteLink } from "../../functions/RouteLink";
-import { useUrlWithQueryString } from "../../hooks/useUrlWithQueryString";
 import { useEffect } from "react";
+import { OfferDetails } from "../../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails";
+import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
+import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
+import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
+import { RouteLink } from "../../functions/RouteLink";
+import { useCurrentNavigationHeight } from "../../hooks/useCurrentNavigationHeight";
+import { useUrlWithQueryString } from "../../hooks/useUrlWithQueryString";
+import { RouteType } from "../../interfaces and types/RouteType";
 
 export const useOfferName = () => {
   const { query } = useRouter();
@@ -83,7 +83,7 @@ OfferSearch.getInitialProps = async (context) => {
 
   const response = await axios({
     method: "GET",
-    url: `https://api.bnmagnum.pl?${query || ""}`,
+    url: `http://localhost:8080?${query || ""}`,
   });
 
   return {

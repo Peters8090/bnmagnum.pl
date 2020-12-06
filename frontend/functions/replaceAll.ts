@@ -3,5 +3,5 @@ export const replaceAll = (
   find: string,
   replace: string
 ): string => {
-  return str.replace(new RegExp(find, "g"), replace);
+  return str ? str.replace(new RegExp(find, "g"), replace) : "";
 };

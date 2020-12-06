@@ -6,6 +6,29 @@ import { useForm } from "react-hook-form";
 import { PropType } from "../../../../../types/PropType";
 import { FilterType } from "../Filters";
 
+const getF = (
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  x3: number,
+  y3: number,
+  x4: number,
+  y4: number,
+  x5: number,
+  y5: number
+) => (x: number) =>
+  (y1 * ((x - x2) * (x - x3) * (x - x4) * (x - x5))) /
+    ((x1 - x2) * (x1 - x3) * (x1 - x4) * (x1 - x5)) +
+  (y2 * ((x - x1) * (x - x3) * (x - x4) * (x - x5))) /
+    ((x2 - x1) * (x2 - x3) * (x2 - x4) * (x2 - x5)) +
+  (y3 * ((x - x1) * (x - x2) * (x - x4) * (x - x5))) /
+    ((x3 - x1) * (x3 - x2) * (x3 - x4) * (x3 - x5)) +
+  (y4 * ((x - x1) * (x - x2) * (x - x3) * (x - x5))) /
+    ((x4 - x1) * (x4 - x2) * (x4 - x3) * (x4 - x5)) +
+  (y5 * ((x - x1) * (x - x2) * (x - x3) * (x - x4))) /
+    ((x5 - x1) * (x5 - x2) * (x5 - x3) * (x5 - x4));
+
 type FilterProps = FilterType & {
   register: PropType<ReturnType<typeof useForm>, "register">;
   defaultValue?: any;
@@ -46,6 +69,7 @@ export const Filter: FC<FilterProps> = (props) => {
       }
     `,
     slider: css`
+      width: 200px;
       .MuiSlider-valueLabel {
         text-align: center;
         font-size: 10px;
@@ -55,7 +79,9 @@ export const Filter: FC<FilterProps> = (props) => {
 
   const handleChange = (value: any) => {
     if (props.type === "range") {
-      props.setValue(props.name, `[${value[0]}-${value[1]}]`);
+      const val1 = value[0] === props.range[0] ? null : value[0];
+      const val2 = value[1] === props.range[2] ? null : value[1];
+      props.setValue(props.name, `[${val1}-${val2}]`);
     } else {
       props.setValue(props.name, value);
     }
@@ -76,31 +102,8 @@ export const Filter: FC<FilterProps> = (props) => {
     });
   }, [props.register]);
 
-  const getF = (
-    x1: number,
-    y1: number,
-    x2: number,
-    y2: number,
-    x3: number,
-    y3: number,
-    x4: number,
-    y4: number,
-    x5: number,
-    y5: number
-  ) => (x: number) =>
-    (y1 * ((x - x2) * (x - x3) * (x - x4) * (x - x5))) /
-      ((x1 - x2) * (x1 - x3) * (x1 - x4) * (x1 - x5)) +
-    (y2 * ((x - x1) * (x - x3) * (x - x4) * (x - x5))) /
-      ((x2 - x1) * (x2 - x3) * (x2 - x4) * (x2 - x5)) +
-    (y3 * ((x - x1) * (x - x2) * (x - x4) * (x - x5))) /
-      ((x3 - x1) * (x3 - x2) * (x3 - x4) * (x3 - x5)) +
-    (y4 * ((x - x1) * (x - x2) * (x - x3) * (x - x5))) /
-      ((x4 - x1) * (x4 - x2) * (x4 - x3) * (x4 - x5)) +
-    (y5 * ((x - x1) * (x - x2) * (x - x3) * (x - x4))) /
-      ((x5 - x1) * (x5 - x2) * (x5 - x3) * (x5 - x4));
-
   if (props.type === "range") {
-    const quadratic = getF(
+    const interpolation = getF(
       0,
       props.range[0],
       50,
@@ -115,28 +118,40 @@ export const Filter: FC<FilterProps> = (props) => {
 
     return (
       <div>
-        <Typography gutterBottom>
-          {props.label} {props.range[0]} - {props.range[1]}
-        </Typography>
+        <Typography gutterBottom>{props.label}</Typography>
         <Slider
           css={[styles.root, styles.slider]}
           valueLabelDisplay="on"
           min={0}
           max={100}
           valueLabelFormat={(value) => {
+            let prefix = "";
+            let newVal = value;
+            let multiplier = "";
+
             if (value > 1_000_000) {
-              return `${Math.floor(value / 1_000_000)} mln`;
+              newVal = Math.floor(value / 1_000_000);
+              multiplier = "mln";
             }
             if (value > 1000) {
-              return `${Math.floor(value / 1000)} tys`;
+              newVal = Math.floor(value / 1000);
+              multiplier = "tys";
             }
-            return value;
+
+            if (props.range[2] === value) {
+              prefix = ">";
+            }
+
+            return `${prefix} ${newVal} ${multiplier} ${props.unit}`.replace(
+              /  +/g,
+              " "
+            );
           }}
-          scale={(x) =>
-            Math.floor(props.curve === "linear" ? quadratic(x) : quadratic(x))
+          scale={(x) => Math.floor(interpolation(x))}
+          onChangeCommitted={(_, value) =>
+            Array.isArray(value) &&
+            handleChange(value.map((el) => Math.floor(interpolation(el))))
           }
-          defaultValue={[props.range[0], props.range[2]]}
-          onChangeCommitted={(_, value) => handleChange(value)}
         />
       </div>
     );
