@@ -77,7 +77,7 @@ export const Navigation: ForwardRefExoticComponent<
           </Drawer>
         </Hidden>
       </Toolbar>
-      {!isMobile && router.route === OfferSearch.routeName && <Filters />}
+      {router.route === OfferSearch.routeName && <Filters />}
     </AppBar>
   );
 });
