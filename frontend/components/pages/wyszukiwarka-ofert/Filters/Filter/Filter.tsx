@@ -130,11 +130,10 @@ export const Filter: FC<FilterProps> = (props) => {
             let multiplier = "";
 
             if (value > 1_000_000) {
-              newVal = Math.floor(value / 1_000_000);
+              newVal = value / 1_000_000;
               multiplier = "mln";
-            }
-            if (value > 1000) {
-              newVal = Math.floor(value / 1000);
+            } else if (value > 1000) {
+              newVal = value / 1000;
               multiplier = "tys";
             }
 
@@ -142,15 +141,15 @@ export const Filter: FC<FilterProps> = (props) => {
               prefix = ">";
             }
 
-            return `${prefix} ${newVal} ${multiplier} ${props.unit}`.replace(
-              /  +/g,
-              " "
-            );
+            return `${prefix} ${Math.floor(newVal)} ${multiplier} ${
+              props.unit
+            }`.replace(/  +/g, " ");
           }}
-          scale={(x) => Math.floor(interpolation(x))}
+          defaultValue={[props.range[0], props.range[2]]}
+          scale={(x) => interpolation(x)}
           onChangeCommitted={(_, value) =>
             Array.isArray(value) &&
-            handleChange(value.map((el) => Math.floor(interpolation(el))))
+            handleChange(value.map((el) => interpolation(el)))
           }
         />
       </div>
