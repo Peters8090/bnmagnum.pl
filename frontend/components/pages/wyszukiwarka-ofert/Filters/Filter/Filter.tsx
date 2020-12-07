@@ -1,18 +1,12 @@
 import { css } from "@emotion/core";
-import {
-  InputLabel,
-  MenuItem,
-  Slider,
-  TextField,
-  Tooltip,
-} from "@material-ui/core";
+import { InputLabel, MenuItem, Slider, TextField } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PropType } from "../../../../../types/PropType";
 import { FilterType } from "../Filters";
 
-const getF = (
+const lagrange = (
   x1: number,
   y1: number,
   x2: number,
@@ -53,27 +47,16 @@ type FilterProps = FilterType & {
   ) => void;
 };
 
-function ValueLabelComponent(props: {
-  children: React.ReactElement;
-  open: boolean;
-  value: number;
-}) {
-  const { children, open, value } = props;
-
-  return (
-    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
-      {children}
-    </Tooltip>
-  );
-}
-
 export const Filter: FC<FilterProps> = (props) => {
   const theme = useTheme();
-  const styles = {
+  const helperStyles = {
     root: css`
       margin: 0 ${theme.spacing(4)}px;
     `,
-    textField: css`
+  };
+  const styles = {
+    rootTextField: css`
+      ${helperStyles.root};
       min-width: 250px;
 
       .MuiInputBase-root,
@@ -88,9 +71,8 @@ export const Filter: FC<FilterProps> = (props) => {
         display: none;
       }
     `,
-    sliderRoot: css`
-      display: flex;
-      flex-direction: column;
+    rootSlider: css`
+      ${helperStyles.root};
       border: 1px solid rgba(0, 0, 0, 0.23);
       border-radius: 25px;
       padding: 0 ${theme.spacing(2.5)}px;
@@ -143,29 +125,40 @@ export const Filter: FC<FilterProps> = (props) => {
   }, [props.register]);
 
   if (props.type === "range") {
-    const interpolation = getF(
-      0,
+    const MIN_VAL = 0;
+    const MAX_VAL = 100;
+
+    const transformSliderValue = lagrange(
+      MIN_VAL,
       props.range[0],
-      50,
+      MAX_VAL / 2,
       props.range[1],
-      100,
+      -MAX_VAL / 2,
+      props.range[1],
+      MAX_VAL,
       props.range[2],
-      -100,
-      props.range[2],
-      -50,
-      props.range[1]
+      -MAX_VAL,
+      props.range[2]
     );
+
+    const findInterpolationValue = (x: number) => {
+      for (let i = 0; i <= 100; i++) {
+        if (transformSliderValue(i) === x) {
+          return i;
+        }
+      }
+    };
 
     const valueLabelFormat = (value: number) => {
       let prefix = "";
-      let newVal = value;
+      let transformedValue = value;
       let multiplier = "";
 
-      if (value > 1_000_000) {
-        newVal = value / 1_000_000;
+      if (value >= 1_000_000) {
+        transformedValue = value / 1_000_000;
         multiplier = "mln";
-      } else if (value > 1000) {
-        newVal = value / 1000;
+      } else if (value >= 1000) {
+        transformedValue = value / 1000;
         multiplier = "tys";
       }
 
@@ -173,13 +166,20 @@ export const Filter: FC<FilterProps> = (props) => {
         prefix = ">";
       }
 
-      return `${prefix} ${Math.floor(newVal)} ${multiplier} ${
+      return `${prefix} ${Math.floor(transformedValue)} ${multiplier} ${
         props.unit
       }`.replace(/  +/g, " ");
     };
 
+    const parseRange = (value: string) => {
+      return /^\[([0-9.]+|null)-([0-9.]+|null)]$/
+        .exec(value)
+        ?.slice(1)
+        .map((el, i) => (findInterpolationValue(+el) ?? i === 0 ? 0 : 100));
+    };
+
     return (
-      <div css={[styles.root, styles.sliderRoot]}>
+      <div css={styles.rootSlider}>
         <div>
           <InputLabel css={styles.sliderInputLabel} shrink focused={false}>
             {props.label}
@@ -188,50 +188,26 @@ export const Filter: FC<FilterProps> = (props) => {
         <Slider
           css={styles.slider}
           valueLabelDisplay="auto"
-          // ValueLabelComponent={ValueLabelComponent}
           min={0}
           max={100}
           marks={[
             {
               value: 0,
-              label: valueLabelFormat(interpolation(0)),
+              label: valueLabelFormat(transformSliderValue(0)),
             },
             {
               value: 100,
-              label: valueLabelFormat(interpolation(100)),
+              label: valueLabelFormat(transformSliderValue(100)),
             },
           ]}
           valueLabelFormat={valueLabelFormat}
           defaultValue={
-            props.defaultValue
-              ? (() => {
-                  const findInterpolationValue = (x: number, i: number) => {
-                    for (let i = 0; i <= 100; i++) {
-                      if (interpolation(i) === x) {
-                        return i;
-                      }
-                    }
-                    if (i === 0) {
-                      return 0;
-                    }
-                    return 100;
-                  };
-
-                  const ret = /^\[([0-9.]+|null)-([0-9.]+|null)]$/
-                    .exec(props.defaultValue)
-                    ?.slice(1)
-                    .map((el, i) => findInterpolationValue(+el, i));
-
-                  console.log(ret);
-
-                  return ret;
-                })()
-              : [0, 100]
+            props.defaultValue ? parseRange(props.defaultValue) : [0, 100]
           }
-          scale={interpolation}
+          scale={transformSliderValue}
           onChangeCommitted={(_, value) =>
             Array.isArray(value) &&
-            handleChange(value.map((el) => interpolation(el)))
+            handleChange(value.map((el) => transformSliderValue(el)))
           }
         />
       </div>
@@ -245,12 +221,11 @@ export const Filter: FC<FilterProps> = (props) => {
       size="medium"
       label={props.label}
       name={props.name}
-      css={[styles.root, styles.textField]}
+      css={styles.rootTextField}
       select={props.type === "select"}
       InputLabelProps={{
         focused: false,
       }}
-      InputProps={{}}
       onChange={(e) => handleChange(e.target.value)}
     >
       {props.type === "select" &&
