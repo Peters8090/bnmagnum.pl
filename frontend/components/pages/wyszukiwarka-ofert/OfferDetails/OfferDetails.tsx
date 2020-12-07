@@ -1,16 +1,16 @@
-import React, { FC } from "react";
 import { css } from "@emotion/core";
-import { useTheme } from "@material-ui/core/styles";
 import { Container, Fab, Icon, Typography } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
+import React, { FC } from "react";
 import { RouteLink } from "../../../../functions/RouteLink";
 import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { OfferProps } from "../OfferList/Offer/Offer";
 import { AgentCard } from "./AgentCard/AgentCard";
-import { DetailsSection } from "./Section/Sections/DetailsSection/DetailsSection";
-import { DescriptionSection } from "./Section/Sections/DescriptionSection/DescriptionSection";
-import { GoogleMapsIFrameSection } from "./Section/Sections/GoogleMapsIFrameSection/GoogleMapsIFrameSection";
 import { Photos } from "./Photos/Photos";
+import { DescriptionSection } from "./Section/Sections/DescriptionSection/DescriptionSection";
+import { DetailsSection } from "./Section/Sections/DetailsSection/DetailsSection";
+import { GoogleMapsIFrameSection } from "./Section/Sections/GoogleMapsIFrameSection/GoogleMapsIFrameSection";
 
 export const OfferDetails: FC<OfferProps> = (props) => {
   const theme = useTheme();
@@ -42,6 +42,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       <AgentCard
         agentName={props.normal.agent_surname}
         phoneNumber={props.normal.agent_phone_number}
+        email={props.normal.agent_email}
       />
 
       <Container maxWidth="sm">

@@ -7,6 +7,7 @@ import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceE
 interface AgentCardProps {
   agentName: string;
   phoneNumber: string;
+  email: string;
 }
 
 export const AgentCard: FC<AgentCardProps> = (props) => {
@@ -39,9 +40,11 @@ export const AgentCard: FC<AgentCardProps> = (props) => {
         <br />
         <a
           css={styles.agentCardTextHighlighted}
-          href={`tel:${props.phoneNumber}`}
+          href={`${props.phoneNumber ? "tel" : props.email && "mailto"}:${
+            props.phoneNumber
+          }`}
         >
-          {addSpaceEveryThreeCharacters(props.phoneNumber)}
+          {addSpaceEveryThreeCharacters(props.phoneNumber) ?? props.email}
         </a>
       </Typography>
     </div>
