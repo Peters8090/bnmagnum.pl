@@ -83,7 +83,7 @@ OfferSearch.getInitialProps = async (context) => {
 
   const response = await axios({
     method: "GET",
-    url: `http://localhost:8080?${query || ""}`,
+    url: `http://192.168.0.248:8080?${query || ""}`,
   });
 
   return {

@@ -1,5 +1,4 @@
 import { css } from "@emotion/core";
-import { Collapse, Icon, IconButton } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -103,9 +102,8 @@ export const Filters = () => {
 
   const theme = useTheme();
   const styles = {
-    filters: css`
-      padding-top: ${theme.spacing(3)}px;
-      padding-bottom: ${theme.spacing(2)}px;
+    root: css`
+      padding: ${theme.spacing(2.5)}px 0;
       display: flex;
       overflow-x: auto;
       overflow-y: hidden;
@@ -130,28 +128,19 @@ export const Filters = () => {
 
   const [lastTimeout, setLastTimeout] = useState<NodeJS.Timeout>();
 
-  const [visible, setVisible] = useState(true);
-
   return (
-    <div>
-      <Collapse in={visible}>
-        <form css={styles.filters}>
-          {filterList.map((filter) => (
-            <Filter
-              {...filter}
-              register={register}
-              defaultValue={queryParsed[filter.name]}
-              handleSubmit={handleSubmit}
-              lastTimeout={lastTimeout}
-              setLastTimeout={setLastTimeout}
-              setValue={setValue}
-            />
-          ))}
-        </form>
-      </Collapse>
-      <IconButton onClick={() => setVisible((prev) => !prev)}>
-        <Icon>{visible ? "expand_less" : "expand_more"}</Icon>
-      </IconButton>
-    </div>
+    <form css={styles.root}>
+      {filterList.map((filter) => (
+        <Filter
+          {...filter}
+          register={register}
+          defaultValue={queryParsed[filter.name]}
+          handleSubmit={handleSubmit}
+          lastTimeout={lastTimeout}
+          setLastTimeout={setLastTimeout}
+          setValue={setValue}
+        />
+      ))}
+    </form>
   );
 };
