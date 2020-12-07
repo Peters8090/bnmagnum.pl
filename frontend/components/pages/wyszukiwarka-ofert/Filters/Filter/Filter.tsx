@@ -1,5 +1,11 @@
 import { css } from "@emotion/core";
-import { MenuItem, Slider, TextField, Typography } from "@material-ui/core";
+import {
+  InputLabel,
+  MenuItem,
+  Slider,
+  TextField,
+  Tooltip,
+} from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -47,14 +53,29 @@ type FilterProps = FilterType & {
   ) => void;
 };
 
+function ValueLabelComponent(props: {
+  children: React.ReactElement;
+  open: boolean;
+  value: number;
+}) {
+  const { children, open, value } = props;
+
+  return (
+    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+      {children}
+    </Tooltip>
+  );
+}
+
 export const Filter: FC<FilterProps> = (props) => {
   const theme = useTheme();
   const styles = {
     root: css`
-      margin: ${theme.spacing(2)}px ${theme.spacing(4)}px;
-      min-width: 250px;
+      margin: 0 ${theme.spacing(4)}px;
     `,
     textField: css`
+      min-width: 250px;
+
       .MuiInputBase-root,
       .MuiFormLabel-root {
         padding-left: ${theme.spacing(1)}px;
@@ -70,8 +91,6 @@ export const Filter: FC<FilterProps> = (props) => {
     sliderRoot: css`
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
     `,
     slider: css`
       width: 200px;
@@ -122,35 +141,48 @@ export const Filter: FC<FilterProps> = (props) => {
       props.range[1]
     );
 
+    const valueLabelFormat = (value: number) => {
+      let prefix = "";
+      let newVal = value;
+      let multiplier = "";
+
+      if (value > 1_000_000) {
+        newVal = value / 1_000_000;
+        multiplier = "mln";
+      } else if (value > 1000) {
+        newVal = value / 1000;
+        multiplier = "tys";
+      }
+
+      if (props.range[2] === value) {
+        prefix = ">";
+      }
+
+      return `${prefix} ${Math.floor(newVal)} ${multiplier} ${
+        props.unit
+      }`.replace(/  +/g, " ");
+    };
+
     return (
       <div css={[styles.root, styles.sliderRoot]}>
-        <Typography gutterBottom>{props.label}</Typography>
+        <InputLabel shrink>{props.label}</InputLabel>
         <Slider
           css={styles.slider}
           valueLabelDisplay="auto"
+          // ValueLabelComponent={ValueLabelComponent}
           min={0}
           max={100}
-          valueLabelFormat={(value) => {
-            let prefix = "";
-            let newVal = value;
-            let multiplier = "";
-
-            if (value > 1_000_000) {
-              newVal = value / 1_000_000;
-              multiplier = "mln";
-            } else if (value > 1000) {
-              newVal = value / 1000;
-              multiplier = "tys";
-            }
-
-            if (props.range[2] === value) {
-              prefix = ">";
-            }
-
-            return `${prefix} ${Math.floor(newVal)} ${multiplier} ${
-              props.unit
-            }`.replace(/  +/g, " ");
-          }}
+          marks={[
+            {
+              value: 0,
+              label: valueLabelFormat(interpolation(0)),
+            },
+            {
+              value: 100,
+              label: valueLabelFormat(interpolation(100)),
+            },
+          ]}
+          valueLabelFormat={valueLabelFormat}
           defaultValue={
             props.defaultValue
               ? (() => {
@@ -177,7 +209,7 @@ export const Filter: FC<FilterProps> = (props) => {
                 })()
               : [0, 100]
           }
-          scale={(x) => interpolation(x)}
+          scale={interpolation}
           onChangeCommitted={(_, value) =>
             Array.isArray(value) &&
             handleChange(value.map((el) => interpolation(el)))
@@ -190,8 +222,8 @@ export const Filter: FC<FilterProps> = (props) => {
   return (
     <TextField
       defaultValue={props.defaultValue}
-      variant="filled"
-      size="small"
+      variant="outlined"
+      size="medium"
       label={props.label}
       name={props.name}
       css={[styles.root, styles.textField]}
@@ -199,9 +231,7 @@ export const Filter: FC<FilterProps> = (props) => {
       InputLabelProps={{
         focused: false,
       }}
-      InputProps={{
-        disableUnderline: true,
-      }}
+      InputProps={{}}
       onChange={(e) => handleChange(e.target.value)}
     >
       {props.type === "select" &&

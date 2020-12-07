@@ -1,4 +1,5 @@
 import { css } from "@emotion/core";
+import { useTheme } from "@material-ui/core/styles";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -99,8 +100,11 @@ const filterList: FilterType[] = [
 export const Filters = () => {
   const { register, handleSubmit: handleHookFormSubmit, setValue } = useForm();
 
+  const theme = useTheme();
   const styles = {
     root: css`
+      padding-top: ${theme.spacing(3)}px;
+      padding-bottom: ${theme.spacing(1)}px;
       display: flex;
       overflow-x: auto;
     `,
