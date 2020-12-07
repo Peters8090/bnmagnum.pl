@@ -40,18 +40,34 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
   const MIN_VAL = 0;
   const MAX_VAL = 100;
 
-  const transformSliderValue = lagrange(
-    MIN_VAL,
-    props.filterProps.range[0],
-    MAX_VAL / 2,
-    props.filterProps.range[1],
-    -MAX_VAL / 2,
-    props.filterProps.range[1],
-    MAX_VAL,
-    props.filterProps.range[2],
-    -MAX_VAL,
-    props.filterProps.range[2]
-  );
+  const isLinear =
+    props.filterProps.range[2] / 2 === props.filterProps.range[1];
+
+  const transformSliderValue = isLinear
+    ? lagrange(
+        MIN_VAL,
+        props.filterProps.range[0],
+        MAX_VAL,
+        props.filterProps.range[2],
+        MAX_VAL * 2,
+        props.filterProps.range[2] * 2,
+        MAX_VAL * 4,
+        props.filterProps.range[2] * 4,
+        MAX_VAL * 6,
+        props.filterProps.range[2] * 6
+      )
+    : lagrange(
+        MIN_VAL,
+        props.filterProps.range[0],
+        MAX_VAL / 2,
+        props.filterProps.range[1],
+        -MAX_VAL / 2,
+        props.filterProps.range[1],
+        MAX_VAL,
+        props.filterProps.range[2],
+        -MAX_VAL,
+        props.filterProps.range[2]
+      );
 
   const findInterpolationValue = (x: number) => {
     for (let i = 0; i <= 100; i++) {
@@ -80,7 +96,7 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
       prefix = ">";
     }
 
-    return `${prefix} ${Math.floor(transformedValue)} ${multiplier} ${
+    return `${prefix} ${Math.round(transformedValue)} ${multiplier} ${
       props.filterProps.unit
     }`.replace(/  +/g, " ");
   };
@@ -99,16 +115,32 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
 
     const transformedValues = values.map((v) => transformSliderValue(v));
 
-    const val1 =
+    const from =
       transformedValues[0] === props.filterProps.range[0]
         ? null
         : transformedValues[0];
-    const val2 =
+    const to =
       transformedValues[1] === props.filterProps.range[2]
         ? null
         : transformedValues[1];
-    props.handleChange(`[${val1}-${val2}]`);
+    props.handleChange(`[${from}-${to}]`);
   };
+
+  const step = Math.max(
+    MAX_VAL / props.filterProps.range[2],
+    (MAX_VAL - MIN_VAL) / 100
+  );
+
+  const marks = [
+    {
+      value: MIN_VAL,
+      label: valueLabelFormat(transformSliderValue(MIN_VAL)),
+    },
+    {
+      value: MAX_VAL,
+      label: valueLabelFormat(transformSliderValue(MAX_VAL)),
+    },
+  ];
 
   return (
     <div css={styles.root}>
@@ -122,16 +154,8 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
         valueLabelDisplay="auto"
         min={MIN_VAL}
         max={MAX_VAL}
-        marks={[
-          {
-            value: MIN_VAL,
-            label: valueLabelFormat(transformSliderValue(MIN_VAL)),
-          },
-          {
-            value: MAX_VAL,
-            label: valueLabelFormat(transformSliderValue(MAX_VAL)),
-          },
-        ]}
+        step={step}
+        marks={marks}
         valueLabelFormat={valueLabelFormat}
         defaultValue={
           props.filterProps.defaultValue
