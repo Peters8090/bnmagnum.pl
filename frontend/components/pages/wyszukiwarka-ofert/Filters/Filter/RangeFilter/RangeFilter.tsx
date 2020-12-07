@@ -94,6 +94,22 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
       );
   };
 
+  const handleChange = (values: number[]) => {
+    if (props.filterProps.type !== "range") return null;
+
+    const transformedValues = values.map((v) => transformSliderValue(v));
+
+    const val1 =
+      transformedValues[0] === props.filterProps.range[0]
+        ? null
+        : transformedValues[0];
+    const val2 =
+      transformedValues[1] === props.filterProps.range[2]
+        ? null
+        : transformedValues[1];
+    props.handleChange(`[${val1}-${val2}]`);
+  };
+
   return (
     <div css={styles.root}>
       <div>
@@ -124,8 +140,7 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
         }
         scale={transformSliderValue}
         onChangeCommitted={(_, value) =>
-          Array.isArray(value) &&
-          props.handleChange(value.map((el) => transformSliderValue(el)))
+          Array.isArray(value) && handleChange(value)
         }
       />
     </div>

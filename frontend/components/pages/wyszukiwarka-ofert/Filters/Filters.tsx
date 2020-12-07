@@ -107,6 +107,7 @@ export const Filters = () => {
       padding-bottom: ${theme.spacing(2)}px;
       display: flex;
       overflow-x: auto;
+      overflow-y: hidden;
     `,
     submitButton: css`
       display: none;
