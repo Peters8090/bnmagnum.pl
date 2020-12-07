@@ -91,14 +91,29 @@ export const Filter: FC<FilterProps> = (props) => {
     sliderRoot: css`
       display: flex;
       flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.23);
+      border-radius: 25px;
+      padding: 0 ${theme.spacing(2.5)}px;
     `,
     slider: css`
       width: 200px;
+      margin-bottom: 0;
 
       .MuiSlider-valueLabel {
         text-align: center;
         font-size: 10px;
       }
+
+      .MuiSlider-markLabel {
+        background-color: white;
+        padding: ${theme.spacing(0.5)}px ${theme.spacing(1)}px;
+      }
+    `,
+    sliderInputLabel: css`
+      transform: translate(-${theme.spacing(1.5)}px, -7.5px) scale(0.75);
+      background-color: white;
+      display: inline-block;
+      padding-left: ${theme.spacing(1)}px;
     `,
   };
 
@@ -165,7 +180,11 @@ export const Filter: FC<FilterProps> = (props) => {
 
     return (
       <div css={[styles.root, styles.sliderRoot]}>
-        <InputLabel shrink>{props.label}</InputLabel>
+        <div>
+          <InputLabel css={styles.sliderInputLabel} shrink focused={false}>
+            {props.label}
+          </InputLabel>
+        </div>
         <Slider
           css={styles.slider}
           valueLabelDisplay="auto"

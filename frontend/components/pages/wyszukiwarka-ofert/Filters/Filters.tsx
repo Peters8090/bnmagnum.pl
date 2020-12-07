@@ -104,7 +104,7 @@ export const Filters = () => {
   const styles = {
     root: css`
       padding-top: ${theme.spacing(3)}px;
-      padding-bottom: ${theme.spacing(1)}px;
+      padding-bottom: ${theme.spacing(2)}px;
       display: flex;
       overflow-x: auto;
     `,
