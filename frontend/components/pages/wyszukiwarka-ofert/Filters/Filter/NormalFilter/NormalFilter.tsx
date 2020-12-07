@@ -1,0 +1,53 @@
+import { css } from "@emotion/core";
+import { MenuItem, TextField } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
+import React, { FC } from "react";
+import { FilterProps } from "../Filter";
+
+export interface NormalFilterProps {
+  handleChange: (value: any) => void;
+  filterProps: FilterProps;
+}
+
+export const NormalFilter: FC<NormalFilterProps> = (props) => {
+  const theme = useTheme();
+  const styles = {
+    rootTextField: css`
+      min-width: 250px;
+
+      .MuiInputBase-root,
+      .MuiFormLabel-root {
+        padding-left: ${theme.spacing(1)}px;
+      }
+
+      .MuiInputBase-root {
+        border-radius: 25px;
+      }
+      &::hover {
+        display: none;
+      }
+    `,
+  };
+
+  return (
+    <TextField
+      defaultValue={props.filterProps.defaultValue}
+      variant="outlined"
+      size="medium"
+      label={props.filterProps.label}
+      name={props.filterProps.name}
+      css={styles.rootTextField}
+      select={props.filterProps.type === "select"}
+      InputLabelProps={{
+        focused: false,
+      }}
+      onChange={(e) => props.handleChange(e.target.value)}
+    >
+      {props.filterProps.type === "select" &&
+        [
+          { label: "Nie wybrano", value: undefined },
+          ...props.filterProps.values,
+        ].map(({ label, value }) => <MenuItem value={value}>{label}</MenuItem>)}
+    </TextField>
+  );
+};
