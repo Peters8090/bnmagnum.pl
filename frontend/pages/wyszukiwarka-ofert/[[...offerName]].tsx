@@ -22,6 +22,8 @@ export const useOfferName = () => {
 interface OfferSearchProps {
   offersWithPagination: {
     docs: OfferProps[];
+    page: number;
+    totalPages: number;
   };
 }
 
@@ -69,7 +71,11 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
         condition={isMobile ? !!offerName : false}
         implementation="css"
       >
-        <OfferList offers={props.offersWithPagination.docs} />
+        <OfferList
+          offers={props.offersWithPagination.docs}
+          page={props.offersWithPagination.page}
+          totalPages={props.offersWithPagination.totalPages}
+        />
       </HiddenCond>
       {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}
     </div>

@@ -90,11 +90,6 @@ const filterList: FilterType[] = [
     range: [0, 5, 10],
     unit: "",
   },
-  {
-    label: "Strona",
-    name: "page",
-    type: "text",
-  },
 ];
 
 export const Filters = () => {

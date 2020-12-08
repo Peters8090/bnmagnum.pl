@@ -1,11 +1,15 @@
 import { css } from "@emotion/core";
 import { useTheme } from "@material-ui/core/styles";
 import { Pagination } from "@material-ui/lab";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
+import { useUrlWithQueryString } from "../../../../hooks/useUrlWithQueryString";
 import { Offer, OfferProps } from "./Offer/Offer";
 
 interface OfferListProps {
   offers: OfferProps[];
+  page: number;
+  totalPages: number;
 }
 
 export const OfferList: FC<OfferListProps> = (props) => {
@@ -21,12 +25,29 @@ export const OfferList: FC<OfferListProps> = (props) => {
     `,
   };
 
+  const { url, query } = useUrlWithQueryString();
+
+  const router = useRouter();
+
+  const handlePaginationChange = (_: any, page: number) => {
+    const q = new URLSearchParams(query);
+    q.delete("page");
+    q.append("page", page.toString());
+    router.push(url + (q.toString() ? "?" + q.toString() : ""));
+  };
+
   return (
     <div css={styles.root}>
       {props.offers.map((offer) => (
         <Offer key={offer.normal.id} {...offer} />
       ))}
-      <Pagination css={styles.pagination} count={10} color="secondary" />
+      <Pagination
+        css={styles.pagination}
+        page={props.page}
+        count={props.totalPages}
+        color="secondary"
+        onChange={handlePaginationChange}
+      />
     </div>
   );
 };
