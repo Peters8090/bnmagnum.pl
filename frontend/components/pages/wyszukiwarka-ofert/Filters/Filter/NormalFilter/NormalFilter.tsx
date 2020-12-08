@@ -16,15 +16,8 @@ export const NormalFilter: FC<NormalFilterProps> = (props) => {
       min-width: 250px;
 
       .MuiInputBase-root,
-      .MuiFormLabel-root {
-        padding-left: ${theme.spacing(1)}px;
-      }
-
-      .MuiInputBase-root {
+      .MuiSelect-root {
         border-radius: 25px;
-      }
-      &::hover {
-        display: none;
       }
     `,
   };
