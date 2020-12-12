@@ -1,5 +1,6 @@
 # misc
-.idea/
+.idea
+importantData.ts
 
 
 # frontend

@@ -13,40 +13,46 @@ interface AgentCardProps {
 export const AgentCard: FC<AgentCardProps> = (props) => {
   const theme = useTheme();
   const styles = {
-    agentCard: css`
+    root: css`
       display: flex;
-      align-items: center;
+      justify-content: center;
 
       margin: ${theme.spacing(2)}px 0;
     `,
-    agentCardIcon: css`
+    container: css`
+      display: flex;
+      align-items: center;
+    `,
+    icon: css`
       font-size: 50px;
       margin-right: ${theme.spacing(2)}px;
     `,
-    agentCardText: css`
+    agentName: css`
       font-weight: 500;
       font-size: 22px;
     `,
-    agentCardTextHighlighted: css`
+    textHighlighted: css`
       color: ${theme.palette.secondary.main};
     `,
   };
 
   return (
-    <div css={styles.agentCard}>
-      <Icon css={styles.agentCardIcon}>phone</Icon>
-      <Typography css={styles.agentCardText} component="div">
-        {props.agentName}
-        <br />
-        <a
-          css={styles.agentCardTextHighlighted}
-          href={`${props.phoneNumber ? "tel" : props.email && "mailto"}:${
-            props.phoneNumber
-          }`}
-        >
-          {addSpaceEveryThreeCharacters(props.phoneNumber) ?? props.email}
-        </a>
-      </Typography>
+    <div css={styles.root}>
+      <div css={styles.container}>
+        <Icon css={styles.icon}>phone</Icon>
+        <Typography css={styles.agentName} component="div">
+          {props.agentName}
+          <br />
+          <a
+            css={styles.textHighlighted}
+            href={`${props.phoneNumber ? "tel" : props.email && "mailto"}:${
+              props.phoneNumber
+            }`}
+          >
+            {addSpaceEveryThreeCharacters(props.phoneNumber) ?? props.email}
+          </a>
+        </Typography>
+      </div>
     </div>
   );
 };

@@ -16,9 +16,6 @@ export const OfferDetails: FC<OfferProps> = (props) => {
   const theme = useTheme();
   const styles = {
     root: css`
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: ${theme.spacing(3)}px;
     `,
     title: css`

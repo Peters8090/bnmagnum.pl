@@ -12,6 +12,7 @@ import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
 import { RouteLink } from "../../functions/RouteLink";
 import { useCurrentNavigationHeight } from "../../hooks/useCurrentNavigationHeight";
 import { useUrlWithQueryString } from "../../hooks/useUrlWithQueryString";
+import { importantData } from "../../importantData";
 import { RouteType } from "../../interfaces and types/RouteType";
 
 export const useOfferName = () => {
@@ -89,7 +90,7 @@ OfferSearch.getInitialProps = async (context) => {
 
   const response = await axios({
     method: "GET",
-    url: `http://192.168.0.248:8080?${query || ""}`,
+    url: `${importantData.apiUrl}?${query || ""}`,
   });
 
   return {
