@@ -19,7 +19,9 @@ import {
   useState,
 } from "react";
 import { Filters } from "../../../components/pages/wyszukiwarka-ofert/Filters/Filters";
-import OfferSearch from "../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+import OfferSearch, {
+  useOfferName,
+} from "../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { Logo } from "./Logo/Logo";
 import { NavigationItems } from "./NavigationItems/NavigationItems";
 
@@ -50,6 +52,7 @@ export const Navigation: ForwardRefExoticComponent<
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [filtersVisible, setFiltersVisible] = useState(false);
+  const isOfferDetails = !!useOfferName();
 
   return (
     <AppBar ref={ref} position="sticky" color="inherit" variant="outlined">
@@ -59,17 +62,17 @@ export const Navigation: ForwardRefExoticComponent<
           <NavigationItems />
         </Hidden>
         <Hidden mdUp>
-          <IconButton
-            size="small"
-            onClick={() => setFiltersVisible((prev) => !prev)}
-          >
-            <Icon>{filtersVisible ? "expand_less" : "expand_more"}</Icon>
-          </IconButton>
+          {!isOfferDetails && (
+            <IconButton
+              size="small"
+              onClick={() => setFiltersVisible((prev) => !prev)}
+            >
+              <Icon>{filtersVisible ? "expand_less" : "expand_more"}</Icon>
+            </IconButton>
+          )}
           <IconButton onClick={() => setDrawerOpen(true)}>
             <Icon>menu</Icon>
           </IconButton>
-        </Hidden>
-        <Hidden mdUp>
           <Drawer
             anchor="right"
             open={drawerOpen}
@@ -87,7 +90,7 @@ export const Navigation: ForwardRefExoticComponent<
       </Toolbar>
       {router.route === OfferSearch.routeName && (
         <div>
-          <Collapse in={filtersVisible || !isMobile}>
+          <Collapse in={(filtersVisible && !isOfferDetails) || !isMobile}>
             <Filters />
           </Collapse>
         </div>

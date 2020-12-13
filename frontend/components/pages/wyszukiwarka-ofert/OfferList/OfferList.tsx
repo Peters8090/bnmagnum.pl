@@ -19,8 +19,6 @@ export const OfferList: FC<OfferListProps> = (props) => {
     `,
   };
 
-  console.log(props);
-
   return (
     <div css={styles.root}>
       {props.offers.map((offer) => (

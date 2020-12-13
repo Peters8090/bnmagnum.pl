@@ -17,7 +17,7 @@ import { RouteType } from "../../interfaces and types/RouteType";
 
 export const useOfferName = () => {
   const { query } = useRouter();
-  return query.offerName!?.[0];
+  return query?.offerName!?.[0];
 };
 
 interface OfferSearchProps {
