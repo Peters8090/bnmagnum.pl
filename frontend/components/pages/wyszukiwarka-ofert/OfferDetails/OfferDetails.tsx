@@ -3,6 +3,7 @@ import { Container, Fab, Icon, Typography } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
 import React, { FC } from "react";
+import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEveryThreeCharacters";
 import { RouteLink } from "../../../../functions/RouteLink";
 import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { OfferProps } from "../OfferList/Offer/Offer";
@@ -26,6 +27,18 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       right: ${theme.spacing(3)}px;
       bottom: ${theme.spacing(3)}px;
     `,
+    priceAndAgentCard: css`
+      ${theme.customMixins.flexCentered};
+      flex-wrap: wrap;
+
+      & > * {
+        margin: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+      }
+    `,
+    price: css`
+      font-weight: 700;
+      white-space: nowrap;
+    `,
   };
 
   return (
@@ -36,11 +49,20 @@ export const OfferDetails: FC<OfferProps> = (props) => {
         {props.normal.title}
       </Typography>
 
-      <AgentCard
-        agentName={props.normal.agent_surname}
-        phoneNumber={props.normal.agent_phone_number}
-        email={props.normal.agent_email}
-      />
+      <div css={styles.priceAndAgentCard}>
+        <AgentCard
+          agentName={props.normal.agent_surname}
+          phoneNumber={props.normal.agent_phone_number}
+          email={props.normal.agent_email}
+        />
+        <div>
+          <Typography variant="h6">Cena</Typography>
+          <Typography variant="h4" css={styles.price}>
+            {addSpaceEveryThreeCharacters(props.normal.price.toString())}{" "}
+            {props.normal.currency}
+          </Typography>
+        </div>
+      </div>
 
       <Container maxWidth="sm">
         <DescriptionSection description={props.normal.description} />
