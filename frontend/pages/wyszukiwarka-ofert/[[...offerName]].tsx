@@ -84,14 +84,54 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
 };
 
 OfferSearch.getInitialProps = async (context) => {
-  const query = queryString.stringify(
-    queryString.parseUrl(context.asPath ?? "").query
-  );
+  const reqQuery =
+    queryString.stringify(queryString.parseUrl(context.asPath ?? "").query) ||
+    "";
 
   const response = await axios({
     method: "GET",
-    url: `${importantData.apiUrl}?${query || ""}`,
+    url: `${importantData.apiUrl}?${reqQuery}`,
   });
+
+  const offerName = context.query?.offerName?.[0];
+
+  if (offerName) {
+    if (!response?.data?.docs?.find((o: any) => o.slug === offerName)) {
+      let page = "";
+      let q = "";
+
+      try {
+        const queryBuilder = new URLSearchParams(reqQuery);
+        queryBuilder.append("slug", offerName);
+        const response = await axios({
+          method: "GET",
+          url: `${importantData.apiUrl}/which-page/?${queryBuilder.toString()}`,
+        });
+        page = response.data.page.toString();
+        q = reqQuery;
+      } catch (error) {
+        const queryBuilder = new URLSearchParams();
+        queryBuilder.append("slug", offerName);
+
+        const response = await axios({
+          method: "GET",
+          url: `${importantData.apiUrl}/which-page/?${queryBuilder.toString()}`,
+        });
+        page = response.data.page.toString();
+      }
+
+      const queryBuilder = new URLSearchParams(q);
+      queryBuilder.delete("page");
+      queryBuilder.append("page", page);
+
+      if (context.res) {
+        context.res.writeHead(301, {
+          Location: RouteLink(OfferSearch, offerName, q).as,
+        });
+        context.res.end();
+      }
+    }
+  }
 
   return {
     offersWithPagination: response.data,

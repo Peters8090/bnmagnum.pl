@@ -32,7 +32,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
       flex-wrap: wrap;
 
       & > * {
-        margin: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+        margin: ${theme.spacing(1)}px ${theme.spacing(3)}px;
       }
     `,
     price: css`
