@@ -113,11 +113,15 @@ OfferSearch.getInitialProps = async (context) => {
         const queryBuilder = new URLSearchParams();
         queryBuilder.append("slug", offerName);
 
-        const response = await axios({
-          method: "GET",
-          url: `${importantData.apiUrl}/which-page/?${queryBuilder.toString()}`,
-        });
-        page = response.data.page.toString();
+        try {
+          const response = await axios({
+            method: "GET",
+            url: `${
+              importantData.apiUrl
+            }/which-page/?${queryBuilder.toString()}`,
+          });
+          page = response.data.page.toString();
+        } catch (error2) {}
       }
       const queryBuilder = new URLSearchParams(page ? q : undefined);
       if (page) {
@@ -126,16 +130,6 @@ OfferSearch.getInitialProps = async (context) => {
       }
 
       if (context.res) {
-        console.log(page);
-
-        console.log(
-          RouteLink(
-            OfferSearch,
-            page ? offerName : undefined,
-            queryBuilder.toString()
-          ).as
-        );
-
         context.res.writeHead(301, {
           Location: RouteLink(
             OfferSearch,
