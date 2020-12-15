@@ -15,11 +15,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <Theme>
-      <Layout>
-        <PageAnimation>
+      <PageAnimation>
+        <Layout>
           <Component {...pageProps} />
-        </PageAnimation>
-      </Layout>
+        </Layout>
+      </PageAnimation>
     </Theme>
   );
 };
