@@ -96,7 +96,7 @@ OfferSearch.getInitialProps = async (context) => {
   const offerName = context.query?.offerName?.[0];
 
   if (offerName) {
-    if (!response?.data?.docs?.find((o: any) => o.slug === offerName)) {
+    if (!response?.data?.docs?.find((o: any) => o.normal.slug === offerName)) {
       let page = "";
       let q = "";
 
@@ -119,14 +119,29 @@ OfferSearch.getInitialProps = async (context) => {
         });
         page = response.data.page.toString();
       }
-
-      const queryBuilder = new URLSearchParams(q);
-      queryBuilder.delete("page");
-      queryBuilder.append("page", page);
+      const queryBuilder = new URLSearchParams(page ? q : undefined);
+      if (page) {
+        queryBuilder.delete("page");
+        queryBuilder.append("page", page);
+      }
 
       if (context.res) {
+        console.log(page);
+
+        console.log(
+          RouteLink(
+            OfferSearch,
+            page ? offerName : undefined,
+            queryBuilder.toString()
+          ).as
+        );
+
         context.res.writeHead(301, {
-          Location: RouteLink(OfferSearch, offerName, q).as,
+          Location: RouteLink(
+            OfferSearch,
+            page ? offerName : undefined,
+            queryBuilder.toString()
+          ).as,
         });
         context.res.end();
       }
