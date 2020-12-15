@@ -10,6 +10,7 @@ import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/
 import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
 import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
 import { RouteLink } from "../../functions/RouteLink";
+import { PageAnimation } from "../../hoc/PageAnimation/PageAnimation";
 import { useCurrentNavigationHeight } from "../../hooks/useCurrentNavigationHeight";
 import { useUrlWithQueryString } from "../../hooks/useUrlWithQueryString";
 import { importantData } from "../../importantData";
@@ -78,7 +79,9 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
           totalPages={props.offersWithPagination.totalPages}
         />
       </HiddenCond>
-      {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}
+      <PageAnimation overrideKey={offerName}>
+        {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}
+      </PageAnimation>
     </div>
   );
 };
