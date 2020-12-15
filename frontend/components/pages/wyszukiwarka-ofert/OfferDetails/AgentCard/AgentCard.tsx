@@ -5,7 +5,7 @@ import React, { FC } from "react";
 import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
 
 interface AgentCardProps {
-  agentName: string;
+  agentFullName: string;
   phoneNumber: string;
   email: string;
 }
@@ -41,7 +41,7 @@ export const AgentCard: FC<AgentCardProps> = (props) => {
       <div css={styles.container}>
         <Icon css={styles.icon}>phone</Icon>
         <Typography css={styles.agentName} component="div">
-          {props.agentName}
+          {props.agentFullName}
           <br />
           <a
             css={styles.textHighlighted}

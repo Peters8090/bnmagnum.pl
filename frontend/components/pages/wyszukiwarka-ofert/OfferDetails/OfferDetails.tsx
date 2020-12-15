@@ -51,7 +51,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
 
       <div css={styles.priceAndAgentCard}>
         <AgentCard
-          agentName={props.normal.agent_surname}
+          agentFullName={props.normal.agent_full_name}
           phoneNumber={props.normal.agent_phone_number}
           email={props.normal.agent_email}
         />

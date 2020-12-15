@@ -19,7 +19,7 @@ export interface OfferProps {
     location: string;
     title: string;
     description: string;
-    agent_surname: string;
+    agent_full_name: string;
     agent_phone_number: string;
     agent_email: string;
     slug: string;
