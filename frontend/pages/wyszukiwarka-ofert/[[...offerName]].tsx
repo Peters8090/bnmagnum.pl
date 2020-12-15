@@ -73,11 +73,13 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
         condition={isMobile ? !!offerName : false}
         implementation="css"
       >
-        <OfferList
-          offers={props.offersWithPagination.docs}
-          page={props.offersWithPagination.page}
-          totalPages={props.offersWithPagination.totalPages}
-        />
+        <PageAnimation overrideKey={query}>
+          <OfferList
+            offers={props.offersWithPagination.docs}
+            page={props.offersWithPagination.page}
+            totalPages={props.offersWithPagination.totalPages}
+          />
+        </PageAnimation>
       </HiddenCond>
       <PageAnimation overrideKey={offerName}>
         {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}

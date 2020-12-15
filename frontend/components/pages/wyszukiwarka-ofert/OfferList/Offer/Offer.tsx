@@ -1,15 +1,15 @@
-import { FC } from "react";
+import { css } from "@emotion/core";
 import { Chip, Typography } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
-import { css } from "@emotion/core";
 import Link from "next/link";
+import { FC } from "react";
+import NoImage from "../../../../../assets/images/no-image.png";
+import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
+import { RouteLink } from "../../../../../functions/RouteLink";
+import { useUrlWithQueryString } from "../../../../../hooks/useUrlWithQueryString";
 import OfferSearch, {
   useOfferName,
 } from "../../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
-import { RouteLink } from "../../../../../functions/RouteLink";
-import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
-import NoImage from "../../../../../assets/images/no-image.png";
-import { useUrlWithQueryString } from "../../../../../hooks/useUrlWithQueryString";
 
 export interface OfferProps {
   normal: {

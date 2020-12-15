@@ -20,9 +20,11 @@ export const PageAnimation: FC<PageAnimationProps> = (props) => {
     <motion.div
       key={props.overrideKey ?? router.route}
       transition={spring}
-      initial={{ x: 300, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: -300, opacity: 0 }}
+      initial={{
+        opacity: 0,
+      }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       {props.children}
     </motion.div>
