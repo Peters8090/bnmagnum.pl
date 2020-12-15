@@ -20,6 +20,7 @@
     "@types/lodash": "^4.14.165",
     "axios": "^0.21.0",
     "babel-plugin-import": "^1.13.0",
+    "framer-motion": "^2.9.5",
     "he": "^1.2.0",
     "lodash": "^4.17.20",
     "next": "10.0.3",
