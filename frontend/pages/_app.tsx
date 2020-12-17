@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import { SnackbarProvider } from "notistack";
 import React, { useEffect } from "react";
 import { Layout } from "../hoc/Layout/Layout";
 import { PageAnimation } from "../hoc/PageAnimation/PageAnimation";
@@ -15,11 +16,13 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <Theme>
-      <PageAnimation>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </PageAnimation>
+      <SnackbarProvider maxSnack={3}>
+        <PageAnimation>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PageAnimation>
+      </SnackbarProvider>
     </Theme>
   );
 };
