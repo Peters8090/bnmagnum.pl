@@ -90,6 +90,9 @@ export const Offer: FC<OfferProps> = (props) => {
       word-wrap: break-word;
       text-align: right;
     `,
+    keywordChip: css`
+      cursor: inherit;
+    `,
   };
 
   const { query } = useUrlWithQueryString();
@@ -115,7 +118,13 @@ export const Offer: FC<OfferProps> = (props) => {
         </div>
         <div css={styles.chips}>
           {Object.keys(props.keywords).map((info) => (
-            <Chip key={info} label={info} color="secondary" size="small" />
+            <Chip
+              css={styles.keywordChip}
+              key={info}
+              label={info}
+              color="secondary"
+              size="small"
+            />
           ))}
         </div>
       </div>
