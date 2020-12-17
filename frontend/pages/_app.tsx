@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <Theme>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider maxSnack={3} autoHideDuration={5000}>
         <PageAnimation>
           <Layout>
             <Component {...pageProps} />
