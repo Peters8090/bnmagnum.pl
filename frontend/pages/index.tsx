@@ -18,60 +18,27 @@ const HomePage: RouteType = () => {
 
       & > * {
         min-height: calc(100vh - ${navHeight}px);
+        margin: 20px 0;
+        border: 3px solid black;
       }
     `,
   };
 
-  const [isHeroVisible, heroRef] = useVisibility(100);
-  const [isAboutVisible, aboutRef] = useVisibility(-100);
-  const [isOurEmployeesVisible, ourEmployeesRef] = useVisibility(-100);
-  const [isFooterVisible, footerRef] = useVisibility(-100);
+  const [isHeroVisible, heroRef] = useVisibility();
+  const [isAboutVisible, aboutRef] = useVisibility();
+  const [isOurEmployeesVisible, ourEmployeesRef] = useVisibility();
+  const [isFooterVisible, footerRef] = useVisibility();
 
   const router = useRouter();
 
   useEffect(() => {
-    if (isHeroVisible && router.asPath !== Hero.routeName) {
-      if (window) {
-        console.log(1);
-
-        history.replaceState(null, "", document.location.pathname);
-      }
-    }
-  }, [isHeroVisible]);
-
-  useEffect(() => {
-    if (isAboutVisible && router.asPath !== About.routeName) {
-      if (window) {
-        console.log(2);
-
-        history.replaceState(null, "", document.location.pathname + "#about");
-      }
-    }
-  }, [isAboutVisible]);
-
-  useEffect(() => {
-    if (isOurEmployeesVisible && router.asPath !== OurEmployees.routeName) {
-      if (window) {
-        console.log(3);
-
-        history.replaceState(
-          null,
-          "",
-          document.location.pathname + "#our-employees"
-        );
-      }
-    }
-  }, [isOurEmployeesVisible]);
-
-  useEffect(() => {
-    if (isFooterVisible && router.asPath !== Footer.routeName) {
-      if (window) {
-        console.log(4);
-
-        history.replaceState(null, "", document.location.pathname + "#kontakt");
-      }
-    }
-  }, [isFooterVisible]);
+    console.log({
+      isHeroVisible,
+      isAboutVisible,
+      isOurEmployeesVisible,
+      isFooterVisible,
+    });
+  }, [isHeroVisible, isAboutVisible, isOurEmployeesVisible, isFooterVisible]);
 
   return (
     <div css={styles.root}>

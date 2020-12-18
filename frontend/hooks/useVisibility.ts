@@ -1,4 +1,3 @@
-import throttle from "lodash.throttle";
 import { createRef, useEffect, useState } from "react";
 
 /**
@@ -7,26 +6,30 @@ import { createRef, useEffect, useState } from "react";
  * @param {number} offset - Number of pixels up to the observable element from the top
  * @param {number} throttleMilliseconds - Throttle observable listener, in ms
  */
-export const useVisibility = <Element extends HTMLElement>(
-  offset = 0,
-  throttleMilliseconds = 100
-): [Boolean, React.RefObject<Element>] => {
-  const [isVisible, setIsVisible] = useState(false);
+export const useVisibility = <Element extends HTMLElement>(): [
+  Boolean,
+  React.RefObject<Element>
+] => {
   const currentElement = createRef<Element>();
 
-  const onScroll = throttle(() => {
-    if (!currentElement.current) {
-      setIsVisible(false);
-      return;
-    }
-    const top = currentElement.current.getBoundingClientRect().top;
-    setIsVisible(top + offset >= 0 && top - offset <= window.innerHeight);
-  }, throttleMilliseconds);
+  const [isIntersecting, setIntersecting] = useState(false);
+
+  const observer =
+    typeof IntersectionObserver !== "undefined" &&
+    new IntersectionObserver(([entry]) =>
+      setIntersecting(entry.isIntersecting)
+    );
 
   useEffect(() => {
-    document.addEventListener("scroll", onScroll, true);
-    return () => document.removeEventListener("scroll", onScroll, true);
-  });
+    if (observer) {
+      if (currentElement.current) {
+        observer.observe(currentElement.current);
+      }
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, []);
 
-  return [isVisible, currentElement];
+  return [isIntersecting, currentElement];
 };
