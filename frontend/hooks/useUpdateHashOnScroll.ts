@@ -12,7 +12,7 @@ export const useUpdateHashOnScroll = (sections: string[]) => {
     );
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       const scrollY = document?.scrollingElement?.scrollTop;
 
       if (scrollY !== undefined) {
@@ -33,5 +33,9 @@ export const useUpdateHashOnScroll = (sections: string[]) => {
         }
       }
     }, 400);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 };
