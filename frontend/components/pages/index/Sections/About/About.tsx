@@ -1,29 +1,28 @@
-import css from "@emotion/css";
-import Grid from "@material-ui/core/Grid";
-import { useTheme } from "@material-ui/core/styles";
-import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
-import { RouteType } from "../../../../../interfaces and types/RouteType";
-import { HomeSectionProps } from "../../shared/HomeSectionProps";
-import { AboutLeft } from "./AboutLeft/AboutLeft";
-import { AboutRight } from "./AboutRight/AboutRight";
+import Grid from '@material-ui/core/Grid'
+import {AboutLeft} from './AboutLeft/AboutLeft'
+import {AboutRight} from './AboutRight/AboutRight'
+import css from '@emotion/css'
+import {useTheme} from '@material-ui/core/styles'
+import {RouteType} from '../../../../../interfaces and types/RouteType'
+import {convertRouteHashToLinkId} from '../../../../../functions/convertRouteHashToLinkId'
 
-export const About: RouteType<HomeSectionProps> = (props) => {
-  const theme = useTheme();
-  const styles = {
-    root: css`
-      ${theme.customMixins.flexCentered};
-    `,
-  };
+export const About: RouteType = () => {
+    const theme = useTheme()
+    const styles = {
+        root: css`
+            ${theme.customMixins.flexCentered};
+    	`,
+    }
 
-  const linkId = convertRouteHashToLinkId(About.routeName);
+    const linkId = convertRouteHashToLinkId(About.routeName)
 
-  return (
-    <Grid container css={styles.root} id={linkId} ref={props.rootRef}>
-      <AboutLeft />
-      <AboutRight />
-    </Grid>
-  );
-};
+    return (
+        <Grid container css={styles.root} id={linkId}>
+            <AboutLeft/>
+            <AboutRight/>
+        </Grid>
+    )
+}
 
-About.displayName = "O firmie";
-About.routeName = "/#o-firmie";
+About.displayName = 'O firmie'
+About.routeName = '/#o-firmie'
