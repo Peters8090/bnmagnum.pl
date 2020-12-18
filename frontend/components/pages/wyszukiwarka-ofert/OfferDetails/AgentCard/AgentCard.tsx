@@ -1,8 +1,11 @@
 import { css } from "@emotion/core";
 import { Icon, Typography } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import Link from "next/link";
 import React, { FC } from "react";
 import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceEveryThreeCharacters";
+import { RouteLink } from "../../../../../functions/RouteLink";
+import { Footer } from "../../../index/Sections/Footer/Footer";
 
 interface AgentCardProps {
   agentFullName: string;
@@ -33,6 +36,7 @@ export const AgentCard: FC<AgentCardProps> = (props) => {
     `,
     textHighlighted: css`
       color: ${theme.palette.secondary.main};
+      cursor: pointer;
     `,
   };
 
@@ -43,14 +47,15 @@ export const AgentCard: FC<AgentCardProps> = (props) => {
         <Typography css={styles.agentName} component="div">
           {props.agentFullName}
           <br />
-          <a
-            css={styles.textHighlighted}
-            href={`${props.phoneNumber ? "tel" : props.email && "mailto"}:${
-              props.phoneNumber
-            }`}
-          >
-            {addSpaceEveryThreeCharacters(props.phoneNumber) ?? props.email}
-          </a>
+          {props.phoneNumber ? (
+            <a css={styles.textHighlighted} href={`tel:${props.phoneNumber}`}>
+              {addSpaceEveryThreeCharacters(props.phoneNumber)}
+            </a>
+          ) : (
+            <Link {...RouteLink(Footer)}>
+              <a css={styles.textHighlighted}>Formularz</a>
+            </Link>
+          )}
         </Typography>
       </div>
     </div>
