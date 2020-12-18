@@ -39,14 +39,16 @@ const HomePage: RouteType = () => {
         const closestSection =
           sections[scrollTops.indexOf(findClosestValue(scrollTops, scrollY))];
 
-        history.replaceState(
-          null,
-          "",
-          document.location.pathname +
-            (closestSection ? `#${closestSection}` : "")
-        );
+        if (window.location.hash.slice(1) !== closestSection) {
+          history.replaceState(
+            null,
+            "",
+            document.location.pathname +
+              (closestSection ? `#${closestSection}` : "")
+          );
+        }
       }
-    }, 500);
+    }, 400);
   }, []);
 
   return (
