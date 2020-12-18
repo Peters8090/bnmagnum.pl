@@ -33,7 +33,7 @@ export const RangeFilter: FC<NormalFilterProps> = (props) => {
       transform: translate(-${theme.spacing(1.5)}px, -7.5px) scale(0.75);
       background-color: white;
       display: inline-block;
-      padding-left: ${theme.spacing(1)}px;
+      padding: 0 ${theme.spacing(1)}px;
     `,
   };
 

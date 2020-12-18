@@ -19,6 +19,12 @@ export const NormalFilter: FC<NormalFilterProps> = (props) => {
       .MuiSelect-root {
         border-radius: 25px;
       }
+
+      .MuiFormLabel-root {
+        background-color: white;
+        padding-left: ${theme.spacing(1)}px;
+        transform: translate(8px, -6px) scale(0.75);
+      }
     `,
   };
 
