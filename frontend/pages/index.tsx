@@ -1,10 +1,10 @@
 import { css } from "@emotion/core";
-import { useEffect } from "react";
 import { About } from "../components/pages/index/Sections/About/About";
 import { Footer } from "../components/pages/index/Sections/Footer/Footer";
 import { Hero } from "../components/pages/index/Sections/Hero/Hero";
 import { OurEmployees } from "../components/pages/index/Sections/OurEmployees/OurEmployees";
 import { useCurrentNavigationHeight } from "../hooks/useCurrentNavigationHeight";
+import { useUpdateHashOnScroll } from "../hooks/useUpdateHashOnScroll";
 import { RouteType } from "../interfaces and types/RouteType";
 
 const HomePage: RouteType = () => {
@@ -20,36 +20,7 @@ const HomePage: RouteType = () => {
     `,
   };
 
-  const sections = ["", "o-firmie", "nasi-pracownicy", "kontakt"];
-
-  const findClosestValue = (counts: number[], goal: number) =>
-    counts.reduce((prev, curr) =>
-      Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
-    );
-
-  useEffect(() => {
-    setInterval(() => {
-      const scrollY = document?.scrollingElement?.scrollTop;
-
-      if (scrollY !== undefined) {
-        const scrollTops = sections.map((section) =>
-          section === "" ? 0 : document.getElementById(section)!.offsetTop
-        );
-
-        const closestSection =
-          sections[scrollTops.indexOf(findClosestValue(scrollTops, scrollY))];
-
-        if (window.location.hash.slice(1) !== closestSection) {
-          history.replaceState(
-            null,
-            "",
-            document.location.pathname +
-              (closestSection ? `#${closestSection}` : "")
-          );
-        }
-      }
-    }, 400);
-  }, []);
+  useUpdateHashOnScroll(["", "o-firmie", "nasi-pracownicy", "kontakt"]);
 
   return (
     <div css={styles.root}>
