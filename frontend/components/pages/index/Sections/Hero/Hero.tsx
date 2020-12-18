@@ -1,37 +1,38 @@
-import {css} from '@emotion/core'
-import {HeroWelcome} from './HeroWelcome/HeroWelcome'
-import {HeroImage} from './HeroImage/HeroImage'
-import {GoDownFab} from './GoDownFab/GoDownFab'
-import {Hidden} from '@material-ui/core'
-import {useTheme} from '@material-ui/core/styles'
-import {RouteType} from '../../../../../interfaces and types/RouteType'
+import { css } from "@emotion/core";
+import { Hidden } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
+import { RouteType } from "../../../../../interfaces and types/RouteType";
+import { HomeSectionProps } from "../../shared/HomeSectionProps";
+import { GoDownFab } from "./GoDownFab/GoDownFab";
+import { HeroImage } from "./HeroImage/HeroImage";
+import { HeroWelcome } from "./HeroWelcome/HeroWelcome";
 
-export const Hero: RouteType = () => {
-    const theme = useTheme()
-    const styles = {
-        root: css`
-			position: relative;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			padding: 0 ${theme.spacing(2)}px;
-			
-			${theme.breakpoints.down('sm')} {
-			    ${theme.customMixins.flexCentered};
-			    flex-direction: column;
-			}
-		`,
-    }
+export const Hero: RouteType<HomeSectionProps> = (props) => {
+  const theme = useTheme();
+  const styles = {
+    root: css`
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0 ${theme.spacing(2)}px;
 
-    return (
-        <div css={styles.root}>
-            <HeroWelcome/>
-            <Hidden smDown>
-                <HeroImage/>
-            </Hidden>
-            <GoDownFab/>
-        </div>
-    )
-}
+      ${theme.breakpoints.down("sm")} {
+        ${theme.customMixins.flexCentered};
+        flex-direction: column;
+      }
+    `,
+  };
 
-Hero.displayName = 'Home'
-Hero.routeName = '/'
+  return (
+    <div css={styles.root} ref={props.rootRef}>
+      <HeroWelcome />
+      <Hidden smDown>
+        <HeroImage />
+      </Hidden>
+      <GoDownFab />
+    </div>
+  );
+};
+
+Hero.displayName = "Home";
+Hero.routeName = "/";

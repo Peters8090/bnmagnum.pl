@@ -18,11 +18,13 @@
     "@types/axios": "^0.14.0",
     "@types/he": "^1.1.1",
     "@types/lodash": "^4.14.165",
+    "@types/lodash.throttle": "^4.1.6",
     "axios": "^0.21.0",
     "babel-plugin-import": "^1.13.0",
     "framer-motion": "^2.9.5",
     "he": "^1.2.0",
     "lodash": "^4.17.20",
+    "lodash.throttle": "^4.1.1",
     "next": "10.0.3",
     "next-images": "^1.4.1",
     "nextjs-progressbar": "0.0.6",
@@ -38,6 +40,6 @@
     "@types/node": "^14.6.2",
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
-    "typescript": "4.0.2"
+    "typescript": "4.1.3"
   }
 }
