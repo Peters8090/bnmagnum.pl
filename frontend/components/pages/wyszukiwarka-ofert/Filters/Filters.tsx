@@ -27,7 +27,7 @@ export type FilterType = {
 const filterList: FilterType[] = [
   {
     label: "Szukaj...",
-    name: "advertisement_text",
+    name: "search",
     type: "text",
   },
   {
@@ -73,7 +73,7 @@ const filterList: FilterType[] = [
   },
   {
     label: "Powierzchnia",
-    name: "powierzchnia",
+    name: "area",
     type: "range",
     range: [0, 200, 2500],
     unit: "m²",
@@ -85,7 +85,7 @@ const filterList: FilterType[] = [
   },
   {
     label: "Liczba pokoi",
-    name: "liczbapokoi",
+    name: "rooms",
     type: "range",
     range: [0, 5, 10],
     unit: "",
