@@ -22,8 +22,9 @@ export const NormalFilter: FC<NormalFilterProps> = (props) => {
 
       .MuiFormLabel-root {
         background-color: white;
-        padding-left: ${theme.spacing(1)}px;
-        transform: translate(8px, -6px) scale(0.75);
+        padding: 0 ${theme.spacing(1)}px;
+        padding-bottom: ${theme.spacing(0.5)}px;
+        border-radius: ${theme.spacing(2)}px;
       }
     `,
   };
