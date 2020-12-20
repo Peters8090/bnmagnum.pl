@@ -16,9 +16,11 @@ export const useUpdateHashOnScroll = (sections: string[]) => {
       const scrollY = document?.scrollingElement?.scrollTop;
 
       if (scrollY !== undefined) {
-        const scrollTops = _sections.map((section) =>
-          section === "" ? 0 : document.getElementById(section)!.offsetTop
-        );
+        const scrollTops = _sections
+          .map((section) =>
+            section === "" ? 0 : document.getElementById(section)?.offsetTop
+          )
+          .filter((scrollTop) => scrollTop !== undefined) as number[];
 
         const closestSection =
           _sections[scrollTops.indexOf(findClosestValue(scrollTops, scrollY))];

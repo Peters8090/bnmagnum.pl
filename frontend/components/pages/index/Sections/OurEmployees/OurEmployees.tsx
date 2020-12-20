@@ -7,6 +7,10 @@ import { PageTitle } from "../../shared/PageTitle";
 import { Employee } from "./Employee/Employee";
 
 export const OurEmployees: RouteType = () => {
+  if (!Content.ourEmployees) {
+    return null;
+  }
+
   const theme = useTheme();
   const styles = {
     ourEmployees: css`

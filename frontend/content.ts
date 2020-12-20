@@ -12,7 +12,7 @@ interface ContentType {
     title: string;
     content: string;
   };
-  ourEmployees: {
+  ourEmployees?: {
     title: string;
     employees: EmployeeProps[];
   };
@@ -43,31 +43,31 @@ export const Content: ContentType = {
 			lorem.
 		`,
   },
-  ourEmployees: {
-    title: "Nasi pracownicy",
-    employees: [
-      {
-        title: "Jan Kowalski",
-        description: [
-          "Właściciel firmy",
-          "Pośrednik nieruchomości od wielu lat",
-          "Telefon: +48 123 456 789",
-        ],
-        image:
-          "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
-      },
-      {
-        title: "Jan Kowalski 2",
-        description: [
-          "Właściciel firmy",
-          "Pośrednik nieruchomości od wielu lat",
-          "Telefon: +48 123 456 789",
-        ],
-        image:
-          "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
-      },
-    ],
-  },
+  // ourEmployees: {
+  //   title: "Nasi pracownicy",
+  //   employees: [
+  //     {
+  //       title: "Jan Kowalski",
+  //       description: [
+  //         "Właściciel firmy",
+  //         "Pośrednik nieruchomości od wielu lat",
+  //         "Telefon: +48 123 456 789",
+  //       ],
+  //       image:
+  //         "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
+  //     },
+  //     {
+  //       title: "Jan Kowalski 2",
+  //       description: [
+  //         "Właściciel firmy",
+  //         "Pośrednik nieruchomości od wielu lat",
+  //         "Telefon: +48 123 456 789",
+  //       ],
+  //       image:
+  //         "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
+  //     },
+  //   ],
+  // },
   footer: {
     companyData: "Dane firmy",
     informations: [
