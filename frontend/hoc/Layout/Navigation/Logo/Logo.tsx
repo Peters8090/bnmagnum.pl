@@ -12,7 +12,7 @@ export const Logo: FC = () => {
 
   return (
     <Typography variant="h6" css={styles.root}>
-      {Content.navigation.logo_text}
+      {Content.siteName}
     </Typography>
   );
 };

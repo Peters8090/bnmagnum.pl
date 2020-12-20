@@ -4,7 +4,7 @@ import { useTheme } from "@material-ui/core/styles";
 import axios from "axios";
 import { useRouter } from "next/router";
 import queryString from "query-string";
-import { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { OfferDetails } from "../../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails";
 import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
 import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
@@ -15,6 +15,7 @@ import { useCurrentNavigationHeight } from "../../hooks/useCurrentNavigationHeig
 import { useUrlWithQueryString } from "../../hooks/useUrlWithQueryString";
 import { importantData } from "../../importantData";
 import { RouteType } from "../../interfaces and types/RouteType";
+import { HeadContext } from "../_app";
 
 export const useOfferName = () => {
   const { query } = useRouter();
@@ -59,11 +60,17 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
 
   const { query } = useUrlWithQueryString();
 
+  const { setTitleParts } = useContext(HeadContext);
+
   useEffect(() => {
     if (!selectedOffer) {
+      setTitleParts([OfferSearch.displayName]);
+
       const { href, as } = RouteLink(OfferSearch, undefined, query);
 
       router.push(href, as);
+    } else {
+      setTitleParts([OfferSearch.displayName, selectedOffer.normal.title]);
     }
   }, [selectedOffer]);
 
@@ -152,7 +159,7 @@ OfferSearch.getInitialProps = async (context) => {
   };
 };
 
-OfferSearch.displayName = "Wyszukiwarka ofert";
+OfferSearch.displayName = "Oferty";
 OfferSearch.routeName = "/wyszukiwarka-ofert/[[...offerName]]";
 
 export default OfferSearch;

@@ -1,7 +1,12 @@
 import { EmployeeProps } from "./components/pages/index/Sections/OurEmployees/Employee/Employee";
 interface ContentType {
+  siteName: string;
+  head: {
+    description: string;
+    logo: string;
+  };
   navigation: {
-    logo_text: string;
+    logoImage?: string;
   };
   home: {
     welcome: string;
@@ -26,9 +31,12 @@ interface ContentType {
 }
 
 export const Content: ContentType = {
-  navigation: {
-    logo_text: "nieruchomosci-waw.com",
+  siteName: "Biuro Nieruchomości Magnum",
+  head: {
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing el",
+    logo: "",
   },
+  navigation: {},
   home: {
     welcome: "Witaj!",
     subtitle:
@@ -43,31 +51,6 @@ export const Content: ContentType = {
 			lorem.
 		`,
   },
-  // ourEmployees: {
-  //   title: "Nasi pracownicy",
-  //   employees: [
-  //     {
-  //       title: "Jan Kowalski",
-  //       description: [
-  //         "Właściciel firmy",
-  //         "Pośrednik nieruchomości od wielu lat",
-  //         "Telefon: +48 123 456 789",
-  //       ],
-  //       image:
-  //         "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
-  //     },
-  //     {
-  //       title: "Jan Kowalski 2",
-  //       description: [
-  //         "Właściciel firmy",
-  //         "Pośrednik nieruchomości od wielu lat",
-  //         "Telefon: +48 123 456 789",
-  //       ],
-  //       image:
-  //         "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
-  //     },
-  //   ],
-  // },
   footer: {
     companyData: "Dane firmy",
     informations: [
