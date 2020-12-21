@@ -62,7 +62,7 @@ export const Navigation: ForwardRefExoticComponent<
           <NavigationItems />
         </Hidden>
         <Hidden mdUp>
-          {!isOfferDetails && (
+          {!isOfferDetails && router.route === OfferSearch.routeName && (
             <IconButton
               size="small"
               onClick={() => setFiltersVisible((prev) => !prev)}

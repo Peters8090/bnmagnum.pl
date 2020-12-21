@@ -1,4 +1,7 @@
+import Favicon from "./assets/images/favicon.png";
+import NavLogo from "./assets/images/nav_logo.png";
 import { EmployeeProps } from "./components/pages/index/Sections/OurEmployees/Employee/Employee";
+
 interface ContentType {
   siteName: string;
   head: {
@@ -34,9 +37,11 @@ export const Content: ContentType = {
   siteName: "Biuro Nieruchomości Magnum",
   head: {
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing el",
-    logo: "",
+    logo: Favicon,
   },
-  navigation: {},
+  navigation: {
+    logoImage: NavLogo,
+  },
   home: {
     welcome: "Witaj!",
     subtitle:
