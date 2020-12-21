@@ -1,5 +1,4 @@
-import { FC, useContext, useEffect } from "react";
-import { LayoutContext } from "../Layout/Layout";
+import { FC, useEffect } from "react";
 
 interface UpdateHashOnScrollProps {
   sections: string[];
@@ -10,8 +9,6 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
     counts.reduce((prev, curr) =>
       Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
     );
-
-  const { forceUpdateNavigation } = useContext(LayoutContext);
 
   useEffect(() => {
     const sections = props.sections.filter((s) => !!document.getElementById(s));
@@ -26,11 +23,6 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
             "",
             document.location.pathname + (hash ? `#${hash}` : "")
           );
-          if (forceUpdateNavigation) {
-            console.log("b");
-
-            forceUpdateNavigation();
-          }
         };
         if (scrollY === 0) {
           updateHash("");
