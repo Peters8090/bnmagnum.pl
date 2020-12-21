@@ -1,14 +1,16 @@
+import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
+const findClosestValue = (counts: number[], goal: number) =>
+  counts.reduce((prev, curr) =>
+    Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
+  );
 
 interface UpdateHashOnScrollProps {
   sections: string[];
 }
 
 export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
-  const findClosestValue = (counts: number[], goal: number) =>
-    counts.reduce((prev, curr) =>
-      Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
-    );
+  const router = useRouter();
 
   useEffect(() => {
     const sections = props.sections.filter((s) => !!document.getElementById(s));
@@ -18,11 +20,7 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
 
       if (scrollY !== undefined) {
         const updateHash = (hash: string) => {
-          history.replaceState(
-            null,
-            "",
-            document.location.pathname + (hash ? `#${hash}` : "")
-          );
+          router.push(router.pathname + (hash ? `#${hash}` : hash));
         };
         if (scrollY === 0) {
           updateHash("");
@@ -41,7 +39,13 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
       }
     }, 400);
 
+    const hashChangeCallback = (e: HashChangeEvent) => {
+      e.preventDefault();
+    };
+    window.addEventListener("hashchange", hashChangeCallback);
+
     return () => {
+      window.removeEventListener("hashchange", hashChangeCallback);
       clearInterval(interval);
     };
   }, []);
