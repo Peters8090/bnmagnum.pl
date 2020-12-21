@@ -12,22 +12,21 @@ import AppBar from "@material-ui/core/AppBar/AppBar";
 import { useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useRouter } from "next/router";
-import {
-  forwardRef,
-  ForwardRefExoticComponent,
-  RefAttributes,
-  useState,
-} from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { Filters } from "../../../components/pages/wyszukiwarka-ofert/Filters/Filters";
+import { useForceUpdate } from "../../../hooks/useForceUpdate";
 import OfferSearch, {
   useOfferName,
 } from "../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import { Logo } from "./Logo/Logo";
 import { NavigationItems } from "./NavigationItems/NavigationItems";
 
-export const Navigation: ForwardRefExoticComponent<
-  RefAttributes<unknown>
-> = forwardRef((_, ref) => {
+interface NavigationProps {
+  setForceUpdateNav: Dispatch<SetStateAction<(() => void) | undefined>>;
+  rootRef: any;
+}
+
+export const Navigation: FC<NavigationProps> = (props) => {
   const theme = useTheme();
   const styles = {
     logo: css`
@@ -54,8 +53,22 @@ export const Navigation: ForwardRefExoticComponent<
   const [filtersVisible, setFiltersVisible] = useState(false);
   const isOfferDetails = !!useOfferName();
 
+  const forceUpdate = useForceUpdate();
+
+  useEffect(() => {
+    props.setForceUpdateNav(() => () => {
+      forceUpdate();
+      console.log("force");
+    });
+  }, []);
+
   return (
-    <AppBar ref={ref} position="sticky" color="inherit" variant="outlined">
+    <AppBar
+      ref={props.rootRef}
+      position="sticky"
+      color="inherit"
+      variant="outlined"
+    >
       <Toolbar css={styles.toolbar}>
         <Logo />
         <Hidden smDown>
@@ -97,4 +110,4 @@ export const Navigation: ForwardRefExoticComponent<
       )}
     </AppBar>
   );
-});
+};
