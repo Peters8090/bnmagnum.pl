@@ -4,7 +4,10 @@ import { useEffect } from "react";
  * @param sections - Section IDs you want to update on scroll
  */
 export const useUpdateHashOnScroll = (sections: string[]) => {
-  const _sections = ["", ...sections];
+  const _sections = [
+    "",
+    ...sections.filter((s) => !!document.getElementById(s)),
+  ];
 
   const findClosestValue = (counts: number[], goal: number) =>
     counts.reduce((prev, curr) =>
@@ -16,11 +19,9 @@ export const useUpdateHashOnScroll = (sections: string[]) => {
       const scrollY = document?.scrollingElement?.scrollTop;
 
       if (scrollY !== undefined) {
-        const scrollTops = _sections
-          .map((section) =>
-            section === "" ? 0 : document.getElementById(section)?.offsetTop
-          )
-          .filter((scrollTop) => scrollTop !== undefined) as number[];
+        const scrollTops = _sections.map((section) =>
+          section === "" ? 0 : document.getElementById(section)!.offsetTop
+        );
 
         const closestSection =
           _sections[scrollTops.indexOf(findClosestValue(scrollTops, scrollY))];
