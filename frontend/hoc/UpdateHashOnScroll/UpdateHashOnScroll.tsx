@@ -1,17 +1,18 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
-/**
- * @param sections - Section IDs you want to update on scroll
- */
-export const useUpdateHashOnScroll = (sections: string[]) => {
-  const _sections = sections.filter((s) => !!document.getElementById(s));
+interface UpdateHashOnScrollProps {
+  sections: string[];
+}
 
+export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
   const findClosestValue = (counts: number[], goal: number) =>
     counts.reduce((prev, curr) =>
       Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
     );
 
   useEffect(() => {
+    const sections = props.sections.filter((s) => !!document.getElementById(s));
+
     const interval = setInterval(() => {
       const scrollY = document?.scrollingElement?.scrollTop;
 
@@ -26,14 +27,12 @@ export const useUpdateHashOnScroll = (sections: string[]) => {
         if (scrollY === 0) {
           updateHash("");
         } else {
-          const scrollTops = _sections.map(
+          const scrollTops = sections.map(
             (section) => document.getElementById(section)!.offsetTop
           );
 
           const closestSection =
-            _sections[
-              scrollTops.indexOf(findClosestValue(scrollTops, scrollY))
-            ];
+            sections[scrollTops.indexOf(findClosestValue(scrollTops, scrollY))];
 
           if (window.location.hash.slice(1) !== closestSection) {
             updateHash(closestSection);
@@ -46,4 +45,6 @@ export const useUpdateHashOnScroll = (sections: string[]) => {
       clearInterval(interval);
     };
   }, []);
+
+  return <>{props.children}</>;
 };
