@@ -1,6 +1,5 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { SnackbarProvider } from "notistack";
 import React, {
   createContext,
@@ -16,8 +15,8 @@ import { Theme } from "../hoc/Theme/Theme";
 
 interface HeadContextProps {
   setTitleParts: Dispatch<SetStateAction<string[]>>;
-  setOverrideOgLogo?: Dispatch<SetStateAction<string>>;
-  setOverrideDescription?: Dispatch<SetStateAction<string>>;
+  setOgImage: Dispatch<SetStateAction<string | undefined>>;
+  setOverrideDescription: Dispatch<SetStateAction<string | undefined>>;
 }
 
 export const HeadContext = createContext<HeadContextProps>(
@@ -34,10 +33,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   const [titleParts, setTitleParts] = useState<string[]>([]);
-  const [overrideOgLogo, setOverrideOgLogo] = useState<string>();
+  const [ogImage, setOgImage] = useState<string>();
   const [overrideDescription, setOverrideDescription] = useState<string>();
 
-  const router = useRouter();
+  const title = [Content.siteName, ...titleParts].join(" > ");
+  const description = overrideDescription || Content.head.description;
 
   return (
     <Theme>
@@ -45,19 +45,19 @@ const App = ({ Component, pageProps }: AppProps) => {
         <HeadContext.Provider
           value={{
             setTitleParts,
-            setOverrideOgLogo,
+            setOgImage,
             setOverrideDescription,
           }}
         >
           <PageAnimation>
             <Head>
-              <title>{[Content.siteName, ...titleParts].join(" > ")}</title>
-              <meta
-                name="description"
-                content={overrideDescription || Content.head.description}
-              />
+              <title>{title}</title>
+              <meta name="description" content={description} />
               <link rel="shortcut icon" href={Content.head.logo} />
-              <meta property="og:image" content={overrideOgLogo} />
+
+              <meta property="og:title" content={title} />
+              <meta property="og:description" content={description} />
+              {ogImage && <meta property="og:image" content={ogImage} />}
             </Head>
             <Layout>
               <Component {...pageProps} />

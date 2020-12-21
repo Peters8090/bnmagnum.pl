@@ -60,7 +60,9 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
 
   const { query } = useUrlWithQueryString();
 
-  const { setTitleParts } = useContext(HeadContext);
+  const { setTitleParts, setOgImage, setOverrideDescription } = useContext(
+    HeadContext
+  );
 
   useEffect(() => {
     if (!selectedOffer) {
@@ -70,6 +72,10 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
 
       router.push(href, as);
     } else {
+      if (selectedOffer.normal.photos[0]) {
+        setOgImage(selectedOffer.normal.photos[0]);
+      }
+      setOverrideDescription(selectedOffer.normal.description);
       setTitleParts([OfferSearch.displayName, selectedOffer.normal.title]);
     }
   }, [selectedOffer]);
