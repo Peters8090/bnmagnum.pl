@@ -36,7 +36,7 @@ const position = function (start, end, elapsed, duration) {
 // if the callback exist, it is called when the scrolling is finished
 // if context is set then scroll that element, else scroll window
 const smoothScroll2 = function (el, duration, callback, context) {
-    duration = duration || 500
+    duration = duration || 250
     context = context || window
     const start = context.scrollTop || window.pageYOffset
     let end
@@ -100,7 +100,7 @@ export class NextLinkSmoothScroll extends React.Component {
         const href = this.props.href
 
         if (location.pathname === href.split('#')[0]) {
-            Router.push(this.props.href, this.props?.as)
+            // Router.push(this.props.href, this.props?.as)
             window.scrollTo(scrollX, scrollY)
             return smoothScroll(this.props.href)
         } else {

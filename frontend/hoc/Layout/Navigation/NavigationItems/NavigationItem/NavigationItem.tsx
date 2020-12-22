@@ -28,6 +28,7 @@ export const NavigationItem: FC<NavigationItemProps> = (props) => {
     text: css`
       font-family: "Rubik", sans-serif;
       font-weight: ${isCurrent ? 500 : 300};
+      transition: font-weight 500ms;
       padding: 0 ${theme.spacing(2)}px;
       text-align: center;
       text-transform: none;
