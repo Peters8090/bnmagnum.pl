@@ -1,5 +1,5 @@
-import React, {Children} from 'react'
 import Router from 'next/router'
+import React, { Children } from 'react'
 
 // source: https://gist.github.com/vinaypuppal/b7271ad84a0d69c9cfafaaa83afed199
 

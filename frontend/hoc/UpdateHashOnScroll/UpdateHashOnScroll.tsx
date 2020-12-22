@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
 interface UpdateHashOnScrollProps {
@@ -5,10 +6,7 @@ interface UpdateHashOnScrollProps {
 }
 
 export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
-  const findClosestValue = (counts: number[], goal: number) =>
-    counts.reduce((prev, curr) =>
-      Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev
-    );
+  const router = useRouter();
 
   useEffect(() => {
     const sections = props.sections.filter((s) => !!document.getElementById(s));
@@ -17,26 +15,35 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
       const scrollY = document?.scrollingElement?.scrollTop;
 
       if (scrollY !== undefined) {
-        const updateHash = (hash: string) => {
-          history.replaceState(
-            null,
-            "",
-            document.location.pathname + (hash ? `#${hash}` : "")
-          );
+        const updateHash = async (hash: string) => {
+          let elem = document.getElementById(hash);
+          elem && (elem.id = hash + "-tmp");
+          await router.push("/", `/${hash ? "#" + hash : ""}`, undefined);
+          elem && (elem.id = hash);
+          // history.replaceState(
+          //   null,
+          //   "",
+          //   document.location.pathname + (hash ? `#${hash}` : "")
+          // );
         };
-        if (scrollY === 0) {
-          updateHash("");
-        } else {
-          const scrollTops = sections.map(
-            (section) => document.getElementById(section)!.offsetTop
-          );
+        const curHash = window.location.hash.slice(1);
 
-          const closestSection =
-            sections[scrollTops.indexOf(findClosestValue(scrollTops, scrollY))];
+        const scrollTops = sections.map((section) => ({
+          hash: section,
+          scrollTop: document.getElementById(section)!.offsetTop,
+        }));
 
-          if (window.location.hash.slice(1) !== closestSection) {
-            updateHash(closestSection);
-          }
+        scrollTops.push({ hash: "", scrollTop: 0 });
+
+        const closestSection = scrollTops.reduce((prev, curr) =>
+          Math.abs(curr.scrollTop - scrollY) <
+          Math.abs(prev.scrollTop - scrollY)
+            ? curr
+            : prev
+        );
+
+        if (curHash !== closestSection.hash) {
+          updateHash(closestSection.hash);
         }
       }
     }, 400);
