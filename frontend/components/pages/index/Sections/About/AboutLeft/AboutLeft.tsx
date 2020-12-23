@@ -1,19 +1,19 @@
-import {FC} from 'react'
-import Grid from '@material-ui/core/Grid'
-import {css} from '@emotion/core'
+import { css } from "@emotion/core";
+import Grid from "@material-ui/core/Grid";
+import { FC } from "react";
+import { Content } from "../../../../../../content";
 
 export const AboutLeft: FC = () => {
-    const styles = {
-        aboutLeft: css`
-		    width: 100%;
-		    border-radius: 80px;
-		`,
-    }
+  const styles = {
+    aboutLeft: css`
+      width: 100%;
+      border-radius: 80px;
+    `,
+  };
 
-    return (
-        <Grid item lg={4} md={5} xs={8}>
-            <img src='https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg'
-                 alt='dom' css={styles.aboutLeft}/>
-        </Grid>
-    )
-}
+  return (
+    <Grid item lg={4} md={5} xs={8}>
+      <img src={Content.about.image} alt="dom" css={styles.aboutLeft} />
+    </Grid>
+  );
+};

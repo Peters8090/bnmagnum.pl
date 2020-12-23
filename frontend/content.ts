@@ -19,6 +19,7 @@ interface ContentType {
   about: {
     title: string;
     content: string;
+    image: string;
   };
   ourEmployees?: {
     title: string;
@@ -54,7 +55,9 @@ export const Content: ContentType = {
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras diam nulla, accumsan nec augue
 			ultrices, aliquam malesuada nibh. Fusce arcu ante, blandit ut hendrerit vitae, eleifend vel
 			lorem.
-		`,
+    `,
+    image:
+      "https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg",
   },
   footer: {
     companyData: "Dane firmy",
