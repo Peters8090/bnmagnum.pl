@@ -1,5 +1,5 @@
 import { css } from "@emotion/core";
-import { Fab, Icon } from "@material-ui/core";
+import { Fab } from "@material-ui/core";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import React, { FC, useContext } from "react";
 import { PhotosContext } from "../../Photos";
