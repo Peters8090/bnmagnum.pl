@@ -36,7 +36,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [ogImage, setOgImage] = useState<string>();
   const [overrideDescription, setOverrideDescription] = useState<string>();
 
-  const title = [Content.siteName, ...titleParts].join(" | ");
+  const title = [Content.siteName, ...titleParts].join(" • ");
   const description = overrideDescription || Content.head.description;
 
   return (
