@@ -56,9 +56,7 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
     (o) => o.normal.slug === offerName
   );
 
-  const router = useRouter();
-
-  const { query } = useUrlWithQueryString();
+  const { query, queryParsed } = useUrlWithQueryString();
 
   const { setTitleParts, setOgImage, setOverrideDescription } = useContext(
     HeadContext
@@ -66,11 +64,10 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
 
   useEffect(() => {
     if (!selectedOffer) {
-      setTitleParts([OfferSearch.displayName]);
-
-      const { href, as } = RouteLink(OfferSearch, undefined, query);
-
-      router.push(href, as);
+      setTitleParts([
+        OfferSearch.displayName,
+        `Strona ${queryParsed.page ?? 1}`,
+      ]);
     } else {
       if (selectedOffer.normal.photos[0]) {
         setOgImage(selectedOffer.normal.photos[0]);
@@ -78,7 +75,7 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
       setOverrideDescription(selectedOffer.normal.description);
       setTitleParts([OfferSearch.displayName, selectedOffer.normal.title]);
     }
-  }, [selectedOffer]);
+  }, [selectedOffer, query]);
 
   return (
     <div css={styles.root}>
