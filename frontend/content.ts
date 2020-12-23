@@ -16,7 +16,7 @@ interface ContentType {
     subtitle: string;
     call_to_action: string;
   };
-  content: {
+  about: {
     title: string;
     content: string;
   };
@@ -48,7 +48,7 @@ export const Content: ContentType = {
       "Poszukujesz domu lub mieszkania? Dobrze trafiłeś! Kliknij przycisk poniżej i wybierz, gdzie będziesz mieszkał.",
     call_to_action: "Przejdź do wyszukiwarki",
   },
-  content: {
+  about: {
     title: "O firmie",
     content: `
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras diam nulla, accumsan nec augue

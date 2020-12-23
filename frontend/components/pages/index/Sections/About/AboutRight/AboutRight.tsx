@@ -23,9 +23,9 @@ export const AboutRight: FC = () => {
 
   return (
     <Grid item lg={6} md={5} css={styles.aboutRight}>
-      <PageTitle text={Content.content.title} css={styles.aboutRightTitle} />
+      <PageTitle text={Content.about.title} css={styles.aboutRightTitle} />
       <Typography variant="h3" css={styles.aboutRightContent}>
-        {Content.content.content}
+        {Content.about.content}
       </Typography>
     </Grid>
   );
