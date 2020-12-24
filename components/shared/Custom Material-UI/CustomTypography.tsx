@@ -1,6 +1,7 @@
 import { css } from "@emotion/core";
-import { createMuiTheme, Typography, TypographyProps } from "@material-ui/core";
+import { Typography, TypographyProps } from "@material-ui/core";
 import {
+  createMuiTheme,
   responsiveFontSizes,
   ThemeProvider,
   useTheme,
