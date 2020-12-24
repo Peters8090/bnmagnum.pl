@@ -63,11 +63,9 @@ export const Content: ContentType = {
     companyData: "Dane firmy",
     informations: [
       { title: "email", content: "biuro@nieruchomosci-waw.com" },
-      { title: "telefon", content: "+48 123 456 789" },
-      { title: "adres firmy", content: "ul. Marszałkowska 1, 00-026 Warszawa" },
-      { title: "nip", content: "5213849986" },
-      { title: "regon", content: "382028956" },
-      { title: "krs", content: "0000745671" },
+      { title: "telefon", content: "+48 666 098 777" },
+      { title: "nip", content: "8271403139" },
+      { title: "regon", content: "731027929" },
     ],
   },
   error: {
