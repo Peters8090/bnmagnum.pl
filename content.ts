@@ -11,6 +11,7 @@ interface ContentType {
   navigation: {
     logoImage?: string;
   };
+
   home: {
     welcome: string;
     subtitle: string;
@@ -60,7 +61,7 @@ export const Content: ContentType = {
   footer: {
     companyData: "Dane firmy",
     informations: [
-      { title: "email", content: "biuro@nieruchomosci-waw.com" },
+      { title: "email", content: "magda@bnmagnum.pl" },
       { title: "telefon", content: "+48 666 098 777" },
       { title: "nip", content: "8271403139" },
       { title: "regon", content: "731027929" },
