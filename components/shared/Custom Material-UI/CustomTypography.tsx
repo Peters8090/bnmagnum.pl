@@ -1,15 +1,11 @@
 import { css } from "@emotion/core";
-import { Typography, TypographyProps } from "@material-ui/core";
+import { createMuiTheme, Typography, TypographyProps } from "@material-ui/core";
 import {
-  createMuiTheme,
   responsiveFontSizes,
   ThemeProvider,
   useTheme,
 } from "@material-ui/core/styles";
 import React, { FC } from "react";
-
-// custom responsive font size
-// font weight
 
 interface CustomTypographyProps extends TypographyProps {
   overrideFontSize?:
@@ -39,7 +35,7 @@ export const CustomTypography: FC<CustomTypographyProps> = (props) => {
 
   const overrideTheme =
     props.overrideFontSize === undefined
-      ? theme
+      ? createMuiTheme(theme)
       : ((
           typeof props.overrideFontSize === "object"
             ? props.overrideFontSize.responsive
