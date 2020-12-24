@@ -1,7 +1,13 @@
 import { css } from "@emotion/core";
 import Grid from "@material-ui/core/Grid";
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+  useTheme,
+} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { FC } from "react";
+import React, { FC } from "react";
 import { Content } from "../../../../../../content";
 import { PageTitle } from "../../../shared/PageTitle";
 
@@ -21,12 +27,28 @@ export const AboutRight: FC = () => {
     `,
   };
 
+  const theme = useTheme();
+
   return (
     <Grid item lg={6} md={5} css={styles.aboutRight}>
       <PageTitle text={Content.about.title} css={styles.aboutRightTitle} />
-      <Typography variant="h3" css={styles.aboutRightContent}>
-        {Content.about.content}
-      </Typography>
+      <ThemeProvider
+        theme={responsiveFontSizes(
+          createMuiTheme({
+            ...theme,
+            typography: {
+              ...theme.typography,
+              h3: {
+                fontSize: "2.5rem",
+              },
+            },
+          })
+        )}
+      >
+        <Typography variant="h3" css={styles.aboutRightContent}>
+          {Content.about.content}
+        </Typography>
+      </ThemeProvider>
     </Grid>
   );
 };

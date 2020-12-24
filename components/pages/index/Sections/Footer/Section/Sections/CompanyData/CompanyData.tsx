@@ -12,8 +12,9 @@ export const CompanyData: FC = () => {
   return (
     <Section title={Content.footer.companyData} gridProps={{ md: 9 }}>
       <CustomGrid container justify="space-between">
-        {informationsChunked.map((informations) => (
+        {informationsChunked.map((informations, i) => (
           <CustomGrid
+            key={i}
             item
             xs={12}
             sm={
