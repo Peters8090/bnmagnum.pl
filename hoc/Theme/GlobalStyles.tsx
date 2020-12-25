@@ -24,14 +24,6 @@ export const GlobalStyles: FC = () => (
         background: #b3d4fc;
       }
 
-      a {
-        color: unset;
-      }
-
-      p {
-        white-space: pre-line;
-      }
-
       #__next-build-watcher,
       #__next-prerender-indicator {
         display: none !important;
