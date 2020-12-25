@@ -26,6 +26,13 @@ export const Theme: FC = (props) => {
           primary: { main: "#f50057" },
           secondary: { main: "#1976d2" },
         },
+        overrides: {
+          MuiLink: {
+            root: {
+              cursor: "pointer",
+            },
+          },
+        },
         customMixins: {
           flexCentered: css`
             display: flex;

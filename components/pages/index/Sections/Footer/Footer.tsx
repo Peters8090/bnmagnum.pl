@@ -1,11 +1,14 @@
 import { css } from "@emotion/core";
+import { Divider, Link as MuiLink, Typography } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import Link from "next/link";
 import React from "react";
 import { useScrollbarWidth } from "react-use";
 import FooterBackground from "../../../../../assets/images/footer-background.png";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { useCurrentNavigationHeight } from "../../../../../hooks/useCurrentNavigationHeight";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
+import PrivacyPolicyPage from "../../../../../pages/polityka-prywatnosci";
 import { CustomGrid } from "../../../../shared/Custom Material-UI/CustomGrid";
 import { PageTitle } from "../../shared/PageTitle";
 import { CompanyData } from "./Section/Sections/CompanyData/CompanyData";
@@ -57,6 +60,15 @@ export const Footer: RouteType = () => {
     title: css`
       margin-top: ${theme.spacing(5)}px;
     `,
+    dividerWrapper: css`
+      width: 100%;
+      margin: ${theme.spacing(1)}px 0;
+    `,
+    extraElements: css`
+      margin-bottom: ${theme.spacing(1)}px;
+      padding: 0 ${theme.spacing(3)}px;
+      width: 100%;
+    `,
   };
 
   const linkId = convertRouteHashToLinkId(Footer.routeName);
@@ -73,6 +85,16 @@ export const Footer: RouteType = () => {
         <CompanyData />
         <ContactForm />
       </CustomGrid>
+      <div css={styles.dividerWrapper}>
+        <Divider />
+      </div>
+      <div css={styles.extraElements}>
+        <Link href={PrivacyPolicyPage.routeName}>
+          <Typography>
+            <MuiLink color="textPrimary">Polityka Prywatności</MuiLink>
+          </Typography>
+        </Link>
+      </div>
     </footer>
   );
 };
