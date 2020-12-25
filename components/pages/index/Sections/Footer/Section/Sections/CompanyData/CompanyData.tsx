@@ -7,7 +7,7 @@ import { Section } from "../../Section";
 import { Information } from "./Information/Information";
 
 export const CompanyData: FC = () => {
-  const informationsChunked = chunk(Content.footer.informations, 3);
+  const informationsChunked = chunk(Content.footer.informations, 2);
 
   return (
     <Section title={Content.footer.companyData} gridProps={{ md: 9 }}>

@@ -73,9 +73,6 @@ export const Footer: RouteType = () => {
         <CompanyData />
         <ContactForm />
       </CustomGrid>
-      {/* <Hidden smDown>
-        <img src={FooterBackground} alt="" css={styles.footerBackgroundImg} />
-      </Hidden> */}
     </footer>
   );
 };
