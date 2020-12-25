@@ -20,16 +20,29 @@ const PrivacyPolicyPage: RouteType = () => {
     root: css`
       padding: ${theme.spacing(3)}px 10vw;
     `,
+    content: css`
+      white-space: pre-wrap;
+
+      strong {
+        font-weight: 500;
+      }
+    `,
   };
 
   return (
     <div css={styles.root}>
-      <CustomTypography variant="h6" align="center" gutterBottom>
+      <CustomTypography variant="h6" align="center">
         Polityka Prywatności
       </CustomTypography>
-      <CustomTypography overrideFontSize={1.1} fontWeight={300} align="justify">
-        {Content.privacyPolicy.content}
-      </CustomTypography>
+      <CustomTypography
+        css={styles.content}
+        overrideFontSize={1.1}
+        fontWeight={300}
+        align="justify"
+        dangerouslySetInnerHTML={{
+          __html: Content.privacyPolicy.content,
+        }}
+      />
     </div>
   );
 };

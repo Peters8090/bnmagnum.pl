@@ -32,6 +32,11 @@ export const Theme: FC = (props) => {
               cursor: "pointer",
             },
           },
+          MuiFormControlLabel: {
+            root: {
+              userSelect: "none",
+            },
+          },
         },
         customMixins: {
           flexCentered: css`

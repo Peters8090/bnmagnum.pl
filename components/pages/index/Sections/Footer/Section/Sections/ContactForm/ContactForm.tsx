@@ -1,11 +1,22 @@
 import { css } from "@emotion/core";
-import { Box, Button, CircularProgress, TextField } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Checkbox,
+  CircularProgress,
+  FormControlLabel,
+  Link as MuiLink,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import axios from "axios";
+import Link from "next/link";
 import { useSnackbar } from "notistack";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { importantData } from "../../../../../../../../importantData";
 import { FieldType } from "../../../../../../../../interfaces and types/FieldType";
+import PrivacyPolicyPage from "../../../../../../../../pages/polityka-prywatnosci";
 import { Section } from "../../Section";
 
 export const ContactForm: FC = () => {
@@ -30,7 +41,7 @@ export const ContactForm: FC = () => {
     {
       label: "Numer telefonu",
       name: "phoneNumber",
-      type: "text",
+      type: "tel",
     },
     {
       label: "Wiadomość",
@@ -85,6 +96,8 @@ export const ContactForm: FC = () => {
     setLoading(false);
   });
 
+  const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
+
   return (
     <Section title="Formularz kontaktowy" gridProps={{ md: 3 }}>
       <form css={styles.form} onSubmit={handleSubmit}>
@@ -108,10 +121,31 @@ export const ContactForm: FC = () => {
           />
         ))}
         <Box mt={1.5}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value={privacyPolicyAccepted}
+                onChange={(e) => setPrivacyPolicyAccepted(e.target.checked)}
+              />
+            }
+            label={
+              <Typography>
+                Akceptuję {}
+                <Link href={PrivacyPolicyPage.routeName}>
+                  <MuiLink color="textPrimary">Politykę Prywatności</MuiLink>
+                </Link>
+              </Typography>
+            }
+          />
           {loading ? (
             <CircularProgress />
           ) : (
-            <Button fullWidth variant="outlined" type="submit">
+            <Button
+              fullWidth
+              variant="outlined"
+              type="submit"
+              disabled={!privacyPolicyAccepted}
+            >
               Wyślij
             </Button>
           )}
