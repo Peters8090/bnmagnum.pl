@@ -1,22 +1,18 @@
 import { css } from "@emotion/core";
-import {
-  Button,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-} from "@material-ui/core";
+import { Button, Step, StepLabel, Stepper } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { useState } from "react";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
+import { CustomTypography } from "../../../../shared/Custom Material-UI/CustomTypography";
+import { PageTitle } from "../../shared/PageTitle";
 
 export const AboutSteps: RouteType = () => {
   const theme = useTheme();
   const styles = {
     root: css`
       width: 100%;
-      padding: ${theme.spacing(2)}px 0;
+      padding: 5%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -36,15 +32,21 @@ export const AboutSteps: RouteType = () => {
       margin-top: theme.spacing(2) px;
       margin-bottom: theme.spacing(1) px;
     `,
+    stepContent: css`
+      flex: 1;
+      margin: ${theme.spacing(2)}px 0;
+    `,
+    title: css`
+      text-align: center;
+    `,
   };
 
   const steps: Record<string, string> = {
-    "Kontakt z nami":
-      "Lorem 1 ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, officiis?",
-    "Kontakt z nami 2":
-      "Lorem 2 ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, officiis?",
-    "Kontakt z nami 3":
-      "Lorem 3 ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, officiis?",
+    "Skontaktuj się z nami":
+      "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie.",
+    Spotkanie:
+      "Na spotkanie przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
+    "Przebieg spotkania": "Lorem ipsum",
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -63,6 +65,7 @@ export const AboutSteps: RouteType = () => {
 
   return (
     <div css={styles.root} id={linkId}>
+      <PageTitle css={styles.title} text={AboutSteps.displayName} />
       <Stepper activeStep={activeStep}>
         {Object.entries(steps).map(([label]) => (
           <Step key={label}>
@@ -70,9 +73,6 @@ export const AboutSteps: RouteType = () => {
           </Step>
         ))}
       </Stepper>
-      <Typography css={styles.instructions}>
-        {Object.values(steps)[activeStep]}
-      </Typography>
       <div css={styles.buttonWrapper}>
         <Button
           color="inherit"
@@ -86,6 +86,25 @@ export const AboutSteps: RouteType = () => {
         <Button onClick={handleNextOrReset}>
           {activeStep === Object.keys(steps).length - 1 ? "Reset" : "Next"}
         </Button>
+      </div>
+      <div css={styles.stepContent}>
+        <CustomTypography
+          gutterBottom
+          fontWeight={300}
+          align="center"
+          variant="h3"
+          overrideFontSize={2.3}
+        >
+          {Object.keys(steps)[activeStep]}
+        </CustomTypography>
+        <CustomTypography
+          fontWeight={200}
+          align="justify"
+          variant="h4"
+          css={styles.instructions}
+        >
+          {Object.values(steps)[activeStep]}
+        </CustomTypography>
       </div>
     </div>
   );
