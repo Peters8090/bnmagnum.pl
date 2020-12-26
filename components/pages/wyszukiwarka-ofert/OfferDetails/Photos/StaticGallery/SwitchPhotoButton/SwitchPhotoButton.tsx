@@ -20,7 +20,7 @@ export const SwitchPhotoButton: FC<SwitchPhotoButtonProps> = (props) => {
       disabled={!photos[afterClickPhotoIndex]}
     >
       {props.side === "right" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      {props.side === "right" ? "Następny" : "Poprzedni"}
+      {props.side === "right" ? Content.utils.next : Content.utils.back}
     </Button>
   );
 };

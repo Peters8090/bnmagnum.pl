@@ -11,7 +11,11 @@ interface ContentType {
   navigation: {
     logoImage?: string;
   };
-
+  utils: {
+    next: string;
+    back: string;
+    reset: string;
+  };
   home: {
     welcome: string;
     subtitle: string;
@@ -46,6 +50,11 @@ export const Content: ContentType = {
   },
   navigation: {
     logoImage: NavLogo,
+  },
+  utils: {
+    next: "Następny",
+    back: "Poprzedni",
+    reset: "Od nowa",
   },
   home: {
     welcome: "Witaj!",

@@ -2,6 +2,7 @@ import { css } from "@emotion/core";
 import { Button, Step, StepLabel, Stepper } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { useState } from "react";
+import { Content } from "../../../../../content";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { CustomTypography } from "../../../../shared/Custom Material-UI/CustomTypography";
@@ -15,7 +16,6 @@ export const AboutSteps: RouteType = () => {
       padding: 5%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     `,
     buttonWrapper: css`
       display: flex;
@@ -32,12 +32,22 @@ export const AboutSteps: RouteType = () => {
       margin-top: theme.spacing(2) px;
       margin-bottom: theme.spacing(1) px;
     `,
-    stepContent: css`
-      flex: 1;
-      margin: ${theme.spacing(2)}px 0;
-    `,
     title: css`
       text-align: center;
+    `,
+    stepContent: css`
+      flex: 1;
+      margin: ${theme.spacing(1)}px 0;
+    `,
+    main: css`
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      margin-top: ${theme.spacing(3)}px;
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2%;
     `,
   };
 
@@ -66,49 +76,54 @@ export const AboutSteps: RouteType = () => {
   return (
     <div css={styles.root} id={linkId}>
       <PageTitle css={styles.title} text={AboutSteps.displayName} />
-      <Stepper activeStep={activeStep}>
-        {Object.entries(steps).map(([label]) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <div css={styles.buttonWrapper}>
-        <Button
-          color="inherit"
-          disabled={activeStep === 0}
-          onClick={handleBack}
-          css={styles.button}
-        >
-          Back
-        </Button>
-        <div css={styles.spacer} />
-        <Button onClick={handleNextOrReset}>
-          {activeStep === Object.keys(steps).length - 1 ? "Reset" : "Next"}
-        </Button>
-      </div>
-      <div css={styles.stepContent}>
-        <CustomTypography
-          gutterBottom
-          fontWeight={300}
-          align="center"
-          variant="h3"
-          overrideFontSize={2.3}
-        >
-          {Object.keys(steps)[activeStep]}
-        </CustomTypography>
-        <CustomTypography
-          fontWeight={200}
-          align="justify"
-          variant="h4"
-          css={styles.instructions}
-        >
-          {Object.values(steps)[activeStep]}
-        </CustomTypography>
+      <div css={styles.main}>
+        <Stepper activeStep={activeStep}>
+          {Object.entries(steps).map(([label]) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <div css={styles.stepContent}>
+          <CustomTypography
+            gutterBottom
+            fontWeight={400}
+            align="center"
+            variant="h4"
+            overrideFontSize={2}
+          >
+            {Object.keys(steps)[activeStep]}
+          </CustomTypography>
+          <CustomTypography
+            fontWeight={300}
+            align="justify"
+            variant="h5"
+            overrideFontSize={1.7}
+            css={styles.instructions}
+          >
+            {Object.values(steps)[activeStep]}
+          </CustomTypography>
+        </div>
+        <div css={styles.buttonWrapper}>
+          <Button
+            color="inherit"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            css={styles.button}
+          >
+            {Content.utils.back}
+          </Button>
+          <div css={styles.spacer} />
+          <Button onClick={handleNextOrReset}>
+            {activeStep === Object.keys(steps).length - 1
+              ? Content.utils.reset
+              : Content.utils.next}
+          </Button>
+        </div>
       </div>
     </div>
   );
 };
 
-AboutSteps.routeName = "/#opis-wspolpracy";
-AboutSteps.displayName = "Opis współpracy";
+AboutSteps.routeName = "/#dla-sprzedajacych";
+AboutSteps.displayName = "Dla sprzedających";
