@@ -16,6 +16,10 @@ export const AboutSteps: RouteType = () => {
   const styles = {
     root: css`
       width: 100%;
+      padding: ${theme.spacing(2)}px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     `,
     buttonWrapper: css`
       display: flex;
@@ -34,17 +38,20 @@ export const AboutSteps: RouteType = () => {
     `,
   };
 
-  const steps = [
-    "Select campaign settings",
-    "Create an ad group",
-    "Create an ad",
-  ];
+  const steps: Record<string, string> = {
+    "Kontakt z nami":
+      "Lorem 1 ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, officiis?",
+    "Kontakt z nami 2":
+      "Lorem 2 ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, officiis?",
+    "Kontakt z nami 3":
+      "Lorem 3 ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, officiis?",
+  };
 
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNextOrReset = () => {
     setActiveStep((prevActiveStep) =>
-      prevActiveStep === steps.length - 1 ? 0 : prevActiveStep + 1
+      prevActiveStep === Object.keys(steps).length - 1 ? 0 : prevActiveStep + 1
     );
   };
 
@@ -57,13 +64,15 @@ export const AboutSteps: RouteType = () => {
   return (
     <div css={styles.root} id={linkId}>
       <Stepper activeStep={activeStep}>
-        {steps.map((label) => (
+        {Object.entries(steps).map(([label]) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
-      <Typography css={styles.instructions}>Step {activeStep + 1}</Typography>
+      <Typography css={styles.instructions}>
+        {Object.values(steps)[activeStep]}
+      </Typography>
       <div css={styles.buttonWrapper}>
         <Button
           color="inherit"
@@ -75,7 +84,7 @@ export const AboutSteps: RouteType = () => {
         </Button>
         <div css={styles.spacer} />
         <Button onClick={handleNextOrReset}>
-          {activeStep === steps.length - 1 ? "Reset" : "Next"}
+          {activeStep === Object.keys(steps).length - 1 ? "Reset" : "Next"}
         </Button>
       </div>
     </div>
