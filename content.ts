@@ -22,7 +22,7 @@ interface ContentType {
     content: string;
     image: string;
   };
-  ourEmployees?: {
+  ourEmployees: {
     title: string;
     employees: EmployeeProps[];
   };
@@ -52,6 +52,21 @@ export const Content: ContentType = {
     subtitle:
       "Poszukujesz domu lub mieszkania? Dobrze trafiłeś! Kliknij przycisk poniżej i wybierz, gdzie będziesz mieszkał.",
     call_to_action: "Przejdź do wyszukiwarki",
+  },
+  ourEmployees: {
+    title: "Nasi pracownicy",
+    employees: [
+      {
+        title: "Jan Kowalski",
+        description: [
+          "Właściciel firmy",
+          "Pośrednik nieruchomości od wielu lat",
+          "Telefon: +48 123 456 789",
+        ],
+        image:
+          "https://icon-library.com/images/profile-png-icon/profile-png-icon-24.jpg",
+      },
+    ],
   },
   about: {
     title: "O firmie",
