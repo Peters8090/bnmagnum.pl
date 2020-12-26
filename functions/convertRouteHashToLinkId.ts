@@ -1,1 +1,2 @@
-export const convertRouteHashToLinkId = (routeHash: string) => /.*#(.*)/.exec(routeHash)![1]
+export const convertRouteHashToLinkId = (routeHash: string) =>
+  /.*#(.*)/.exec(routeHash)?.[1] ?? "";

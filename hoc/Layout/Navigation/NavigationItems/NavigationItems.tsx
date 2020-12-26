@@ -1,12 +1,10 @@
 import { css } from "@emotion/core";
 import { useTheme } from "@material-ui/core/styles";
 import { FC } from "react";
-import { About } from "../../../../components/pages/index/Sections/About/About";
 import { Footer } from "../../../../components/pages/index/Sections/Footer/Footer";
-import { Hero } from "../../../../components/pages/index/Sections/Hero/Hero";
-import { OurEmployees } from "../../../../components/pages/index/Sections/OurEmployees/OurEmployees";
 import { RouteLink } from "../../../../functions/RouteLink";
 import { RouteType } from "../../../../interfaces and types/RouteType";
+import { homeSections } from "../../../../pages";
 import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
 import {
   NavigationItem,
@@ -33,13 +31,18 @@ export const NavigationItems: FC<NavigationItemsProps> = (props) => {
     `,
   };
 
-  const routeList: RouteType<any>[] = [
-    Hero,
-    About,
-    OurEmployees,
-    OfferSearch,
-    Footer,
-  ];
+  const routeList: RouteType<any>[] = [...homeSections, OfferSearch];
+
+  const footerIndex = routeList.indexOf(Footer);
+  const lastElementIndex = routeList.length - 1;
+
+  if (footerIndex !== -1) {
+    [routeList[footerIndex], routeList[lastElementIndex]] = [
+      routeList[lastElementIndex],
+      routeList[footerIndex],
+    ];
+  }
+
   return (
     <div css={styles.root}>
       {routeList.map((route) => (
