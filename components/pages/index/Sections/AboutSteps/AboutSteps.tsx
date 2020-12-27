@@ -65,43 +65,11 @@ export const AboutSteps: RouteType = () => {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 2%;
+      padding: ${theme.spacing(1)}px ${theme.spacing(3)}px;
     `,
   };
 
-  const steps = {
-    "Skontaktuj się z nami":
-      "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
-    "Przebieg spotkania": (
-      <>
-        Doradca:
-        <ul>
-          <li>
-            przedstawi Ci raport na temat cen transakcyjnych oraz zaproponuje
-            przedział cenowy, dzięki któremu dowiesz się, ile naprawdę może być
-            warta Twoja nieruchomość
-          </li>
-          <li>ustali z Tobą realną cenę wyjściową sprzedaży</li>
-          <li>
-            przedstawi Ci plan marketingowy sprzedaży Twojej nieruchomości
-          </li>
-          <li>
-            zrobi zdjęcia nieruchomości lub przedyskutuje temat home stagingu
-            (czyli profesjonalnego przygotowania nieruchomości do zdjęć i
-            sprzedaży) i umówi profesjonalną sesję zdjęciową
-          </li>
-          <li>podpisze z Tobą umowę pośrednictwa</li>
-          <li>
-            zapyta o stan prawny nieruchomości oraz zbierze jak najwięcej
-            informacji o nieruchomości, by móc jak najlepiej przedstawić ją
-            przyszłym klientom.
-          </li>
-        </ul>
-      </>
-    ),
-    "Współpraca na wyłączność":
-      "Najbardziej skuteczną formą współpracy z agencją nieruchomości jest powierzenie sprzedaży nieruchomości tylko jednemu pośrednikowi. Dzięki temu masz pełną kontrolę nad sprzedażą i masz pewność, że pośrednik dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres czynności proponowany przez pośrednika jest znacznie szerszy niż w przypadku umowy otwartej.",
-  };
+  const steps = Content.guideForSellers.steps;
 
   const [activeStep, setActiveStep] = useState(0);
 
