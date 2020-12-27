@@ -29,8 +29,7 @@ export const AboutSteps: RouteType = () => {
       flex: 1 1 auto;
     `,
     instructions: css`
-      margin-top: theme.spacing(2) px;
-      margin-bottom: theme.spacing(1) px;
+      white-space: pre-wrap;
     `,
     title: css`
       text-align: center;
@@ -53,10 +52,17 @@ export const AboutSteps: RouteType = () => {
 
   const steps: Record<string, string> = {
     "Skontaktuj się z nami":
-      "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie.",
-    Spotkanie:
-      "Na spotkanie przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
-    "Przebieg spotkania": "Lorem ipsum",
+      "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
+    "Przebieg spotkania": `Doradca:
+- przedstawi Ci raport na temat cen transakcyjnych oraz zaproponuje przedział cenowy, dzięki któremu dowiesz się, ile naprawdę może być warta Twoja nieruchomość
+- ustali z Tobą realną cenę wyjściową sprzedaży
+- przedstawi Ci plan marketingowy sprzedaży Twojej nieruchomości
+- zrobi zdjęcia nieruchomości lub przedyskutuje temat home stagingu (czyli profesjonalnego przygotowania nieruchomości do zdjęć i sprzedaży) i umówi profesjonalną sesję zdjęciową
+- podpisze z Tobą umowę pośrednictwa
+- zapyta o stan prawny nieruchomości oraz zbierze jak najwięcej informacji o nieruchomości, by móc jak najlepiej przedstawić ją przyszłym klientom.
+`,
+    "Współpraca na wyłączność":
+      "Najbardziej skuteczną formą współpracy z agencją nieruchomości jest powierzenie sprzedaży nieruchomości tylko jednemu pośrednikowi. Dzięki temu masz pełną kontrolę nad sprzedażą i masz pewność, że pośrednik dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres czynności proponowany przez pośrednika jest znacznie szerszy niż w przypadku umowy otwartej.",
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -104,7 +110,7 @@ export const AboutSteps: RouteType = () => {
             {Object.values(steps)[activeStep]}
           </CustomTypography>
         </div>
-        <div css={styles.buttonWrapper}>
+        <nav css={styles.buttonWrapper}>
           <Button
             color="inherit"
             disabled={activeStep === 0}
@@ -119,7 +125,7 @@ export const AboutSteps: RouteType = () => {
               ? Content.utils.reset
               : Content.utils.next}
           </Button>
-        </div>
+        </nav>
       </div>
     </div>
   );
