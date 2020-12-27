@@ -31,7 +31,7 @@ const PrivacyPolicyPage: RouteType = () => {
 
   return (
     <div css={styles.root}>
-      <CustomTypography variant="h6" align="center">
+      <CustomTypography variant="h6" align="center" gutterBottom>
         Polityka Prywatności
       </CustomTypography>
       <CustomTypography

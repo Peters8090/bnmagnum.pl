@@ -1,4 +1,5 @@
 import { css } from "@emotion/core";
+import { useTheme } from "@material-ui/core/styles";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import { About } from "../components/pages/index/Sections/About/About";
@@ -22,6 +23,7 @@ export const homeSections: RouteType<any>[] = [
 
 const HomePage: RouteType = () => {
   const navHeight = useCurrentNavigationHeight();
+  const theme = useTheme();
   const styles = {
     root: css`
       display: flex;
@@ -29,6 +31,7 @@ const HomePage: RouteType = () => {
 
       & > * {
         min-height: calc(100vh - ${navHeight}px);
+        margin: ${theme.spacing(1)}px 0;
       }
     `,
   };
