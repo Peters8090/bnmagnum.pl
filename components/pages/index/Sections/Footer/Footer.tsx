@@ -1,14 +1,13 @@
 import { css } from "@emotion/core";
-import { Divider, Link as MuiLink, Typography } from "@material-ui/core";
+import { Button, Divider } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
-import Link from "next/link";
 import React from "react";
 import { useScrollbarWidth } from "react-use";
 import FooterBackground from "../../../../../assets/images/footer-background.png";
+import { Content } from "../../../../../content";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { useCurrentNavigationHeight } from "../../../../../hooks/useCurrentNavigationHeight";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
-import PrivacyPolicyPage from "../../../../../pages/polityka-prywatnosci";
 import { CustomGrid } from "../../../../shared/Custom Material-UI/CustomGrid";
 import { PageTitle } from "../../shared/PageTitle";
 import { CompanyData } from "./Section/Sections/CompanyData/CompanyData";
@@ -68,6 +67,18 @@ export const Footer: RouteType = () => {
       margin-bottom: ${theme.spacing(1)}px;
       padding: 0 ${theme.spacing(3)}px;
       width: 100%;
+      display: flex;
+      align-items: center;
+
+      & > * {
+        margin: 0 ${theme.spacing(1)}px;
+      }
+    `,
+    socialLink: css`
+      border-radius: 10px;
+    `,
+    socialLinkImg: css`
+      height: 50px;
     `,
   };
 
@@ -89,11 +100,15 @@ export const Footer: RouteType = () => {
         <Divider />
       </div>
       <div css={styles.extraElements}>
-        <Link href={PrivacyPolicyPage.routeName}>
-          <Typography>
-            <MuiLink color="textPrimary">Polityka Prywatności</MuiLink>
-          </Typography>
-        </Link>
+        {Content.footer.socialLinks.map((socialLink) => (
+          <Button
+            href={socialLink.href}
+            target="_blank"
+            css={styles.socialLink}
+          >
+            <img src={socialLink.image} css={styles.socialLinkImg} />
+          </Button>
+        ))}
       </div>
     </footer>
   );

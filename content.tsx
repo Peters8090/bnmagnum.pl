@@ -1,5 +1,8 @@
+import FacebookLogo from "./assets/images/facebook.png";
 import Favicon from "./assets/images/favicon.png";
+import InstagramLogo from "./assets/images/instagram.png";
 import NavLogo from "./assets/images/nav_logo.png";
+import OtodomLogo from "./assets/images/otodom.png";
 import { EmployeeProps } from "./components/pages/index/Sections/OurEmployees/Employee/Employee";
 
 interface ContentType {
@@ -36,6 +39,7 @@ interface ContentType {
   footer: {
     companyData: string;
     informations: { title: string; content: string }[];
+    socialLinks: { image: string; alt: string; href: string }[];
   };
   privacyPolicy: {
     content: string;
@@ -130,6 +134,24 @@ export const Content: ContentType = {
       { title: "telefon", content: "+48 666 098 777" },
       { title: "nip", content: "8271403139" },
       { title: "regon", content: "731027929" },
+    ],
+    socialLinks: [
+      {
+        image: OtodomLogo,
+        alt: "otodom",
+        href: "https://otodom.pl",
+      },
+      {
+        image: FacebookLogo,
+        alt: "facebook",
+
+        href: "https://facebook.com",
+      },
+      {
+        image: InstagramLogo,
+        alt: "instagram",
+        href: "https://instagram.com",
+      },
     ],
   },
   privacyPolicy: {
