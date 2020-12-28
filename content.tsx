@@ -139,18 +139,17 @@ export const Content: ContentType = {
       {
         image: OtodomLogo,
         alt: "otodom",
-        href: "https://otodom.pl",
+        href: "https://www.otodom.pl/shop/magnum-nieruchomosci-IDvkUH/",
       },
       {
         image: FacebookLogo,
         alt: "facebook",
-
-        href: "https://facebook.com",
+        href: "https://www.facebook.com/Magnum-Nieruchomości-103080614954683",
       },
       {
         image: InstagramLogo,
         alt: "instagram",
-        href: "https://instagram.com",
+        href: "https://www.instagram.com/magnum.nieruchomosci/",
       },
     ],
   },

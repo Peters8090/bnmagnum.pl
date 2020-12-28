@@ -78,7 +78,7 @@ export const Footer: RouteType = () => {
       border-radius: 10px;
     `,
     socialLinkImg: css`
-      height: 50px;
+      height: min(50px, 12vw);
     `,
   };
 
