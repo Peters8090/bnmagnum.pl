@@ -18,7 +18,10 @@ export const AboutRight: FC = () => {
 
   return (
     <Grid item lg={6} md={5} css={styles.aboutRight}>
-      <PageTitle text={Content.about.title} css={styles.aboutRightTitle} />
+      <PageTitle
+        text={Content.about.route.displayName}
+        css={styles.aboutRightTitle}
+      />
       <CustomTypography
         overrideFontSize={2.5}
         fontWeight={200}

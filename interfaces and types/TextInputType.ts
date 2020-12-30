@@ -1,4 +1,9 @@
-import {TextType} from './FieldType'
+import { TextType } from "./FieldType";
 
-export type TextInputTypeWithoutTextType = 'password' | 'number' | 'email' | 'date'
-export type TextInputType = TextInputTypeWithoutTextType | TextType
+export type TextInputTypeWithoutTextType =
+  | "tel"
+  | "password"
+  | "number"
+  | "email"
+  | "date";
+export type TextInputType = TextInputTypeWithoutTextType | TextType;

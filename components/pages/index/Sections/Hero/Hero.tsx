@@ -1,12 +1,13 @@
 import { css } from "@emotion/core";
 import { Hidden } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import { Content } from "../../../../../content";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { GoDownFab } from "./GoDownFab/GoDownFab";
 import { HeroImage } from "./HeroImage/HeroImage";
 import { HeroWelcome } from "./HeroWelcome/HeroWelcome";
 
-export const Hero: RouteType = () => {
+export const Hero: RouteType = Object.assign(() => {
   const theme = useTheme();
   const styles = {
     root: css`
@@ -31,7 +32,4 @@ export const Hero: RouteType = () => {
       <GoDownFab />
     </div>
   );
-};
-
-Hero.displayName = "Home";
-Hero.routeName = "/";
+}, Content.home.route);

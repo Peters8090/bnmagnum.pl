@@ -4,6 +4,7 @@ import InstagramLogo from "./assets/images/instagram.png";
 import NavLogo from "./assets/images/nav_logo.png";
 import OtodomLogo from "./assets/images/otodom.png";
 import { EmployeeProps } from "./components/pages/index/Sections/OurEmployees/Employee/Employee";
+import { RouteOnlyProps } from "./interfaces and types/RouteType";
 
 interface ContentType {
   siteName: string;
@@ -20,29 +21,39 @@ interface ContentType {
     reset: string;
   };
   home: {
+    route: RouteOnlyProps;
     welcome: string;
     subtitle: string;
     call_to_action: string;
   };
   about: {
-    title: string;
+    route: RouteOnlyProps;
     content: string;
     image: string;
   };
   guideForSellers: {
+    route: RouteOnlyProps;
     steps: Record<string, string | JSX.Element>;
   };
   ourEmployees: {
-    title: string;
+    route: RouteOnlyProps;
     employees: EmployeeProps[];
   };
   footer: {
+    route: RouteOnlyProps;
+    sectionTitle: string;
     companyData: string;
+    contactForm: string;
+    privacyPolicyConsent: [string, string];
     informations: { title: string; content: string }[];
     socialLinks: { image: string; alt: string; href: string }[];
   };
   privacyPolicy: {
+    route: RouteOnlyProps;
     content: string;
+  };
+  offers: {
+    route: RouteOnlyProps;
   };
   error: {
     not_found: string;
@@ -64,12 +75,26 @@ export const Content: ContentType = {
     reset: "Od nowa",
   },
   home: {
+    route: {
+      routeName: "/",
+      displayName: "Home",
+    },
     welcome: "Witaj!",
     subtitle:
       "Poszukujesz domu lub mieszkania? Dobrze trafiłeś! Kliknij przycisk poniżej i wybierz, gdzie będziesz mieszkał.",
     call_to_action: "Przejdź do wyszukiwarki",
   },
+  offers: {
+    route: {
+      displayName: "Oferty",
+      routeName: "/wyszukiwarka-ofert/[[...offerName]]",
+    },
+  },
   guideForSellers: {
+    route: {
+      routeName: "/#dla-sprzedajacych",
+      displayName: "Dla sprzedających",
+    },
     steps: {
       "Skontaktuj się z nami":
         "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
@@ -105,7 +130,10 @@ export const Content: ContentType = {
     },
   },
   ourEmployees: {
-    title: "Nasi pracownicy",
+    route: {
+      routeName: "/#nasi-pracownicy",
+      displayName: "Nasi pracownicy",
+    },
     employees: [
       {
         title: "Jan Kowalski",
@@ -120,7 +148,10 @@ export const Content: ContentType = {
     ],
   },
   about: {
-    title: "O firmie",
+    route: {
+      routeName: "/#o-firmie",
+      displayName: "O firmie",
+    },
     content: `
       Jesteśmy profesjonalnym biurem nieruchomości. Każda z naszych ofert jest rzetelnie sprawdzana, aby zapenić Państwu pełne bezpieczeństwo i wygodę. Mamy doświadczenie w branży nieruchomości, odpowiednią wiedzę oraz zamiłowanie do pomagania ludziom.
     `,
@@ -128,7 +159,14 @@ export const Content: ContentType = {
       "https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg",
   },
   footer: {
+    route: {
+      routeName: "/#kontakt",
+      displayName: "Kontakt",
+    },
+    sectionTitle: "Kontakt z nami",
     companyData: "Dane firmy",
+    contactForm: "Formularz kontaktowy",
+    privacyPolicyConsent: ["Akceptuję", "Politykę Prywatności"],
     informations: [
       { title: "email", content: "magda@bnmagnum.pl" },
       { title: "telefon", content: "+48 666 098 777" },
@@ -154,6 +192,10 @@ export const Content: ContentType = {
     ],
   },
   privacyPolicy: {
+    route: {
+      displayName: "Polityka Prywatności",
+      routeName: "/polityka-prywatnosci",
+    },
     content: `Polityka prywatności jest realizowana zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (określane jako „RODO”).
 
 <strong>Administrator danych osobowych</strong>

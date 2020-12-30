@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useSnackbar } from "notistack";
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Content } from "../../../../../../../../content";
 import { importantData } from "../../../../../../../../importantData";
 import { FieldType } from "../../../../../../../../interfaces and types/FieldType";
 import PrivacyPolicyPage from "../../../../../../../../pages/polityka-prywatnosci";
@@ -130,9 +131,11 @@ export const ContactForm: FC = () => {
             }
             label={
               <Typography>
-                Akceptuję {}
+                {Content.footer.privacyPolicyConsent[0]} {}
                 <Link href={PrivacyPolicyPage.routeName}>
-                  <MuiLink color="textPrimary">Politykę Prywatności</MuiLink>
+                  <MuiLink color="textPrimary">
+                    {Content.footer.privacyPolicyConsent[1]}
+                  </MuiLink>
                 </Link>
               </Typography>
             }

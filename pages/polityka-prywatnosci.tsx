@@ -7,12 +7,12 @@ import { Content } from "../content";
 import { RouteType } from "../interfaces and types/RouteType";
 import { HeadContext } from "./_app";
 
-const PrivacyPolicyPage: RouteType = () => {
+const PrivacyPolicyPage: RouteType = Object.assign(() => {
   const router = useRouter();
   const { setTitleParts } = useContext(HeadContext);
 
   useEffect(() => {
-    setTitleParts(["Polityka Prywatności"]);
+    setTitleParts([Content.privacyPolicy.route.displayName]);
   }, [router.asPath]);
 
   const theme = useTheme();
@@ -32,7 +32,7 @@ const PrivacyPolicyPage: RouteType = () => {
   return (
     <div css={styles.root}>
       <CustomTypography variant="h6" align="center" gutterBottom>
-        Polityka Prywatności
+        {Content.privacyPolicy.route.displayName}
       </CustomTypography>
       <CustomTypography
         css={styles.content}
@@ -45,9 +45,6 @@ const PrivacyPolicyPage: RouteType = () => {
       />
     </div>
   );
-};
-
-PrivacyPolicyPage.displayName = "Polityka Prywatności";
-PrivacyPolicyPage.routeName = "/polityka-prywatnosci";
+}, Content.privacyPolicy.route);
 
 export default PrivacyPolicyPage;

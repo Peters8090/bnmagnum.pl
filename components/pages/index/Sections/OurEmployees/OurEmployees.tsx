@@ -6,7 +6,7 @@ import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { PageTitle } from "../../shared/PageTitle";
 import { Employee } from "./Employee/Employee";
 
-export const OurEmployees: RouteType = () => {
+export const OurEmployees: RouteType = Object.assign(() => {
   const theme = useTheme();
   const styles = {
     ourEmployees: css`
@@ -20,7 +20,7 @@ export const OurEmployees: RouteType = () => {
 
   return (
     <div id={linkId} css={styles.ourEmployees}>
-      <PageTitle text={Content.ourEmployees.title} />
+      <PageTitle text={Content.ourEmployees.route.displayName} />
       <div>
         {Content.ourEmployees.employees.map((employee) => (
           <Employee {...employee} />
@@ -28,7 +28,4 @@ export const OurEmployees: RouteType = () => {
       </div>
     </div>
   );
-};
-
-OurEmployees.displayName = "Nasi pracownicy";
-OurEmployees.routeName = "/#nasi-pracownicy";
+}, Content.ourEmployees.route);

@@ -14,7 +14,7 @@ import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { CustomTypography } from "../../../../shared/Custom Material-UI/CustomTypography";
 import { PageTitle } from "../../shared/PageTitle";
 
-export const AboutSteps: RouteType = () => {
+export const AboutSteps: RouteType = Object.assign(() => {
   const theme = useTheme();
   const styles = {
     root: css`
@@ -92,7 +92,10 @@ export const AboutSteps: RouteType = () => {
 
   return (
     <div css={styles.root} id={linkId}>
-      <PageTitle css={styles.title} text={AboutSteps.displayName} />
+      <PageTitle
+        css={styles.title}
+        text={Content.guideForSellers.route.displayName}
+      />
       <div css={styles.main}>
         <Stepper
           activeStep={activeStep}
@@ -143,7 +146,4 @@ export const AboutSteps: RouteType = () => {
       </div>
     </div>
   );
-};
-
-AboutSteps.routeName = "/#dla-sprzedajacych";
-AboutSteps.displayName = "Dla sprzedających";
+}, Content.guideForSellers.route);

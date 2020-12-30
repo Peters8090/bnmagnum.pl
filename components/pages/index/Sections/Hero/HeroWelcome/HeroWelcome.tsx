@@ -56,7 +56,7 @@ export const HeroWelcome: FC = () => {
       </Typography>
       <Link {...RouteLink(OfferSearch)}>
         <Button variant="contained" disableElevation css={styles.button}>
-          Przejdź do wyszukiwarki
+          {Content.home.call_to_action}
         </Button>
       </Link>
     </Container>

@@ -9,6 +9,7 @@ import { OfferDetails } from "../../components/pages/wyszukiwarka-ofert/OfferDet
 import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
 import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
 import { HiddenCond } from "../../components/shared/HiddenCond/HiddenCond";
+import { Content } from "../../content";
 import { RouteLink } from "../../functions/RouteLink";
 import { PageAnimation } from "../../hoc/PageAnimation/PageAnimation";
 import { useCurrentNavigationHeight } from "../../hooks/useCurrentNavigationHeight";
@@ -30,7 +31,7 @@ interface OfferSearchProps {
   };
 }
 
-const OfferSearch: RouteType<OfferSearchProps> = (props) => {
+const OfferSearch: RouteType<OfferSearchProps> = Object.assign((props) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const navHeight = useCurrentNavigationHeight();
@@ -96,7 +97,7 @@ const OfferSearch: RouteType<OfferSearchProps> = (props) => {
       </PageAnimation>
     </div>
   );
-};
+}, Content.offers.route);
 
 OfferSearch.getInitialProps = async (context) => {
   const reqQuery =
@@ -161,8 +162,5 @@ OfferSearch.getInitialProps = async (context) => {
     offersWithPagination: response.data,
   };
 };
-
-OfferSearch.displayName = "Oferty";
-OfferSearch.routeName = "/wyszukiwarka-ofert/[[...offerName]]";
 
 export default OfferSearch;

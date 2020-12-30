@@ -13,7 +13,7 @@ import { PageTitle } from "../../shared/PageTitle";
 import { CompanyData } from "./Section/Sections/CompanyData/CompanyData";
 import { ContactForm } from "./Section/Sections/ContactForm/ContactForm";
 
-export const Footer: RouteType = () => {
+export const Footer: RouteType = Object.assign(() => {
   const navHeight = useCurrentNavigationHeight();
   const scrollBarWidth = useScrollbarWidth()!;
   const theme = useTheme();
@@ -86,7 +86,7 @@ export const Footer: RouteType = () => {
 
   return (
     <footer id={linkId} css={styles.root}>
-      <PageTitle text="Kontakt z nami" css={styles.title} />
+      <PageTitle text={Content.footer.sectionTitle} css={styles.title} />
       <CustomGrid
         container
         spacing={3}
@@ -112,7 +112,4 @@ export const Footer: RouteType = () => {
       </div>
     </footer>
   );
-};
-
-Footer.displayName = "Kontakt";
-Footer.routeName = `/#kontakt`;
+}, Content.footer.route);
