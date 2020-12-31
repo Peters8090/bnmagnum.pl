@@ -1,10 +1,10 @@
 import { css } from "@emotion/core";
 import { Button, useMediaQuery } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
-import Typography from "@material-ui/core/Typography";
 import { LinkProps } from "next/link";
 import { useRouter } from "next/router";
-import { FC, MouseEventHandler } from "react";
+import React, { FC, MouseEventHandler } from "react";
+import { CustomTypography } from "../../../../../components/shared/Custom Material-UI/CustomTypography";
 import { NextLinkSmoothScroll } from "./NextLinkSmoothScroll/NextLinkSmoothScroll";
 
 export interface NavigationItemProps {
@@ -33,7 +33,7 @@ export const NavigationItem: FC<NavigationItemProps> = (props) => {
       css`
         font-weight: 500;
       `};
-      padding: 0 ${theme.spacing(2)}px;
+      margin: 0 ${theme.spacing(2.5)}px;
       text-align: center;
       text-transform: none;
     `,
@@ -50,7 +50,9 @@ export const NavigationItem: FC<NavigationItemProps> = (props) => {
         disableRipple={!isMobile}
         css={styles.button}
       >
-        <Typography css={styles.text}>{props.text}</Typography>
+        <CustomTypography overrideFontSize={1.1} css={styles.text}>
+          {props.text}
+        </CustomTypography>
       </Button>
     </NextLinkSmoothScroll>
   );

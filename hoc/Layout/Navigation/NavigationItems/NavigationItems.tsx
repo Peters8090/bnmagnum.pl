@@ -23,11 +23,9 @@ export const NavigationItems: FC<NavigationItemsProps> = (props) => {
 
       ${theme.breakpoints.down("sm")} {
         flex-direction: column;
-
-        & > * {
-          margin: ${theme.spacing(0.5)}px 0;
-        }
       }
+
+      margin: 0 ${theme.spacing(2)}px;
     `,
   };
 
