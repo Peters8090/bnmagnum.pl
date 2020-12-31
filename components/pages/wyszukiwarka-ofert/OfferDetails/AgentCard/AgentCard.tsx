@@ -36,6 +36,7 @@ export const AgentCard: FC<AgentCardProps> = (props) => {
     `,
     textHighlighted: css`
       color: ${theme.palette.secondary.main};
+      text-decoration: none;
       cursor: pointer;
     `,
   };
