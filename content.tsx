@@ -47,6 +47,10 @@ interface ContentType {
     privacyPolicyConsent: [string, string];
     informations: { title: string; content: string }[];
     socialLinks: { image: string; alt: string; href: string }[];
+    madeBy: {
+      text: string;
+      link: string;
+    };
   };
   privacyPolicy: {
     route: RouteOnlyProps;
@@ -190,6 +194,10 @@ export const Content: ContentType = {
         href: "https://www.instagram.com/magnum.nieruchomosci/",
       },
     ],
+    madeBy: {
+      text: "Made by Piotr Bartoszewski",
+      link: "https://www.linkedin.com/in/piotr-bartoszewski-5280a6199/",
+    },
   },
   privacyPolicy: {
     route: {

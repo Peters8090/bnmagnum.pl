@@ -1,13 +1,16 @@
 import { css } from "@emotion/core";
 import { Button, Divider } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
+import Link from "next/link";
 import React from "react";
 import { useScrollbarWidth } from "react-use";
 import FooterBackground from "../../../../../assets/images/footer-background.png";
 import { Content } from "../../../../../content";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
+import { RouteLink } from "../../../../../functions/RouteLink";
 import { useCurrentNavigationHeight } from "../../../../../hooks/useCurrentNavigationHeight";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
+import PrivacyPolicyPage from "../../../../../pages/polityka-prywatnosci";
 import { CustomGrid } from "../../../../shared/Custom Material-UI/CustomGrid";
 import { PageTitle } from "../../shared/PageTitle";
 import { CompanyData } from "./Section/Sections/CompanyData/CompanyData";
@@ -27,7 +30,6 @@ export const Footer: RouteType = Object.assign(() => {
       background-repeat: no-repeat;
 
       display: flex;
-      align-items: center;
       flex-direction: column;
 
       position: relative;
@@ -58,6 +60,10 @@ export const Footer: RouteType = Object.assign(() => {
     `,
     title: css`
       margin-top: ${theme.spacing(5)}px;
+      text-align: center;
+    `,
+    main: css`
+      flex: 1;
     `,
     dividerWrapper: css`
       width: 100%;
@@ -70,15 +76,30 @@ export const Footer: RouteType = Object.assign(() => {
       display: flex;
       align-items: center;
 
+      justify-content: space-between;
+      ${theme.breakpoints.down("xs")} {
+        justify-content: center;
+      }
+
       & > * {
-        margin: 0 ${theme.spacing(1)}px;
+        text-align: center;
       }
     `,
+    socialLinks: css``,
     socialLink: css`
+      margin: 0 ${theme.spacing(1.5)}px;
       border-radius: 10px;
     `,
     socialLinkImg: css`
-      height: min(50px, 12vw);
+      height: 60px;
+
+      ${theme.breakpoints.down("sm")} {
+        height: 45px;
+      }
+    `,
+    otherExtraElements: css`
+      display: flex;
+      flex-direction: column;
     `,
   };
 
@@ -87,28 +108,48 @@ export const Footer: RouteType = Object.assign(() => {
   return (
     <footer id={linkId} css={styles.root}>
       <PageTitle text={Content.footer.sectionTitle} css={styles.title} />
-      <CustomGrid
-        container
-        spacing={3}
-        justify="space-around"
-        css={styles.content}
-      >
-        <CompanyData />
-        <ContactForm />
-      </CustomGrid>
+      <div css={styles.main}>
+        <CustomGrid
+          container
+          spacing={3}
+          justify="space-around"
+          css={styles.content}
+        >
+          <CompanyData />
+          <ContactForm />
+        </CustomGrid>
+      </div>
       <div css={styles.dividerWrapper}>
         <Divider />
       </div>
       <div css={styles.extraElements}>
-        {Content.footer.socialLinks.map((socialLink) => (
+        <div css={styles.socialLinks}>
+          {Content.footer.socialLinks.map((socialLink) => (
+            <Button
+              href={socialLink.href}
+              target="_blank"
+              css={styles.socialLink}
+            >
+              <img src={socialLink.image} css={styles.socialLinkImg} />
+            </Button>
+          ))}
+        </div>
+        <div css={styles.otherExtraElements}>
+          <Link {...RouteLink(PrivacyPolicyPage)}>
+            <Button variant="text" color="secondary" size="small">
+              {Content.privacyPolicy.route.displayName}
+            </Button>
+          </Link>
           <Button
-            href={socialLink.href}
+            variant="text"
+            color="primary"
+            size="small"
             target="_blank"
-            css={styles.socialLink}
+            href={Content.footer.madeBy.link}
           >
-            <img src={socialLink.image} css={styles.socialLinkImg} />
+            {Content.footer.madeBy.text}
           </Button>
-        ))}
+        </div>
       </div>
     </footer>
   );
