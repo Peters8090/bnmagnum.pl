@@ -6,7 +6,6 @@ import { About } from "../components/pages/index/Sections/About/About";
 import { Footer } from "../components/pages/index/Sections/Footer/Footer";
 import { GuideForSellers } from "../components/pages/index/Sections/GuideForSellers/GuideForSellers";
 import { Hero } from "../components/pages/index/Sections/Hero/Hero";
-import { OurEmployees } from "../components/pages/index/Sections/OurEmployees/OurEmployees";
 import { convertRouteHashToLinkId } from "../functions/convertRouteHashToLinkId";
 import { UpdateHashOnScroll } from "../hoc/UpdateHashOnScroll/UpdateHashOnScroll";
 import { useCurrentNavigationHeight } from "../hooks/useCurrentNavigationHeight";
@@ -17,7 +16,7 @@ export const homeSections: RouteType<any>[] = [
   Hero,
   About,
   GuideForSellers,
-  OurEmployees,
+  //OurEmployees,
   Footer,
 ];
 
