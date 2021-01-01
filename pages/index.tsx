@@ -3,8 +3,8 @@ import { useTheme } from "@material-ui/core/styles";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import { About } from "../components/pages/index/Sections/About/About";
-import { AboutSteps } from "../components/pages/index/Sections/AboutSteps/AboutSteps";
 import { Footer } from "../components/pages/index/Sections/Footer/Footer";
+import { GuideForSellers } from "../components/pages/index/Sections/GuideForSellers/GuideForSellers";
 import { Hero } from "../components/pages/index/Sections/Hero/Hero";
 import { OurEmployees } from "../components/pages/index/Sections/OurEmployees/OurEmployees";
 import { convertRouteHashToLinkId } from "../functions/convertRouteHashToLinkId";
@@ -16,7 +16,7 @@ import { HeadContext } from "./_app";
 export const homeSections: RouteType<any>[] = [
   Hero,
   About,
-  AboutSteps,
+  GuideForSellers,
   OurEmployees,
   Footer,
 ];

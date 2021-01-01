@@ -4,7 +4,7 @@ import {
   Step,
   StepLabel,
   Stepper,
-  useMediaQuery,
+  useMediaQuery
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { useState } from "react";
@@ -14,7 +14,7 @@ import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { CustomTypography } from "../../../../shared/Custom Material-UI/CustomTypography";
 import { PageTitle } from "../../shared/PageTitle";
 
-export const AboutSteps: RouteType = Object.assign(() => {
+export const GuideForSellers: RouteType = Object.assign(() => {
   const theme = useTheme();
   const styles = {
     root: css`
@@ -86,7 +86,7 @@ export const AboutSteps: RouteType = Object.assign(() => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const linkId = convertRouteHashToLinkId(AboutSteps.routeName);
+  const linkId = convertRouteHashToLinkId(GuideForSellers.routeName);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
