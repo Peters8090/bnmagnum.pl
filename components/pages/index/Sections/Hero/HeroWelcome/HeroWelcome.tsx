@@ -49,14 +49,14 @@ export const HeroWelcome: FC = () => {
   return (
     <Container maxWidth="sm" css={styles.root}>
       <Typography variant="h1" css={styles.title}>
-        {Content.home.welcome}
+        {Content.hero.welcome}
       </Typography>
       <Typography variant="h3" gutterBottom css={styles.subtitle}>
-        {Content.home.subtitle}
+        {Content.hero.subtitle}
       </Typography>
       <Link {...RouteLink(OfferSearch)}>
         <Button variant="contained" disableElevation css={styles.button}>
-          {Content.home.call_to_action}
+          {Content.hero.call_to_action}
         </Button>
       </Link>
     </Container>

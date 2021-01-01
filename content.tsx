@@ -20,7 +20,7 @@ interface ContentType {
     back: string;
     reset: string;
   };
-  home: {
+  hero: {
     route: RouteOnlyProps;
     welcome: string;
     subtitle: string;
@@ -78,7 +78,7 @@ export const Content: ContentType = {
     back: "Poprzedni",
     reset: "Od nowa",
   },
-  home: {
+  hero: {
     route: {
       routeName: "/",
       displayName: "Home",

@@ -32,4 +32,4 @@ export const Hero: RouteType = Object.assign(() => {
       <GoDownFab />
     </div>
   );
-}, Content.home.route);
+}, Content.hero.route);
