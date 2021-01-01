@@ -1,5 +1,6 @@
 import FacebookLogo from "./assets/images/facebook.png";
 import Favicon from "./assets/images/favicon.png";
+import HouseAbout from "./assets/images/house-about.jpg";
 import InstagramLogo from "./assets/images/instagram.png";
 import NavLogo from "./assets/images/nav_logo.png";
 import OtodomLogo from "./assets/images/otodom.png";
@@ -159,8 +160,7 @@ export const Content: ContentType = {
     content: `
       Jesteśmy profesjonalnym biurem nieruchomości. Każda z naszych ofert jest rzetelnie sprawdzana, aby zapenić Państwu pełne bezpieczeństwo i wygodę. Mamy doświadczenie w branży nieruchomości, odpowiednią wiedzę oraz zamiłowanie do pomagania ludziom.
     `,
-    image:
-      "https://dompp.pl/wp-content/uploads/2018/07/Projekt-domu-House-21-DomPP.pl-1.jpg",
+    image: HouseAbout,
   },
   footer: {
     route: {
