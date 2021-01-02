@@ -36,6 +36,10 @@ interface ContentType {
     route: RouteOnlyProps;
     steps: Record<string, string | JSX.Element>;
   };
+  guideForBuyers: {
+    route: RouteOnlyProps;
+    steps: Record<string, string | JSX.Element>;
+  };
   ourEmployees: {
     route: RouteOnlyProps;
     employees: EmployeeProps[];
@@ -102,6 +106,45 @@ export const Content: ContentType = {
     },
     steps: {
       "Skontaktuj się z nami":
+        "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
+      "Przebieg spotkania": (
+        <>
+          Doradca:
+          <ul>
+            <li>
+              przedstawi Ci raport na temat cen transakcyjnych oraz zaproponuje
+              przedział cenowy, dzięki któremu dowiesz się, ile naprawdę może
+              być warta Twoja nieruchomość
+            </li>
+            <li>ustali z Tobą realną cenę wyjściową sprzedaży</li>
+            <li>
+              przedstawi Ci plan marketingowy sprzedaży Twojej nieruchomości
+            </li>
+            <li>
+              zrobi zdjęcia nieruchomości lub przedyskutuje temat home stagingu
+              (czyli profesjonalnego przygotowania nieruchomości do zdjęć i
+              sprzedaży) i umówi profesjonalną sesję zdjęciową
+            </li>
+            <li>podpisze z Tobą umowę pośrednictwa</li>
+            <li>
+              zapyta o stan prawny nieruchomości oraz zbierze jak najwięcej
+              informacji o nieruchomości, by móc jak najlepiej przedstawić ją
+              przyszłym klientom.
+            </li>
+          </ul>
+        </>
+      ),
+      "Współpraca na wyłączność":
+        "Najbardziej skuteczną formą współpracy z agencją nieruchomości jest powierzenie sprzedaży nieruchomości tylko jednemu pośrednikowi. Dzięki temu masz pełną kontrolę nad sprzedażą i masz pewność, że pośrednik dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres czynności proponowany przez pośrednika jest znacznie szerszy niż w przypadku umowy otwartej.",
+    },
+  },
+  guideForBuyers: {
+    route: {
+      routeName: "/#dla-kupujacych",
+      displayName: "Dla kupujących",
+    },
+    steps: {
+      "Skontaktuj się z nami kup":
         "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
       "Przebieg spotkania": (
         <>

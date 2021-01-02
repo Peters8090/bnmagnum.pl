@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import { About } from "../components/pages/index/Sections/About/About";
 import { Footer } from "../components/pages/index/Sections/Footer/Footer";
+import { GuideForBuyers } from "../components/pages/index/Sections/GuideForBuyers/GuideForBuyers";
 import { GuideForSellers } from "../components/pages/index/Sections/GuideForSellers/GuideForSellers";
 import { Hero } from "../components/pages/index/Sections/Hero/Hero";
 import { convertRouteHashToLinkId } from "../functions/convertRouteHashToLinkId";
@@ -16,6 +17,7 @@ export const homeSections: RouteType<any>[] = [
   Hero,
   About,
   GuideForSellers,
+  GuideForBuyers,
   //OurEmployees,
   Footer,
 ];
