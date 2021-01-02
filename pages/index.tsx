@@ -18,7 +18,7 @@ export const homeSections: RouteType<any>[] = [
   About,
   GuideForSellers,
   GuideForBuyers,
-  //OurEmployees,
+  // OurEmployees,
   Footer,
 ];
 

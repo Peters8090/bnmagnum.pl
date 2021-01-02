@@ -105,8 +105,14 @@ export const Content: ContentType = {
       displayName: "Dla sprzedających",
     },
     steps: {
-      "Skontaktuj się z nami":
-        "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
+      "Skontaktuj się z nami": (
+        <>
+          Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na
+          spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy.
+          Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na
+          specjalistę znającego dobrze rejon swojego działania.
+        </>
+      ),
       "Przebieg spotkania": (
         <>
           <div className="column-span">Doradca:</div>
@@ -134,8 +140,16 @@ export const Content: ContentType = {
           </ul>
         </>
       ),
-      "Współpraca na wyłączność":
-        "Najbardziej skuteczną formą współpracy z agencją nieruchomości jest powierzenie sprzedaży nieruchomości tylko jednemu pośrednikowi. Dzięki temu masz pełną kontrolę nad sprzedażą i masz pewność, że pośrednik dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres czynności proponowany przez pośrednika jest znacznie szerszy niż w przypadku umowy otwartej.",
+      "Współpraca na wyłączność": (
+        <>
+          Najbardziej skuteczną formą współpracy z agencją nieruchomości jest
+          powierzenie sprzedaży nieruchomości tylko jednemu pośrednikowi. Dzięki
+          temu masz pełną kontrolę nad sprzedażą i masz pewność, że pośrednik
+          dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres
+          czynności proponowany przez pośrednika jest znacznie szerszy niż w
+          przypadku umowy otwartej.
+        </>
+      ),
     },
   },
   guideForBuyers: {
@@ -144,24 +158,49 @@ export const Content: ContentType = {
       displayName: "Dla kupujących",
     },
     steps: {
-      Wstęp:
-        "Współpraca z naszym biurem nieruchomości przy zakupie to, bezpieczeństwo i pewność dokonania transakcji zgodnej z przepisami prawa.\nDecyzja kupującego (poszukującego) z przedstawicielem biura nieruchomości, będzie miała swoje potwierdzenie na papierze, w formie umowy o współpracy,  gdzie zawarte będą szczegółowe parametry poszukiwanej nieruchomości, zakres pracy biura nieruchomości oraz wysokość prowizji.",
-      "Analiza potrzeb":
-        "Opowiadając nam o swoich potrzebach  i oczekiwaniach względem poszukiwanej nieruchomości, będziesz miał pewność, że wybierzemy tylko te oferty, które odpowiadają Twoim wymaganiom,  posiadamy oferty zarówno z rynku pierwotnego (deweloperskiego) jak i rynku wtórnego.",
-      "Początek poszukiwań":
-        "Rozpoczynamy poszukiwania idealnej nieruchomości dla klienta, a następnie przedstawiamy tylko wyselekcjonowane oferty spełniające określone przez klienta wymogi.",
-      Prezentacja:
-        "Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym do jego indywidualnego kalendarza. W trakcie prezentacji, informujemy klienta zarówno o zaletach jak i  potencjalnych wadach danej nieruchomości.",
-      "Decyzja klienta o zakupie":
-        "Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy negocjacji ceny jak i całego procesu zakupu nieruchomości.\nNaszym celem jest zadowolenie klienta przy zakupie, wymarzonej nieruchomości na najkorzystniejszych dla niego warunkach.",
+      Wstęp: (
+        <>
+          Współpraca z naszym biurem nieruchomości przy zakupie to,
+          bezpieczeństwo i pewność dokonania transakcji zgodnej z przepisami
+          prawa.
+          <br />
+          Decyzja kupującego (poszukującego) z przedstawicielem biura
+          nieruchomości, będzie miała swoje potwierdzenie na papierze, w formie
+          umowy o współpracy, gdzie zawarte będą szczegółowe parametry
+          poszukiwanej nieruchomości, zakres pracy biura nieruchomości oraz
+          wysokość prowizji.
+          <br />
+          Opowiadając nam o swoich potrzebach i oczekiwaniach względem
+          poszukiwanej nieruchomości, będziesz miał pewność, że wybierzemy tylko
+          te oferty, które odpowiadają Twoim wymaganiom, posiadamy oferty
+          zarówno z rynku pierwotnego (deweloperskiego) jak i rynku wtórnego.
+        </>
+      ),
+      Prezentacja: (
+        <>
+          Rozpoczynamy poszukiwania idealnej nieruchomości dla klienta, a
+          następnie przedstawiamy tylko wyselekcjonowane oferty spełniające
+          określone przez klienta wymogi.
+          <br />
+          Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym
+          do jego indywidualnego kalendarza. W trakcie prezentacji, informujemy
+          klienta zarówno o zaletach jak i potencjalnych wadach danej
+          nieruchomości.
+          <br />
+          Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy
+          negocjacji ceny jak i całego procesu zakupu nieruchomości. Naszym
+          celem jest zadowolenie klienta przy zakupie, wymarzonej nieruchomości
+          na najkorzystniejszych dla niego warunkach.
+        </>
+      ),
       "Rodzaje nieruchomości": (
         <ul>
           <li>
             Mieszkanie
             <ul>
-              <li>czy na osiedlu zamkniętym</li>
-              <li>do którego piętra bez windy</li>
-              <li>w bloku / czy apartamentowcu</li>
+              <li>Czy na osiedlu zamkniętym</li>
+              <li>Do którego piętra bez windy</li>
+              <li>W bloku / czy apartamentowcu</li>
             </ul>
           </li>
           <li>
@@ -171,7 +210,7 @@ export const Content: ContentType = {
               <li>Poza miastem</li>
               <li>Na wsi</li>
               <li>Z małą działką</li>
-              <li>Z dużą działką np. Ok 2000 mkw.</li>
+              <li>Z dużą działką np. ok 2000 m²</li>
               <li>Dom 2-rodzinny</li>
               <li>Jednorodzinny </li>
               <li>Parterowy</li>
@@ -183,8 +222,9 @@ export const Content: ContentType = {
           <li>
             Działka
             <ul>
-              <li>budowlana</li>
-              <li>pod zabudowę bliźniaczą</li>
+              <li>Budowlana</li>
+              <li>Pod zabudowę bliźniaczą</li>
+              <li>Rolna</li>
             </ul>
           </li>
         </ul>

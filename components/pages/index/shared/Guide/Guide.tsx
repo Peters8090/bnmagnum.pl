@@ -52,6 +52,10 @@ export const Guide: FC<GuideProps> = (props) => {
     instructions: css`
       white-space: pre-line;
 
+      br {
+        line-height: 2em;
+      }
+
       ul {
         list-style-position: inside;
       }
