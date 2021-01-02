@@ -79,8 +79,8 @@ export const Content: ContentType = {
     logoImage: NavLogo,
   },
   utils: {
-    next: "Następny",
-    back: "Poprzedni",
+    next: "Dalej",
+    back: "Wróć",
     reset: "Od nowa",
   },
   hero: {
