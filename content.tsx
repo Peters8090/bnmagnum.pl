@@ -109,7 +109,7 @@ export const Content: ContentType = {
         "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
       "Przebieg spotkania": (
         <>
-          Doradca:
+          <div className="column-span">Doradca:</div>
           <ul>
             <li>
               przedstawi Ci raport na temat cen transakcyjnych oraz zaproponuje
@@ -151,7 +151,7 @@ export const Content: ContentType = {
       "Początek poszukiwań":
         "Rozpoczynamy poszukiwania idealnej nieruchomości dla klienta, a następnie przedstawiamy tylko wyselekcjonowane oferty spełniające określone przez klienta wymogi.",
       Prezentacja:
-        "Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym do jego indywidualnego kalendarza.\nW trakcie prezentacji, informujemy klienta zarówno o zaletach jak i  potencjalnych wadach danej nieruchomości.",
+        "Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym do jego indywidualnego kalendarza. W trakcie prezentacji, informujemy klienta zarówno o zaletach jak i  potencjalnych wadach danej nieruchomości.",
       "Decyzja klienta o zakupie":
         "Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy negocjacji ceny jak i całego procesu zakupu nieruchomości.\nNaszym celem jest zadowolenie klienta przy zakupie, wymarzonej nieruchomości na najkorzystniejszych dla niego warunkach.",
       Nieruchomość: (
@@ -189,27 +189,27 @@ export const Content: ContentType = {
           </li>
         </ul>
       ),
-      "Ważne informacje": (
+      "Ważne informacje - kryteria": (
         <ul>
-          <li>z rynku pierwotnego czyli stan deweloperski do wykończenia </li>
+          <li>Z rynku pierwotnego czyli stan deweloperski do wykończenia </li>
           <li>
-            jeśli z rynku wtórnego to czy: do wprowadzenia się / odświeżenia /
+            Jeśli z rynku wtórnego to czy: do wprowadzenia się / odświeżenia /
             do remontu
           </li>
-          <li>w jakim budżecie</li>
+          <li>W jakim budżecie</li>
           <li>
-            lokalizacja, najlepiej w odniesieniu do jakiegoś punktu, najlepiej
-            podana w odległości np. ( od PKP 1 km , lub 20 min na pieszo){" "}
+            Lokalizacja, najlepiej w odniesieniu do jakiegoś punktu, najlepiej
+            podana w odległości np. (od PKP 1 km , lub 20 min na pieszo)
           </li>
-          <li>ile powinno być pokoi ( w tym ile sypialni)</li>
+          <li>Ile powinno być pokoi (w tym ile sypialni)</li>
           <li>
             Jaka powinna być powierzchnia w mkw. np. domu i działki przy domu
           </li>
           <li>
-            jaka jest preferowana odległość od komunikacji, szkoły, sklepów
+            Jaka jest preferowana odległość od komunikacji, szkoły, sklepów
             spożywczych czy galerii handlowych
           </li>
-          <li>Czego nie chciałbyś w okolicy swojej nieruchomosci </li>
+          <li>Czego nie chciałbyś w okolicy swojej nieruchomości </li>
           <li>
             Czy okolica powinna dynamicznie się rozwijać czy też powinna być
             oazą spokoju.

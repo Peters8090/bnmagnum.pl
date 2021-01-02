@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/core/styles";
 import React, { FC, useState } from "react";
+import reactElementToJSXString from "react-element-to-jsx-string";
 import { Content } from "../../../../../content";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { RouteOnlyProps } from "../../../../../interfaces and types/RouteType";
@@ -20,6 +21,15 @@ interface GuideProps {
 }
 
 export const Guide: FC<GuideProps> = (props) => {
+  const steps = props.steps;
+
+  const [activeStep, setActiveStep] = useState(0);
+
+  const curTitle = Object.keys(steps)[activeStep];
+  const curContent = Object.values(steps)[activeStep];
+
+  const lettersPerColumn = 400;
+
   const theme = useTheme();
   const styles = {
     root: css`
@@ -47,13 +57,26 @@ export const Guide: FC<GuideProps> = (props) => {
       }
 
       ${theme.breakpoints.up("md")} {
-        column-width: 40vw;
         column-rule: 1px solid lightgrey;
         column-gap: ${theme.spacing(8)}px;
+
+        columns: ${Math.min(
+          Math.max(
+            Math.round(
+              reactElementToJSXString(curContent).split("").length /
+                lettersPerColumn
+            ),
+            1
+          ),
+          3
+        )};
       }
 
-      height: 300px;
-      overflow-y: auto;
+      min-height: 300px;
+
+      ul > li {
+        margin-left: ${theme.spacing(2)}px;
+      }
     `,
     title: css`
       text-align: center;
@@ -62,8 +85,8 @@ export const Guide: FC<GuideProps> = (props) => {
       flex: 1;
       margin: ${theme.spacing(1)}px 0;
 
-      ul > li {
-        margin-left: ${theme.spacing(2)}px;
+      .column-span {
+        column-span: all;
       }
     `,
     main: css`
@@ -77,13 +100,6 @@ export const Guide: FC<GuideProps> = (props) => {
       padding: ${theme.spacing(1)}px ${theme.spacing(3)}px;
     `,
   };
-
-  const steps = props.steps;
-
-  const [activeStep, setActiveStep] = useState(0);
-
-  const curTitle = Object.keys(steps)[activeStep];
-  const curContent = Object.values(steps)[activeStep];
 
   const handleNextOrReset = () => {
     setActiveStep((prevActiveStep) =>
