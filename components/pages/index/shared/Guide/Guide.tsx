@@ -61,6 +61,10 @@ export const Guide: FC<GuideProps> = (props) => {
     stepContent: css`
       flex: 1;
       margin: ${theme.spacing(1)}px 0;
+
+      ul > li {
+        margin-left: ${theme.spacing(2)}px;
+      }
     `,
     main: css`
       border: 1px solid rgba(0, 0, 0, 0.12);
