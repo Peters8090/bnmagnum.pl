@@ -78,6 +78,16 @@ const OfferSearch: RouteType<OfferSearchProps> = Object.assign((props) => {
     }
   }, [selectedOffer, query]);
 
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!selectedOffer) {
+      const { href, as } = RouteLink(OfferSearch, undefined, query);
+
+      router.push(href, as);
+    }
+  }, [selectedOffer]);
+
   return (
     <div css={styles.root}>
       <HiddenCond
