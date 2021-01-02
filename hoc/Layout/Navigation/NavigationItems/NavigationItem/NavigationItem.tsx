@@ -45,7 +45,7 @@ export const NavigationItem: FC<NavigationItemProps> = (props) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <NextLinkSmoothScroll {...props.LinkProps}>
+    <NextLinkSmoothScroll href={props.LinkProps.href} as={props.LinkProps.as}>
       <Button
         component="a"
         onClick={props.onClick}
