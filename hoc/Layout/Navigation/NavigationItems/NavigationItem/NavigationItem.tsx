@@ -29,9 +29,12 @@ export const NavigationItem: FC<NavigationItemProps> = (props) => {
       font-family: "Rubik", sans-serif;
       font-weight: 300;
 
+      transition: text-shadow 500ms ease-in-out;
+
       ${isCurrent &&
       css`
-        font-weight: 500;
+        text-shadow: 0px 0px rgba(0, 0, 0, 0.75), 0px 1px rgba(0, 0, 0, 0.75),
+          1px 0px rgba(0, 0, 0, 0.75), 0px 0px rgba(0, 0, 0, 0.75);
       `};
       margin: 0 ${theme.spacing(2.5)}px;
       text-align: center;

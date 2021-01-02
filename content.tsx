@@ -154,7 +154,7 @@ export const Content: ContentType = {
         "Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym do jego indywidualnego kalendarza. W trakcie prezentacji, informujemy klienta zarówno o zaletach jak i  potencjalnych wadach danej nieruchomości.",
       "Decyzja klienta o zakupie":
         "Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy negocjacji ceny jak i całego procesu zakupu nieruchomości.\nNaszym celem jest zadowolenie klienta przy zakupie, wymarzonej nieruchomości na najkorzystniejszych dla niego warunkach.",
-      Nieruchomość: (
+      "Rodzaje nieruchomości": (
         <ul>
           <li>
             Mieszkanie
