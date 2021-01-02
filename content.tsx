@@ -144,37 +144,78 @@ export const Content: ContentType = {
       displayName: "Dla kupujących",
     },
     steps: {
-      "Skontaktuj się z nami kup":
-        "Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy. Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na specjalistę znającego dobrze rejon swojego działania.",
-      "Przebieg spotkania": (
-        <>
-          Doradca:
-          <ul>
-            <li>
-              przedstawi Ci raport na temat cen transakcyjnych oraz zaproponuje
-              przedział cenowy, dzięki któremu dowiesz się, ile naprawdę może
-              być warta Twoja nieruchomość
-            </li>
-            <li>ustali z Tobą realną cenę wyjściową sprzedaży</li>
-            <li>
-              przedstawi Ci plan marketingowy sprzedaży Twojej nieruchomości
-            </li>
-            <li>
-              zrobi zdjęcia nieruchomości lub przedyskutuje temat home stagingu
-              (czyli profesjonalnego przygotowania nieruchomości do zdjęć i
-              sprzedaży) i umówi profesjonalną sesję zdjęciową
-            </li>
-            <li>podpisze z Tobą umowę pośrednictwa</li>
-            <li>
-              zapyta o stan prawny nieruchomości oraz zbierze jak najwięcej
-              informacji o nieruchomości, by móc jak najlepiej przedstawić ją
-              przyszłym klientom.
-            </li>
-          </ul>
-        </>
+      Wstęp:
+        "Współpraca z naszym biurem nieruchomości przy zakupie to, bezpieczeństwo i pewność dokonania transakcji zgodnej z przepisami prawa.\nDecyzja kupującego (poszukującego) z przedstawicielem biura nieruchomości, będzie miała swoje potwierdzenie na papierze, w formie umowy o współpracy,  gdzie zawarte będą szczegółowe parametry poszukiwanej nieruchomości, zakres pracy biura nieruchomości oraz wysokość prowizji.",
+      "Analiza potrzeb":
+        "Opowiadając nam o swoich potrzebach  i oczekiwaniach względem poszukiwanej nieruchomości, będziesz miał pewność, że wybierzemy tylko te oferty, które odpowiadają Twoim wymaganiom,  posiadamy oferty zarówno z rynku pierwotnego (deweloperskiego) jak i rynku wtórnego.",
+      "Początek poszukiwań":
+        "Rozpoczynamy poszukiwania idealnej nieruchomości dla klienta, a następnie przedstawiamy tylko wyselekcjonowane oferty spełniające określone przez klienta wymogi.",
+      Prezentacja:
+        "Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym do jego indywidualnego kalendarza.\nW trakcie prezentacji, informujemy klienta zarówno o zaletach jak i  potencjalnych wadach danej nieruchomości.",
+      "Decyzja klienta o zakupie":
+        "Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy negocjacji ceny jak i całego procesu zakupu nieruchomości.\nNaszym celem jest zadowolenie klienta przy zakupie, wymarzonej nieruchomości na najkorzystniejszych dla niego warunkach.",
+      Nieruchomość: (
+        <ul>
+          <li>
+            Mieszkanie
+            <ul>
+              <li>czy na osiedlu zamkniętym</li>
+              <li>do którego piętra bez windy</li>
+              <li>w bloku / czy apartamentowcu</li>
+            </ul>
+          </li>
+          <li>
+            Dom
+            <ul>
+              <li>W mieście</li>
+              <li>Poza miastem</li>
+              <li>Na wsi</li>
+              <li>Z małą działką</li>
+              <li>Z dużą działką np. Ok 2000 mkw.</li>
+              <li>Dom 2-rodzinny</li>
+              <li>Jednorodzinny </li>
+              <li>Parterowy</li>
+              <li>Wolnostojący</li>
+              <li>1/2 bliźniaka</li>
+              <li>Segment</li>
+            </ul>
+          </li>
+          <li>
+            Działka
+            <ul>
+              <li>budowlana</li>
+              <li>pod zabudowę bliźniaczą</li>
+            </ul>
+          </li>
+        </ul>
       ),
-      "Współpraca na wyłączność":
-        "Najbardziej skuteczną formą współpracy z agencją nieruchomości jest powierzenie sprzedaży nieruchomości tylko jednemu pośrednikowi. Dzięki temu masz pełną kontrolę nad sprzedażą i masz pewność, że pośrednik dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres czynności proponowany przez pośrednika jest znacznie szerszy niż w przypadku umowy otwartej.",
+      "Ważne informacje": (
+        <ul>
+          <li>z rynku pierwotnego czyli stan deweloperski do wykończenia </li>
+          <li>
+            jeśli z rynku wtórnego to czy: do wprowadzenia się / odświeżenia /
+            do remontu
+          </li>
+          <li>w jakim budżecie</li>
+          <li>
+            lokalizacja, najlepiej w odniesieniu do jakiegoś punktu, najlepiej
+            podana w odległości np. ( od PKP 1 km , lub 20 min na pieszo){" "}
+          </li>
+          <li>ile powinno być pokoi ( w tym ile sypialni)</li>
+          <li>
+            Jaka powinna być powierzchnia w mkw. np. domu i działki przy domu
+          </li>
+          <li>
+            jaka jest preferowana odległość od komunikacji, szkoły, sklepów
+            spożywczych czy galerii handlowych
+          </li>
+          <li>Czego nie chciałbyś w okolicy swojej nieruchomosci </li>
+          <li>
+            Czy okolica powinna dynamicznie się rozwijać czy też powinna być
+            oazą spokoju.
+          </li>
+        </ul>
+      ),
     },
   },
   ourEmployees: {
