@@ -160,37 +160,37 @@ export const Content: ContentType = {
     steps: {
       Wstęp: (
         <>
-          Współpraca z naszym biurem nieruchomości przy zakupie to,
+          Współpraca z naszym biurem nieruchomości przy zakupie, to
           bezpieczeństwo i pewność dokonania transakcji zgodnej z przepisami
           prawa.
           <br />
-          Decyzja kupującego (poszukującego) z przedstawicielem biura
-          nieruchomości, będzie miała swoje potwierdzenie na papierze, w formie
-          umowy o współpracy, gdzie zawarte będą szczegółowe parametry
+          Decyzja kupującego (poszukującego) na współpracę z biurem
+          nieruchomości, będzie miała swoje potwierdzenie na papierze. Przyjmie
+          ona formę umowy, w której zawarte będą szczegółowe parametry
           poszukiwanej nieruchomości, zakres pracy biura nieruchomości oraz
           wysokość prowizji.
           <br />
           Opowiadając nam o swoich potrzebach i oczekiwaniach względem
           poszukiwanej nieruchomości, będziesz miał pewność, że wybierzemy tylko
-          te oferty, które odpowiadają Twoim wymaganiom, posiadamy oferty
-          zarówno z rynku pierwotnego (deweloperskiego) jak i rynku wtórnego.
+          te oferty, które odpowiadają Twoim wymaganiom. Posiadamy oferty
+          zarówno z rynku pierwotnego (deweloperskiego), jak i rynku wtórnego.
         </>
       ),
       Prezentacja: (
         <>
           Rozpoczynamy poszukiwania idealnej nieruchomości dla klienta, a
-          następnie przedstawiamy tylko wyselekcjonowane oferty spełniające
-          określone przez klienta wymogi.
+          następnie przedstawiamy wyselekcjonowane oferty spełniające określone
+          przez klienta wymogi.
           <br />
           Prezentacja klientowi wybranych ofert odbywa się w czasie dostosowanym
-          do jego indywidualnego kalendarza. W trakcie prezentacji, informujemy
-          klienta zarówno o zaletach jak i potencjalnych wadach danej
+          do jego indywidualnego kalendarza. W trakcie prezentacji informujemy
+          klienta zarówno o zaletach, jak i potencjalnych wadach danej
           nieruchomości.
           <br />
           Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy
-          negocjacji ceny jak i całego procesu zakupu nieruchomości. Naszym
-          celem jest zadowolenie klienta przy zakupie, wymarzonej nieruchomości
-          na najkorzystniejszych dla niego warunkach.
+          negocjacji ceny, jak i procesie zakupu nieruchomości od początku do
+          końca. Naszym celem jest zadowolenie klienta przy zakupie, wymarzonej
+          nieruchomości na najkorzystniejszych dla niego warunkach.
         </>
       ),
       "Rodzaje nieruchomości": (
@@ -242,9 +242,7 @@ export const Content: ContentType = {
             podana w odległości np. (od PKP 1 km , lub 20 min na pieszo)
           </li>
           <li>Ile powinno być pokoi (w tym ile sypialni)</li>
-          <li>
-            Jaka powinna być powierzchnia w mkw. np. domu i działki przy domu
-          </li>
+          <li>Jaka powinna być powierzchnia np. domu i działki przy domu</li>
           <li>
             Jaka jest preferowana odległość od komunikacji, szkoły, sklepów
             spożywczych czy galerii handlowych

@@ -76,7 +76,13 @@ export const Guide: FC<GuideProps> = (props) => {
         )};
       }
 
-      min-height: 300px;
+      min-height: 40vh;
+
+      text-align: justify;
+
+      ul {
+        text-align: left;
+      }
 
       ul > li {
         margin-left: ${theme.spacing(2)}px;
@@ -145,7 +151,6 @@ export const Guide: FC<GuideProps> = (props) => {
           </CustomTypography>
           <CustomTypography
             fontWeight={300}
-            align="justify"
             variant="h5"
             overrideFontSize={1.7}
             css={styles.instructions}
