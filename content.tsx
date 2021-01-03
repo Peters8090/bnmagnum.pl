@@ -118,9 +118,8 @@ export const Content: ContentType = {
           <div className="column-span">Doradca:</div>
           <ul>
             <li>
-              przedstawi Ci raport na temat cen transakcyjnych oraz zaproponuje
-              przedział cenowy, dzięki któremu dowiesz się, ile naprawdę może
-              być warta Twoja nieruchomość
+              zaproponuje przedział cenowy, dzięki któremu dowiesz się, ile
+              naprawdę może być warta Twoja nieruchomość
             </li>
             <li>ustali z Tobą realną cenę wyjściową sprzedaży</li>
             <li>
@@ -129,7 +128,7 @@ export const Content: ContentType = {
             <li>
               zrobi zdjęcia nieruchomości lub przedyskutuje temat home stagingu
               (czyli profesjonalnego przygotowania nieruchomości do zdjęć i
-              sprzedaży) i umówi profesjonalną sesję zdjęciową
+              sprzedaży) i ew. umówi profesjonalną sesję zdjęciową
             </li>
             <li>podpisze z Tobą umowę pośrednictwa</li>
             <li>
