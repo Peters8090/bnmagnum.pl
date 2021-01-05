@@ -12,8 +12,6 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
   const { isNavigatingToHash } = useContext(LayoutContext);
 
   useEffect(() => {
-    const sections = props.sections.filter((s) => !!document.getElementById(s));
-
     const triggerHashUpdate = () => {
       if (!isNavigatingToHash) {
         const scrollY = document?.scrollingElement?.scrollTop;
@@ -23,11 +21,25 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
             let elem = document.getElementById(hash);
             if (elem) {
               elem.id = hash + "-tmp";
-              await router.push("/", `/${hash ? "#" + hash : ""}`, undefined);
-              // elem.id = hash;
+            }
+            await router.push("/", `/${hash ? "#" + hash : ""}`, undefined);
+            await new Promise((res) => {
+              setTimeout(res, 2000);
+              while (true) {
+                if (window.location.hash === hash) {
+                  res();
+                }
+              }
+            });
+            if (elem) {
+              elem.id = hash;
             }
           };
           const curHash = window.location.hash.slice(1);
+
+          const sections = props.sections.filter(
+            (s) => !!document.getElementById(s)
+          );
 
           const scrollTops = sections.map((section) => ({
             hash: section,
