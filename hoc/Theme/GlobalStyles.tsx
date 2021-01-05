@@ -24,6 +24,11 @@ export const GlobalStyles: FC = () => (
         background: #b3d4fc;
       }
 
+      a {
+        color: unset;
+        text-decoration: none;
+      }
+
       #__next-build-watcher,
       #__next-prerender-indicator {
         display: none !important;
