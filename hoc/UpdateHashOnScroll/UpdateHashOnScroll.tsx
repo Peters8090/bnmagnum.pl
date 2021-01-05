@@ -21,9 +21,11 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
         if (scrollY !== undefined) {
           const updateHash = async (hash: string) => {
             let elem = document.getElementById(hash);
-            elem && (elem.id = hash + "-tmp");
-            await router.push("/", `/${hash ? "#" + hash : ""}`, undefined);
-            elem && (elem.id = hash);
+            if (elem) {
+              elem.id = hash + "-tmp";
+              await router.push("/", `/${hash ? "#" + hash : ""}`, undefined);
+              // elem.id = hash;
+            }
           };
           const curHash = window.location.hash.slice(1);
 
