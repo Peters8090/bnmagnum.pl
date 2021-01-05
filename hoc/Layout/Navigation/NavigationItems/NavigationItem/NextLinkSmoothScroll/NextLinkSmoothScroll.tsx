@@ -83,7 +83,7 @@ const smoothScroll = (url: string) =>
 
 interface NextLinkSmoothScrollProps {
   href: string;
-  as: string;
+  as?: string;
   children: JSX.Element;
 }
 

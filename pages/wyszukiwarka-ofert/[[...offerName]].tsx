@@ -4,7 +4,7 @@ import { useTheme } from "@material-ui/core/styles";
 import axios from "axios";
 import { useRouter } from "next/router";
 import queryString from "query-string";
-import React, { useContext, useEffect } from "react";
+import React, { PropsWithChildren, useContext, useEffect } from "react";
 import { OfferDetails } from "../../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails";
 import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
 import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
@@ -31,83 +31,86 @@ interface OfferSearchProps {
   };
 }
 
-const OfferSearch: RouteType<OfferSearchProps> = Object.assign((props) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const navHeight = useCurrentNavigationHeight();
-  const offerName = useOfferName();
-  const styles = {
-    root: css`
-      background-color: #e0e0e0;
+const OfferSearch: RouteType<OfferSearchProps> = Object.assign(
+  (props: PropsWithChildren<OfferSearchProps>) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const navHeight = useCurrentNavigationHeight();
+    const offerName = useOfferName();
+    const styles = {
+      root: css`
+        background-color: #e0e0e0;
 
-      ${theme.breakpoints.up("md")} {
-        display: grid;
-        height: calc(100vh - ${navHeight}px);
+        ${theme.breakpoints.up("md")} {
+          display: grid;
+          height: calc(100vh - ${navHeight}px);
 
-        grid-template-columns: 1fr 1fr;
-        & > * {
-          outline: 0.5px solid gray;
-          overflow-y: scroll;
+          grid-template-columns: 1fr 1fr;
+          & > * {
+            outline: 0.5px solid gray;
+            overflow-y: scroll;
+          }
         }
+      `,
+    };
+
+    const selectedOffer = props.offersWithPagination.docs.find(
+      (o) => o.normal.slug === offerName
+    );
+
+    const { query, queryParsed } = useUrlWithQueryString();
+
+    const { setTitleParts, setOgImage, setOverrideDescription } = useContext(
+      HeadContext
+    );
+
+    useEffect(() => {
+      if (!selectedOffer) {
+        setTitleParts([
+          OfferSearch.displayName,
+          `Strona ${queryParsed.page ?? 1}`,
+        ]);
+      } else {
+        if (selectedOffer.normal.photos[0]) {
+          setOgImage(selectedOffer.normal.photos[0]);
+        }
+        setOverrideDescription(selectedOffer.normal.description);
+        setTitleParts([OfferSearch.displayName, selectedOffer.normal.title]);
       }
-    `,
-  };
+    }, [selectedOffer, query]);
 
-  const selectedOffer = props.offersWithPagination.docs.find(
-    (o) => o.normal.slug === offerName
-  );
+    const router = useRouter();
 
-  const { query, queryParsed } = useUrlWithQueryString();
+    useEffect(() => {
+      if (!selectedOffer) {
+        const { href, as } = RouteLink(OfferSearch, undefined, query);
 
-  const { setTitleParts, setOgImage, setOverrideDescription } = useContext(
-    HeadContext
-  );
-
-  useEffect(() => {
-    if (!selectedOffer) {
-      setTitleParts([
-        OfferSearch.displayName,
-        `Strona ${queryParsed.page ?? 1}`,
-      ]);
-    } else {
-      if (selectedOffer.normal.photos[0]) {
-        setOgImage(selectedOffer.normal.photos[0]);
+        router.push(href, as);
       }
-      setOverrideDescription(selectedOffer.normal.description);
-      setTitleParts([OfferSearch.displayName, selectedOffer.normal.title]);
-    }
-  }, [selectedOffer, query]);
+    }, [selectedOffer]);
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!selectedOffer) {
-      const { href, as } = RouteLink(OfferSearch, undefined, query);
-
-      router.push(href, as);
-    }
-  }, [selectedOffer]);
-
-  return (
-    <div css={styles.root}>
-      <HiddenCond
-        condition={isMobile ? !!offerName : false}
-        implementation="css"
-      >
-        <PageAnimation overrideKey={query}>
-          <OfferList
-            offers={props.offersWithPagination.docs}
-            page={props.offersWithPagination.page}
-            totalPages={props.offersWithPagination.totalPages}
-          />
+    return (
+      <div css={styles.root}>
+        <HiddenCond
+          condition={isMobile ? !!offerName : false}
+          implementation="css"
+        >
+          <PageAnimation overrideKey={query}>
+            <OfferList
+              offers={props.offersWithPagination.docs}
+              page={props.offersWithPagination.page}
+              totalPages={props.offersWithPagination.totalPages}
+            />
+          </PageAnimation>
+        </HiddenCond>
+        <PageAnimation overrideKey={offerName}>
+          {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}
         </PageAnimation>
-      </HiddenCond>
-      <PageAnimation overrideKey={offerName}>
-        {selectedOffer && <OfferDetails key={offerName} {...selectedOffer} />}
-      </PageAnimation>
-    </div>
-  );
-}, Content.offers.route);
+      </div>
+    );
+  },
+  Content.offers.route
+);
 
 OfferSearch.getInitialProps = async (context) => {
   const reqQuery =
