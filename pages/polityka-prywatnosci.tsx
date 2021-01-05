@@ -21,11 +21,29 @@ const PrivacyPolicyPage: RouteType = Object.assign(() => {
       padding: ${theme.spacing(3)}px 10vw;
     `,
     content: css`
-      white-space: pre-wrap;
-
       strong {
         font-weight: 500;
       }
+
+      ul {
+        list-style-position: inside;
+      }
+
+      ul > li {
+        margin-left: ${theme.spacing(2)}px;
+      }
+
+      br {
+        content: "";
+        display: block;
+        margin: 1em 0;
+      }
+
+      br.no-space {
+        margin: 0;
+      }
+
+      white-space: pre-line;
     `,
   };
 
@@ -39,10 +57,9 @@ const PrivacyPolicyPage: RouteType = Object.assign(() => {
         overrideFontSize={1.1}
         fontWeight={300}
         align="justify"
-        dangerouslySetInnerHTML={{
-          __html: Content.privacyPolicy.content,
-        }}
-      />
+      >
+        {Content.privacyPolicy.content}
+      </CustomTypography>
     </div>
   );
 }, Content.privacyPolicy.route);
