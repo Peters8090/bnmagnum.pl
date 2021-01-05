@@ -1,5 +1,6 @@
 import Router from "next/router";
 import React, { FC, useContext } from "react";
+import { findSectionEl } from "../../../../../UpdateHashOnScroll/UpdateHashOnScroll";
 import { LayoutContext } from "../../../../Layout";
 
 // source: https://gist.github.com/vinaypuppal/b7271ad84a0d69c9cfafaaa83afed199
@@ -73,7 +74,7 @@ const smoothScroll2 = (
 const smoothScroll = (url: string) =>
   new Promise((resolve) => {
     const id = url.substr(2);
-    const el = document.getElementById(id);
+    const el = findSectionEl(id);
     if (el) {
       smoothScroll2(el, 600, resolve);
     } else {

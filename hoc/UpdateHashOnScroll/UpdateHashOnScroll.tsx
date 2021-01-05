@@ -1,19 +1,50 @@
 import { useRouter } from "next/router";
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useState } from "react";
+import { useWindowSize } from "react-use";
 import { LayoutContext } from "../Layout/Layout";
 
 interface UpdateHashOnScrollProps {
   sections: string[];
 }
 
+const SECTION_SUFFIX = "-tmp";
+export const findSectionEl = (h: string) =>
+  document.getElementById(h) || document.getElementById(h + SECTION_SUFFIX);
+
 export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
   const router = useRouter();
 
   const { isNavigatingToHash } = useContext(LayoutContext);
 
+  const [scrollTops, setScrollTops] = useState<
+    { hash: string; scrollTop: number }[]
+  >();
+
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+    const sections = props.sections.filter((s) => !!findSectionEl(s));
+
+    const _scrollTops = sections.map((section) => ({
+      hash: section,
+      scrollTop: findSectionEl(section)!.offsetTop,
+    }));
+
+    sections.forEach((section) => {
+      let elem = findSectionEl(section);
+      if (elem) {
+        elem.id = section + SECTION_SUFFIX;
+      }
+    });
+
+    _scrollTops.push({ hash: "", scrollTop: 0 });
+
+    setScrollTops([..._scrollTops]);
+  }, [windowSize]);
+
   useEffect(() => {
     const triggerHashUpdate = () => {
-      if (!isNavigatingToHash) {
+      if (!isNavigatingToHash && scrollTops) {
         const scrollY = document?.scrollingElement?.scrollTop;
 
         if (scrollY !== undefined) {
@@ -22,29 +53,10 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
             if (elem) {
               elem.id = hash + "-tmp";
             }
+
             await router.push("/", `/${hash ? "#" + hash : ""}`, undefined);
-            await new Promise((res) => {
-              setTimeout(res, 2000);
-              while (true) {
-                if (window.location.hash === hash) {
-                  res();
-                }
-              }
-            });
-            if (elem) {
-              elem.id = hash;
-            }
           };
           const curHash = window.location.hash.slice(1);
-
-          const sections = props.sections.filter(
-            (s) => !!document.getElementById(s)
-          );
-
-          const scrollTops = sections.map((section) => ({
-            hash: section,
-            scrollTop: document.getElementById(section)!.offsetTop,
-          }));
 
           scrollTops.push({ hash: "", scrollTop: 0 });
 
@@ -60,7 +72,6 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
           }
         }
       }
-      console.log(isNavigatingToHash);
     };
 
     const interval = setInterval(triggerHashUpdate, 400);
@@ -70,7 +81,7 @@ export const UpdateHashOnScroll: FC<UpdateHashOnScrollProps> = (props) => {
     return () => {
       clearInterval(interval);
     };
-  }, [isNavigatingToHash]);
+  }, [isNavigatingToHash, scrollTops]);
 
   return <>{props.children}</>;
 };
