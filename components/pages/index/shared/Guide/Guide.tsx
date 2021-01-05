@@ -56,6 +56,10 @@ export const Guide: FC<GuideProps> = (props) => {
         line-height: 2em;
       }
 
+      .no-break-after {
+        break-after: avoid;
+      }
+
       ul {
         list-style-position: inside;
       }

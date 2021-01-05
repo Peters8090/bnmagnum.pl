@@ -105,17 +105,17 @@ export const Content: ContentType = {
       displayName: "Dla sprzedających",
     },
     steps: {
-      "Skontaktuj się z nami": (
+      "Przebieg spotkania": (
         <>
           Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na
           spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy.
           Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na
           specjalistę znającego dobrze rejon swojego działania.
-        </>
-      ),
-      "Przebieg spotkania": (
-        <>
-          <div className="column-span">Doradca:</div>
+          <div className="no-break-after">
+            <br />
+            Doradca:
+            <br />
+          </div>
           <ul>
             <li>
               zaproponuje przedział cenowy, dzięki któremu dowiesz się, ile
@@ -147,6 +147,31 @@ export const Content: ContentType = {
           dokona wszelkich starań, by pomóc ci w sprzedaży. Dodatkowo zakres
           czynności proponowany przez pośrednika jest znacznie szerszy niż w
           przypadku umowy otwartej.
+          <br />
+          Dla przykładu:
+          <br />
+          Jeśli decydujemy się na zawarcie związku małżeńskiego, to ślubu
+          udziela tylko jeden ksiądz bądź, jeden urzędnik stanu cywilnego.
+          Wybieramy tylko jeden lokal na przyjęcie. Jeśli decydujemy się na
+          przyjęcie to mamy jednego DJ'a lub jeden zespół muzyczny. Po ślubie,
+          mamy jednego współmałżonka. Jeśli nam się nie ułoży i podejmujemy
+          decyzję o rozstaniu, to doradza nam jeden adwokat.
+          <br />
+          To dlaczego pozwalamy, żeby kilkunastu agentów sprzedawało naszą
+          nieruchomość, wiedząc, że tylko jednemu z nich się uda. Druga strona
+          medalu wygląda następująco; żaden z agentów nie bierze zupełnej
+          odpowiedzialności za sprzedaż Państwa nieruchomości, bo wie, że
+          sprzedający podpisał już wiele otwartych umów z innymi biurami
+          nieruchomości, czyli starają się wszyscy, a tak naprawdę jest brak
+          efektów.
+          <br />
+          W przypadku ofert wyłącznych, macie Państwo gwarancję, że będzie
+          rzetelnie wprowadzona i bardzo dobrze promowana.
+          <br />
+          Dzięki temu, klienci zainteresowani przed spotkaniem z Agentem będą
+          mogli poznać dokładną lokalizację, aby sprawdzić czy na pewno będzie
+          dla nich odpowiednia. Dlatego warto rozważyć zaufanie tylko jednemu
+          agentowi. Jesteśmy po to, abyście Państwo podjęli właściwa decyzję.
         </>
       ),
     },
