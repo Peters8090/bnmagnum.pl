@@ -9,14 +9,13 @@ import { Content } from "../../../../../content";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { RouteLink } from "../../../../../functions/RouteLink";
 import { useCurrentNavigationHeight } from "../../../../../hooks/useCurrentNavigationHeight";
-import { RouteType } from "../../../../../interfaces and types/RouteType";
 import PrivacyPolicyPage from "../../../../../pages/polityka-prywatnosci";
 import { CustomGrid } from "../../../../shared/Custom Material-UI/CustomGrid";
 import { PageTitle } from "../../shared/PageTitle";
 import { CompanyData } from "./Section/Sections/CompanyData/CompanyData";
 import { ContactForm } from "./Section/Sections/ContactForm/ContactForm";
 
-export const Footer: RouteType = Object.assign(() => {
+export function Footer() {
   const navHeight = useCurrentNavigationHeight();
   const scrollBarWidth = useScrollbarWidth()!;
   const theme = useTheme();
@@ -103,7 +102,7 @@ export const Footer: RouteType = Object.assign(() => {
     `,
   };
 
-  const linkId = convertRouteHashToLinkId(Footer.routeName);
+  const linkId = convertRouteHashToLinkId(Content.footer.route.routeName);
 
   return (
     <footer id={linkId} css={styles.root}>
@@ -153,4 +152,7 @@ export const Footer: RouteType = Object.assign(() => {
       </div>
     </footer>
   );
-}, Content.footer.route);
+}
+
+Footer.routeName = Content.footer.route.routeName;
+Footer.displayName = Content.footer.route.displayName;
