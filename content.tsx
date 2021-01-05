@@ -107,7 +107,7 @@ export const Content: ContentType = {
     steps: {
       "Przebieg spotkania": (
         <>
-          Powiedz jaką nieruchomość posiadasz do sprzedania i umów się na
+          Powiedz, jaką nieruchomość posiadasz do sprzedania i umów się na
           spotkanie. Przyjedzie do Ciebie Agent działający w Twojej okolicy.
           Będziesz mieć pewność, że nie trafisz na przypadkowego doradcę, ale na
           specjalistę znającego dobrze rejon swojego działania.
@@ -151,7 +151,7 @@ export const Content: ContentType = {
           Dla przykładu:
           <br />
           Jeśli decydujemy się na zawarcie związku małżeńskiego, to ślubu
-          udziela tylko jeden ksiądz bądź, jeden urzędnik stanu cywilnego.
+          udziela tylko jeden ksiądz, bądź jeden urzędnik stanu cywilnego.
           Wybieramy tylko jeden lokal na przyjęcie. Jeśli decydujemy się na
           przyjęcie to mamy jednego DJ'a lub jeden zespół muzyczny. Po ślubie,
           mamy jednego współmałżonka. Jeśli nam się nie ułoży i podejmujemy
@@ -169,7 +169,7 @@ export const Content: ContentType = {
           rzetelnie wprowadzona i bardzo dobrze promowana.
           <br />
           Dzięki temu, klienci zainteresowani przed spotkaniem z Agentem będą
-          mogli poznać dokładną lokalizację, aby sprawdzić czy na pewno będzie
+          mogli poznać dokładną lokalizację, aby sprawdzić, czy na pewno będzie
           dla nich odpowiednia. Dlatego warto rozważyć zaufanie tylko jednemu
           agentowi. Jesteśmy po to, abyście Państwo podjęli właściwa decyzję.
         </>
@@ -188,7 +188,7 @@ export const Content: ContentType = {
           bezpieczeństwo i pewność dokonania transakcji zgodnej z przepisami
           prawa.
           <br />
-          Decyzja kupującego (poszukującego) na współpracę z biurem
+          Decyzja kupującego (poszukującego) o współpracy z biurem
           nieruchomości, będzie miała swoje potwierdzenie na papierze. Przyjmie
           ona formę umowy, w której zawarte będą szczegółowe parametry
           poszukiwanej nieruchomości, zakres pracy biura nieruchomości oraz
@@ -213,8 +213,8 @@ export const Content: ContentType = {
           <br />
           Zapewnimy naszym klientom możliwie najlepsze wsparcie zarówno przy
           negocjacji ceny, jak i procesie zakupu nieruchomości od początku do
-          końca. Naszym celem jest zadowolenie klienta przy zakupie, wymarzonej
-          nieruchomości na najkorzystniejszych dla niego warunkach.
+          końca. Naszym celem jest zadowolenie klienta na najkorzystniejszych
+          dla niego warunkach.
         </>
       ),
       "Rodzaje nieruchomości": (
@@ -224,7 +224,7 @@ export const Content: ContentType = {
             <ul>
               <li>Czy na osiedlu zamkniętym</li>
               <li>Do którego piętra bez windy</li>
-              <li>W bloku / czy apartamentowcu</li>
+              <li>W bloku / w apartamentowcu</li>
             </ul>
           </li>
           <li>
@@ -234,7 +234,7 @@ export const Content: ContentType = {
               <li>Poza miastem</li>
               <li>Na wsi</li>
               <li>Z małą działką</li>
-              <li>Z dużą działką np. ok 2000 m²</li>
+              <li>Z dużą działką np. 2000 m²</li>
               <li>Dom 2-rodzinny</li>
               <li>Jednorodzinny </li>
               <li>Parterowy</li>
@@ -255,15 +255,15 @@ export const Content: ContentType = {
       ),
       "Ważne informacje - kryteria": (
         <ul>
-          <li>Z rynku pierwotnego czyli stan deweloperski do wykończenia </li>
+          <li>Z rynku pierwotnego, czyli stan deweloperski do wykończenia </li>
           <li>
             Jeśli z rynku wtórnego to czy: do wprowadzenia się / odświeżenia /
             do remontu
           </li>
           <li>W jakim budżecie</li>
           <li>
-            Lokalizacja, najlepiej w odniesieniu do jakiegoś punktu, najlepiej
-            podana w odległości np. (od PKP 1 km , lub 20 min na pieszo)
+            Lokalizacja, najlepiej w odniesieniu do jakiegoś punktu, podana w
+            odległości np. (od PKP 1 km lub 20 min na pieszo)
           </li>
           <li>Ile powinno być pokoi (w tym ile sypialni)</li>
           <li>Jaka powinna być powierzchnia np. domu i działki przy domu</li>
@@ -273,7 +273,7 @@ export const Content: ContentType = {
           </li>
           <li>Czego nie chciałbyś w okolicy swojej nieruchomości </li>
           <li>
-            Czy okolica powinna dynamicznie się rozwijać czy też powinna być
+            Czy okolica powinna dynamicznie się rozwijać, czy też powinna być
             oazą spokoju.
           </li>
         </ul>
@@ -403,7 +403,7 @@ Państwa dane osobowe przechowywane będą w celu:
 - kontaktu z Państwem w odpowiedzi i w związku ze skorzystaniem z formularza kontaktowego zawartego na naszej stronie lub skontaktowania się z nami w inny sposób – do momentu wycofania zgody na przetwarzanie danych osobowych w tym celu lub zawarcia z nami umowy w zakresie pośrednictwa sprzedaży nieruchomości.
 - ustalenia, dochodzenia lub obrony przed roszczeniami – do momentu przedawnienia roszczeń z tytułu umowy lub roszczeń związanych z przetwarzaniem danych osobowych
 - marketingu bezpośredniego usług
-– do momentu wycofania zgody na przetwarzanie danych osobowych,
+- do momentu wycofania zgody na przetwarzanie danych osobowych,
 - przesyłania informacji handlowych drogą elektroniczną lub w inny sposób – do momentu wycofania zgody na przetwarzanie danych osobowych.
 - przesyłania zamówionego Newslettera – do momentu wycofania zgody na przetwarzanie danych osobowych.
 - badania preferencji odnośnie do zapotrzebowania na usługi – do momentu wycofania zgody na przetwarzanie danych osobowych,
