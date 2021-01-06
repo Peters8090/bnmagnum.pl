@@ -14,7 +14,7 @@ export const Logo: FC = () => {
         height: 50px;
       }
 
-      margin: ${theme.spacing(2)}px 0;
+      margin: ${theme.spacing(2)}px ${theme.spacing(1)}px;
     `,
     textRoot: css`
       font-family: "Cabin", sans-serif;

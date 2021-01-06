@@ -30,11 +30,12 @@ export const Navigation: ForwardRefExoticComponent<
 > = forwardRef((_, ref) => {
   const theme = useTheme();
   const styles = {
-    logo: css`
-      font-family: "Cabin", sans-serif;
-    `,
     toolbar: css`
       justify-content: space-evenly;
+
+      ${theme.breakpoints.down("sm")} {
+        justify-content: space-between;
+      }
     `,
     drawerLogoWrapper: css`
       margin: 0 ${theme.spacing(3)}px;
@@ -42,6 +43,9 @@ export const Navigation: ForwardRefExoticComponent<
     `,
     drawerDivider: css`
       margin: ${theme.spacing(2)}px 0;
+    `,
+    iconButton: css`
+      margin: 0 ${theme.spacing(1)}px;
     `,
   };
 
@@ -62,17 +66,23 @@ export const Navigation: ForwardRefExoticComponent<
           <NavigationItems />
         </Hidden>
         <Hidden mdUp>
-          {!isOfferDetails && router.route === OfferSearch.routeName && (
+          <div>
+            {!isOfferDetails && router.route === OfferSearch.routeName && (
+              <IconButton
+                size="small"
+                onClick={() => setFiltersVisible((prev) => !prev)}
+                css={styles.iconButton}
+              >
+                <Icon>{filtersVisible ? "expand_less" : "expand_more"}</Icon>
+              </IconButton>
+            )}
             <IconButton
-              size="small"
-              onClick={() => setFiltersVisible((prev) => !prev)}
+              css={styles.iconButton}
+              onClick={() => setDrawerOpen(true)}
             >
-              <Icon>{filtersVisible ? "expand_less" : "expand_more"}</Icon>
+              <Icon>menu</Icon>
             </IconButton>
-          )}
-          <IconButton onClick={() => setDrawerOpen(true)}>
-            <Icon>menu</Icon>
-          </IconButton>
+          </div>
           <Drawer
             anchor="right"
             open={drawerOpen}
