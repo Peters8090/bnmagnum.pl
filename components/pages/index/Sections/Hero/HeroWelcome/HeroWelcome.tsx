@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { Content } from "../../../../../../content";
 import { RouteLink } from "../../../../../../functions/RouteLink";
-import OfferSearch from "../../../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+import OfferSearch from "../../../../../../pages/oferty/[[...offerName]]";
 
 export const HeroWelcome: FC = () => {
   const theme = useTheme();

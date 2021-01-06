@@ -96,7 +96,7 @@ export const Content: ContentType = {
   offers: {
     route: {
       displayName: "Oferty",
-      routeName: "/wyszukiwarka-ofert/[[...offerName]]",
+      routeName: "/oferty/[[...offerName]]",
     },
   },
   guideForSellers: {

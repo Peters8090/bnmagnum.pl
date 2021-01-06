@@ -21,7 +21,7 @@ import {
 import { Filters } from "../../../components/pages/wyszukiwarka-ofert/Filters/Filters";
 import OfferSearch, {
   useOfferName,
-} from "../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+} from "../../../pages/oferty/[[...offerName]]";
 import { Logo } from "./Logo/Logo";
 import { NavigationItems } from "./NavigationItems/NavigationItems";
 

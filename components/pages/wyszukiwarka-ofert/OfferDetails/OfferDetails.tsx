@@ -6,7 +6,7 @@ import React, { FC } from "react";
 import { addSpaceEveryThreeCharacters } from "../../../../functions/addSpaceEveryThreeCharacters";
 import { RouteLink } from "../../../../functions/RouteLink";
 import { useUrlWithQueryString } from "../../../../hooks/useUrlWithQueryString";
-import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+import OfferSearch from "../../../../pages/oferty/[[...offerName]]";
 import { OfferProps } from "../OfferList/Offer/Offer";
 import { AgentCard } from "./AgentCard/AgentCard";
 import { Photos } from "./Photos/Photos";

@@ -5,7 +5,7 @@ import { Footer } from "../../../../components/pages/index/Sections/Footer/Foote
 import { RouteLink } from "../../../../functions/RouteLink";
 import { RouteType } from "../../../../interfaces and types/RouteType";
 import { homeSections } from "../../../../pages";
-import OfferSearch from "../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+import OfferSearch from "../../../../pages/oferty/[[...offerName]]";
 import {
   NavigationItem,
   NavigationItemProps,

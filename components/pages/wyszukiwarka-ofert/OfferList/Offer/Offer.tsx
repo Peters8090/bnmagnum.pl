@@ -8,8 +8,8 @@ import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceE
 import { RouteLink } from "../../../../../functions/RouteLink";
 import { useUrlWithQueryString } from "../../../../../hooks/useUrlWithQueryString";
 import OfferSearch, {
-  useOfferName,
-} from "../../../../../pages/wyszukiwarka-ofert/[[...offerName]]";
+  useOfferName
+} from "../../../../../pages/oferty/[[...offerName]]";
 
 export interface OfferProps {
   normal: {
