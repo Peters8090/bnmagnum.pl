@@ -27,8 +27,9 @@ export const DetailsSection: FC<DetailsSectionProps> = (props) => {
 
   return (
     <Section title="Szczegóły">
-      {(Object.entries(props.params) as [string, string | number][]).map(
-        (el) => (
+      {(Object.entries(props.params) as [string, string | number][])
+        .sort()
+        .map((el) => (
           <div>
             <div css={styles.detailText}>
               <Typography align="left" css={styles.detailTextName} variant="h6">
@@ -40,8 +41,7 @@ export const DetailsSection: FC<DetailsSectionProps> = (props) => {
             </div>
             <Divider css={styles.detailDivider} />
           </div>
-        )
-      )}
+        ))}
     </Section>
   );
 };

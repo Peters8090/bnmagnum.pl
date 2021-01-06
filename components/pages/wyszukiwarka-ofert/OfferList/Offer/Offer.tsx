@@ -8,7 +8,7 @@ import { addSpaceEveryThreeCharacters } from "../../../../../functions/addSpaceE
 import { RouteLink } from "../../../../../functions/RouteLink";
 import { useUrlWithQueryString } from "../../../../../hooks/useUrlWithQueryString";
 import OfferSearch, {
-  useOfferName
+  useOfferName,
 } from "../../../../../pages/oferty/[[...offerName]]";
 
 export interface OfferProps {
@@ -117,15 +117,17 @@ export const Offer: FC<OfferProps> = (props) => {
           </div>
         </div>
         <div css={styles.chips}>
-          {Object.keys(props.keywords).map((info) => (
-            <Chip
-              css={styles.keywordChip}
-              key={info}
-              label={info}
-              color="secondary"
-              size="small"
-            />
-          ))}
+          {Object.keys(props.keywords)
+            .filter((key) => !["nie", "brak"].includes(props.keywords[key]))
+            .map((info) => (
+              <Chip
+                css={styles.keywordChip}
+                key={info}
+                label={info}
+                color="secondary"
+                size="small"
+              />
+            ))}
         </div>
       </div>
     </Link>

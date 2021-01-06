@@ -69,7 +69,7 @@ export const OfferDetails: FC<OfferProps> = (props) => {
 
       <Container maxWidth="sm">
         <DescriptionSection description={props.normal.description} />
-        <DetailsSection params={props.params} />
+        <DetailsSection params={{ ...props.params, ...props.keywords }} />
         <GoogleMapsIFrameSection location={props.normal.location} />
       </Container>
 
