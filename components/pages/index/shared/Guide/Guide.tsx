@@ -41,7 +41,7 @@ export const Guide: FC<GuideProps> = (props) => {
     buttonWrapper: css`
       display: flex;
       flex-direction: row;
-      padding: 16px 0 0;
+      padding-bottom: ${theme.spacing(1)}px;
     `,
     button: css`
       margin-right: ${theme.spacing(1)}px;
@@ -113,6 +113,10 @@ export const Guide: FC<GuideProps> = (props) => {
       justify-content: space-between;
       padding: ${theme.spacing(1)}px ${theme.spacing(3)}px;
     `,
+    stepper: css`
+      padding-left: 0;
+      padding-right: 0;
+    `,
   };
 
   const handleNextOrReset = () => {
@@ -134,6 +138,7 @@ export const Guide: FC<GuideProps> = (props) => {
       <PageTitle css={styles.title} text={props.route.displayName} />
       <div css={styles.main}>
         <Stepper
+          css={styles.stepper}
           activeStep={activeStep}
           orientation={isMobile ? "vertical" : "horizontal"}
         >
@@ -143,6 +148,23 @@ export const Guide: FC<GuideProps> = (props) => {
             </Step>
           ))}
         </Stepper>
+        <nav css={styles.buttonWrapper}>
+          <Button
+            color="inherit"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            css={styles.button}
+          >
+            {Content.utils.back}
+          </Button>
+          <div css={styles.spacer} />
+          <Button onClick={handleNextOrReset}>
+            {activeStep === Object.keys(steps).length - 1
+              ? Content.utils.reset
+              : Content.utils.next}
+          </Button>
+        </nav>
+
         <div css={styles.stepContent}>
           <CustomTypography
             gutterBottom
@@ -162,22 +184,6 @@ export const Guide: FC<GuideProps> = (props) => {
             {curContent}
           </CustomTypography>
         </div>
-        <nav css={styles.buttonWrapper}>
-          <Button
-            color="inherit"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            css={styles.button}
-          >
-            {Content.utils.back}
-          </Button>
-          <div css={styles.spacer} />
-          <Button onClick={handleNextOrReset}>
-            {activeStep === Object.keys(steps).length - 1
-              ? Content.utils.reset
-              : Content.utils.next}
-          </Button>
-        </nav>
       </div>
     </div>
   );
