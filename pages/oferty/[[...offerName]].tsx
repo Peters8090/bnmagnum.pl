@@ -4,7 +4,12 @@ import { useTheme } from "@material-ui/core/styles";
 import axios from "axios";
 import { useRouter } from "next/router";
 import queryString from "query-string";
-import React, { PropsWithChildren, useContext, useEffect } from "react";
+import React, {
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { OfferDetails } from "../../components/pages/wyszukiwarka-ofert/OfferDetails/OfferDetails";
 import { OfferProps } from "../../components/pages/wyszukiwarka-ofert/OfferList/Offer/Offer";
 import { OfferList } from "../../components/pages/wyszukiwarka-ofert/OfferList/OfferList";
@@ -88,6 +93,31 @@ const OfferSearch: RouteType<OfferSearchProps> = Object.assign(
         router.push(href, as);
       }
     }, [selectedOffer]);
+
+    const [scrollPosOfferList, setScrollPosOfferList] = useState<number>();
+
+    useEffect(() => {
+      const handleRouteChange = (destUrl: string) => {
+        const isOfferDetails = destUrl.split("/").length > 2;
+        if (isOfferDetails) {
+          setScrollPosOfferList(window.scrollY);
+        }
+      };
+
+      router.events.on("routeChangeStart", handleRouteChange);
+
+      return () => {
+        router.events.off("routeChangeStart", handleRouteChange);
+      };
+    }, []);
+
+    useEffect(() => {
+      if (!offerName && scrollPosOfferList !== undefined && isMobile) {
+        window.scroll({
+          top: scrollPosOfferList,
+        });
+      }
+    }, [offerName]);
 
     return (
       <div css={styles.root}>
