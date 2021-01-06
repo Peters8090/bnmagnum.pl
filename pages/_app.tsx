@@ -54,6 +54,7 @@ const App = ({ Component, pageProps }: AppProps) => {
               <title>{title}</title>
               <meta name="description" content={description} />
               <link rel="shortcut icon" href={Content.head.logo} />
+              <link rel="apple-touch-icon" href={Content.head.logo} />
 
               <meta property="og:title" content={title} />
               <meta property="og:description" content={description} />
