@@ -142,8 +142,6 @@ const OfferSearch: RouteType<OfferSearchProps> = Object.assign(
 );
 
 OfferSearch.getInitialProps = async (context) => {
-  console.log("new");
-
   const reqQuery =
     queryString.stringify(queryString.parseUrl(context.asPath ?? "").query) ||
     "";
