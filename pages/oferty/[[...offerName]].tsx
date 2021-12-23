@@ -65,9 +65,8 @@ const OfferSearch: RouteType<OfferSearchProps> = Object.assign(
 
     const { query, queryParsed } = useUrlWithQueryString();
 
-    const { setTitleParts, setOgImage, setOverrideDescription } = useContext(
-      HeadContext
-    );
+    const { setTitleParts, setOgImage, setOverrideDescription } =
+      useContext(HeadContext);
 
     useEffect(() => {
       if (!selectedOffer) {
@@ -143,36 +142,30 @@ const OfferSearch: RouteType<OfferSearchProps> = Object.assign(
 );
 
 OfferSearch.getInitialProps = async (context) => {
+  console.log("new");
+
   const reqQuery =
     queryString.stringify(queryString.parseUrl(context.asPath ?? "").query) ||
     "";
 
-  const response = await axios({
-    method: "GET",
-    url: `${importantData.apiUrl}?${reqQuery}`,
-  });
+  try {
+    const response = await axios({
+      method: "GET",
+      url: `${importantData.apiUrl}?${reqQuery}`,
+    });
 
-  const offerName = context.query?.offerName?.[0];
+    const offerName = context.query?.offerName?.[0];
 
-  if (offerName) {
-    if (!response?.data?.docs?.find((o: any) => o.normal.slug === offerName)) {
-      let page = "";
-      let q = "";
-
-      try {
-        const queryBuilder = new URLSearchParams(reqQuery);
-        queryBuilder.append("slug", offerName);
-        const response = await axios({
-          method: "GET",
-          url: `${importantData.apiUrl}/which-page/?${queryBuilder.toString()}`,
-        });
-        page = response.data.page.toString();
-        q = reqQuery;
-      } catch (error) {
-        const queryBuilder = new URLSearchParams();
-        queryBuilder.append("slug", offerName);
+    if (offerName) {
+      if (
+        !response?.data?.docs?.find((o: any) => o.normal.slug === offerName)
+      ) {
+        let page = "";
+        let q = "";
 
         try {
+          const queryBuilder = new URLSearchParams(reqQuery);
+          queryBuilder.append("slug", offerName);
           const response = await axios({
             method: "GET",
             url: `${
@@ -180,30 +173,57 @@ OfferSearch.getInitialProps = async (context) => {
             }/which-page/?${queryBuilder.toString()}`,
           });
           page = response.data.page.toString();
-        } catch (error2) {}
-      }
-      const queryBuilder = new URLSearchParams(page ? q : undefined);
-      if (page) {
-        queryBuilder.delete("page");
-        queryBuilder.append("page", page);
-      }
+          q = reqQuery;
+        } catch (error) {
+          const queryBuilder = new URLSearchParams();
+          queryBuilder.append("slug", offerName);
 
-      if (context.res) {
-        context.res.writeHead(301, {
-          Location: RouteLink(
-            OfferSearch,
-            page ? offerName : undefined,
-            queryBuilder.toString()
-          ).as,
-        });
-        context.res.end();
+          console.log(error);
+
+          try {
+            const response = await axios({
+              method: "GET",
+              url: `${
+                importantData.apiUrl
+              }/which-page/?${queryBuilder.toString()}`,
+            });
+            page = response.data.page.toString();
+          } catch (error2) {
+            console.log(error2);
+          }
+        }
+        const queryBuilder = new URLSearchParams(page ? q : undefined);
+        if (page) {
+          queryBuilder.delete("page");
+          queryBuilder.append("page", page);
+        }
+
+        if (context.res) {
+          context.res.writeHead(301, {
+            Location: RouteLink(
+              OfferSearch,
+              page ? offerName : undefined,
+              queryBuilder.toString()
+            ).as,
+          });
+          context.res.end();
+        }
       }
     }
-  }
 
-  return {
-    offersWithPagination: response.data,
-  };
+    return {
+      offersWithPagination: response.data,
+    };
+  } catch (errr) {
+    console.log(errr);
+    return {
+      offersWithPagination: {
+        docs: [],
+        page: 0,
+        totalPages: 0,
+      },
+    };
+  }
 };
 
 export default OfferSearch;
