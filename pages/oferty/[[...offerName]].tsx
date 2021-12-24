@@ -97,8 +97,6 @@ const OfferSearch: RouteType<OfferSearchProps> = Object.assign(
 
     useEffect(() => {
       const handleRouteChange = (destUrl: string) => {
-        console.log(destUrl);
-
         const isOfferDetails = destUrl.split("/").length > 2;
         if (isOfferDetails) {
           setScrollPosOfferList(window.scrollY);
