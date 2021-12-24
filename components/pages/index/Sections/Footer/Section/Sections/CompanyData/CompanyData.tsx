@@ -26,6 +26,7 @@ export const CompanyData: FC = () => {
           >
             {informations.map((information) => (
               <Information
+                key={information.title}
                 title={information.title}
                 content={information.content}
               />

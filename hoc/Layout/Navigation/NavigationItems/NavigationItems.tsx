@@ -45,6 +45,7 @@ export const NavigationItems: FC<NavigationItemsProps> = (props) => {
     <div css={styles.root}>
       {routeList.map((route) => (
         <NavigationItem
+          key={route.routeName}
           text={route.displayName}
           LinkProps={RouteLink(route)}
           {...props.navigationItemProps}

@@ -125,9 +125,10 @@ export const Filters = () => {
 
   return (
     <form css={styles.root}>
-      {filterList.map((filter) => (
+      {filterList.map((filter, i) => (
         <Filter
           {...filter}
+          key={i}
           register={register}
           defaultValue={queryParsed[filter.name]}
           handleSubmit={handleSubmit}

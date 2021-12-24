@@ -38,7 +38,7 @@ export const ModalGallery: FC<ModalGalleryProps> = (props) => {
       }}
     >
       {(["left", "right"] as const).map((side) => (
-        <SwitchPhotoFab side={side} />
+        <SwitchPhotoFab side={side} key={side} />
       ))}
 
       <img src={photos[photoIndex]} css={styles.photo} />

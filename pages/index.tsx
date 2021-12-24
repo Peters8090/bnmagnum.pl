@@ -42,8 +42,9 @@ const HomePage: RouteType = () => {
   const { setTitleParts } = useContext(HeadContext);
 
   useEffect(() => {
-    const curSection = homeSections.find((s) => router.asPath === s.routeName)
-      ?.displayName;
+    const curSection = homeSections.find(
+      (s) => router.asPath === s.routeName
+    )?.displayName;
 
     if (curSection) {
       setTitleParts([curSection]);

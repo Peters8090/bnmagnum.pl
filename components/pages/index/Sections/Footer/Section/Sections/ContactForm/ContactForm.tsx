@@ -69,7 +69,7 @@ export const ContactForm: FC = () => {
       enqueueSnackbar("Pomyślnie wysłano wiadomość", {
         variant: "success",
       });
-    } catch (error) {
+    } catch (error: any) {
       if (!error.request) {
         throw error;
       }
@@ -104,6 +104,7 @@ export const ContactForm: FC = () => {
       <form css={styles.form} onSubmit={handleSubmit}>
         {fields.map((field) => (
           <TextField
+            key={field.label}
             inputRef={register}
             label={field.label}
             name={field.name}

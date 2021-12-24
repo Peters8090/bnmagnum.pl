@@ -47,7 +47,11 @@ export const NormalFilter: FC<NormalFilterProps> = (props) => {
         [
           { label: "Nie wybrano", value: undefined },
           ...props.filterProps.values,
-        ].map(({ label, value }) => <MenuItem value={value}>{label}</MenuItem>)}
+        ].map(({ label, value }) => (
+          <MenuItem value={value} key={label}>
+            {label}
+          </MenuItem>
+        ))}
     </TextField>
   );
 };

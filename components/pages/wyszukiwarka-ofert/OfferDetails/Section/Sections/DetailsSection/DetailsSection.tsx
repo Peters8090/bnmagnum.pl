@@ -40,7 +40,7 @@ export const DetailsSection: FC<DetailsSectionProps> = (props) => {
   return (
     <Section title="Szczegóły">
       {paramsSorted.map((el) => (
-        <div>
+        <div key={el[0]}>
           <div css={styles.detailText}>
             <Typography align="left" css={styles.detailTextName} variant="h6">
               {el[0]}
