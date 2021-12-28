@@ -79,12 +79,45 @@ export const Content: ContentType = {
         author: "Państwo Kowalscy z Jaktorowa",
       },
       {
+        text: "Ta firma zmieniła moje życie",
+        author: "Pan z Warszawy",
+      },
+      {
         text: "Bardzo profesjonalna obsługa",
         author: "Urszula z Sochaczewa",
+      },
+
+      {
+        text: "Jestem bardzo zadowolona z usług tej firmy.",
+        author: "Maria Lewandowska",
+      },
+      {
+        text: "Bardzo miła pośrednik",
+        author: "Joanna Kwiat",
+      },
+      {
+        text: "Super obsługa - pośrednik godny polecenia",
+        author: "Pani spod Warszawy",
+      },
+      {
+        text: "Dom, który kupiliśmy był jak z marzeń",
+        author: "Rodzina z Błonia",
+      },
+      {
+        text: "Najlepiej wydane pieniądze w życiu",
+        author: "Robert Piłowski",
+      },
+      {
+        text: "Jestem niezwykle wdzięczny tej agencji",
+        author: "Jarosław z Piaseczna",
       },
       {
         text: "Pani Magda dobrała nam wspaniałą lokalizację",
         author: "Małżeństwo z Mszczonowa",
+      },
+      {
+        text: "Nieruchomości o bardzo wysokiej jakości",
+        author: "Jakub Cegła",
       },
       {
         text: "Bardzo szybko dom się sprzedał",

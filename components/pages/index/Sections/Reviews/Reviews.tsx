@@ -8,6 +8,7 @@ import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteH
 import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { PageTitle } from "../../shared/PageTitle";
 import Carousel from "react-material-ui-carousel";
+import lodash from "lodash";
 
 export const Reviews: RouteType = Object.assign(() => {
   const theme = useTheme();
@@ -38,30 +39,32 @@ export const Reviews: RouteType = Object.assign(() => {
 
   const linkId = convertRouteHashToLinkId(Reviews.routeName);
 
+  const reviewGroups = lodash.chunk(Content.reviews.reviews, 5);
+
+  const oneReviewGroup = reviewGroups.length === 1;
+
   return (
     <div css={styles.root} id={linkId}>
       <PageTitle text={Content.reviews.route.displayName} />
-      <Carousel autoPlay interval={5000} fullHeightHover>
-        <div css={styles.reviewsList}>
-          {Content.reviews.reviews.map((review) => (
-            <Card css={styles.review} elevation={12}>
-              <Typography variant="h5">
-                <span css={styles.reviewText}>„{review.text}"</span> <br />{" "}
-                {review.author}
-              </Typography>
-            </Card>
-          ))}
-        </div>
-        <div css={styles.reviewsList}>
-          {Content.reviews.reviews.map((review) => (
-            <Card css={styles.review} elevation={12}>
-              <Typography variant="h5">
-                <span css={styles.reviewText}>„{review.text}"</span> <br />{" "}
-                {review.author}
-              </Typography>
-            </Card>
-          ))}
-        </div>
+      <Carousel
+        autoPlay
+        interval={5000}
+        indicators={!oneReviewGroup}
+        navButtonsAlwaysInvisible={oneReviewGroup}
+        stopAutoPlayOnHover={false}
+      >
+        {reviewGroups.map((reviewGroup) => (
+          <div css={styles.reviewsList}>
+            {reviewGroup.map((review) => (
+              <Card css={styles.review} elevation={12}>
+                <Typography variant="h5">
+                  <span css={styles.reviewText}>„{review.text}"</span> <br />{" "}
+                  {review.author}
+                </Typography>
+              </Card>
+            ))}
+          </div>
+        ))}
       </Carousel>
     </div>
   );
