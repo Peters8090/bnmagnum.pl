@@ -7,6 +7,7 @@ import { Content } from "../../../../../content";
 import { convertRouteHashToLinkId } from "../../../../../functions/convertRouteHashToLinkId";
 import { RouteType } from "../../../../../interfaces and types/RouteType";
 import { PageTitle } from "../../shared/PageTitle";
+import Carousel from "react-material-ui-carousel";
 
 export const Reviews: RouteType = Object.assign(() => {
   const theme = useTheme();
@@ -40,16 +41,28 @@ export const Reviews: RouteType = Object.assign(() => {
   return (
     <div css={styles.root} id={linkId}>
       <PageTitle text={Content.reviews.route.displayName} />
-      <div css={styles.reviewsList}>
-        {Content.reviews.reviews.map((review) => (
-          <Card css={styles.review} elevation={12}>
-            <Typography variant="h5">
-              <span css={styles.reviewText}>„{review.text}"</span> <br />{" "}
-              {review.author}
-            </Typography>
-          </Card>
-        ))}
-      </div>
+      <Carousel autoPlay interval={5000} fullHeightHover>
+        <div css={styles.reviewsList}>
+          {Content.reviews.reviews.map((review) => (
+            <Card css={styles.review} elevation={12}>
+              <Typography variant="h5">
+                <span css={styles.reviewText}>„{review.text}"</span> <br />{" "}
+                {review.author}
+              </Typography>
+            </Card>
+          ))}
+        </div>
+        <div css={styles.reviewsList}>
+          {Content.reviews.reviews.map((review) => (
+            <Card css={styles.review} elevation={12}>
+              <Typography variant="h5">
+                <span css={styles.reviewText}>„{review.text}"</span> <br />{" "}
+                {review.author}
+              </Typography>
+            </Card>
+          ))}
+        </div>
+      </Carousel>
     </div>
   );
 }, Content.reviews.route);
