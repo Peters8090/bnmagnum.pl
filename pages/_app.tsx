@@ -20,7 +20,7 @@ interface HeadContextProps {
 }
 
 export const HeadContext = createContext<HeadContextProps>(
-  (null as unknown) as HeadContextProps
+  null as unknown as HeadContextProps
 );
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -55,6 +55,10 @@ const App = ({ Component, pageProps }: AppProps) => {
               <meta name="description" content={description} />
               <link rel="shortcut icon" href={Content.head.logo} />
               <link rel="apple-touch-icon" href={Content.head.logo} />
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+              />
 
               <meta property="og:title" content={title} />
               <meta property="og:description" content={description} />

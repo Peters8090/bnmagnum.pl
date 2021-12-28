@@ -27,6 +27,14 @@ interface ContentType {
     steps: Record<string, string | JSX.Element>;
   };
   ourEmployees: { route: RouteOnlyProps; employees: EmployeeProps[] };
+
+  reviews: {
+    route: RouteOnlyProps;
+    reviews: {
+      text: string;
+      author: string;
+    }[];
+  };
   footer: {
     route: RouteOnlyProps;
     sectionTitle: string;
@@ -59,6 +67,34 @@ export const Content: ContentType = {
   },
   offers: {
     route: { displayName: "Oferty", routeName: "/oferty/[[...offerName]]" },
+  },
+  reviews: {
+    route: {
+      routeName: "/#opinie",
+      displayName: "Opinie",
+    },
+    reviews: [
+      {
+        text: "Kupiliśmy piękną działkę i w wspaniałej lokalizacji",
+        author: "Państwo Kowalscy z Jaktorowa",
+      },
+      {
+        text: "Bardzo profesjonalna obsługa",
+        author: "Urszula z Sochaczewa",
+      },
+      {
+        text: "Pani Magda dobrała nam wspaniałą lokalizację",
+        author: "Małżeństwo z Mszczonowa",
+      },
+      {
+        text: "Bardzo szybko dom się sprzedał",
+        author: "Renata z Skieniewic",
+      },
+      {
+        text: "Nie mam żadnych zastrzeżeń. Pełny profesjonalizm.",
+        author: "Mariusz Duda",
+      },
+    ],
   },
   guideForSellers: {
     route: {

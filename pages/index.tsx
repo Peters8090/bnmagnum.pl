@@ -7,6 +7,7 @@ import { Footer } from "../components/pages/index/Sections/Footer/Footer";
 import { GuideForBuyers } from "../components/pages/index/Sections/GuideForBuyers/GuideForBuyers";
 import { GuideForSellers } from "../components/pages/index/Sections/GuideForSellers/GuideForSellers";
 import { Hero } from "../components/pages/index/Sections/Hero/Hero";
+import { Reviews } from "../components/pages/index/Sections/Reviews/Reviews";
 import { convertRouteHashToLinkId } from "../functions/convertRouteHashToLinkId";
 import { UpdateHashOnScroll } from "../hoc/UpdateHashOnScroll/UpdateHashOnScroll";
 import { useCurrentNavigationHeight } from "../hooks/useCurrentNavigationHeight";
@@ -16,6 +17,7 @@ import { HeadContext } from "./_app";
 export const homeSections: RouteType<any>[] = [
   Hero,
   About,
+  Reviews,
   GuideForSellers,
   GuideForBuyers,
   // OurEmployees,
